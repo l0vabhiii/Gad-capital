@@ -38,6 +38,22 @@
     .card:hover {
       transform: translateY(-4px);
     }
+    .whatsapp-float {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #25D366;
+      color: white;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      z-index: 999;
+      font-size: 28px;
+    }
   </style>
 </head>
 <body>
@@ -115,6 +131,13 @@
   <footer class="text-center py-6 bg-white border-t mt-10">
     <p class="text-sm text-gray-500">© 2025 GAD KAPITAL. All rights reserved.</p>
   </footer>
+
+  <!-- WhatsApp Floating Button -->
+  <a href="https://wa.me/919136913890" target="_blank" class="whatsapp-float" title="Chat on WhatsApp">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3v18l5-5h11a2 2 0 002-2V5a2 2 0 00-2-2H3z" />
+    </svg>
+  </a>
 
   <script>
     const tabButtons = document.querySelectorAll(".tab-btn");
