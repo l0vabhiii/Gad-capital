@@ -1,19 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GAD KAPITAL – Global Real Asset Investment</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GAD KAPITAL</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
   <style>
     body {
       font-family: 'Poppins', sans-serif;
       background-color: #0a0f2c;
       color: #f3f4f6;
     }
-    .gold-text {
-      background: linear-gradient(to right, #ffd700, #b8860b);
+    .hero {
+      height: 100vh;
+      background: linear-gradient(to bottom right, #0a0f2c, #1e3a8a);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    .hero-title {
+      font-size: 3rem;
+      font-weight: 800;
+      background: linear-gradient(to right, #ffd700, #ffbb00);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
@@ -23,54 +33,37 @@
       border: 1px solid rgba(255,255,255,0.1);
       box-shadow: 0 8px 24px rgba(0,0,0,0.3);
     }
-    .gold-btn {
-      background: linear-gradient(to right, #b7950b, #ffd700);
-      color: #0a0f2c;
-    }
-    .gold-btn:hover {
-      background: #b8860b;
-      color: white;
-    }
-    .counter {
-      font-size: 2rem;
-      font-weight: bold;
-    }
-    .intro-screen {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100vh;
-      background: #0a0f2c;
-      display: flex; flex-direction: column;
-      justify-content: center; align-items: center;
-      z-index: 9999;
-      transition: opacity 1s ease;
-    }
   </style>
 </head>
 <body>
-  <!-- Welcome Screen -->
-  <div id="intro" class="intro-screen">
-    <img src="gad-logo.png" alt="GAD KAPITAL Logo" class="h-16 mb-4 animate-pulse">
-    <h1 class="text-3xl md:text-4xl font-bold gold-text mb-2">Welcome to</h1>
-    <div id="typed-text" class="text-xl md:text-2xl text-gray-200"></div>
-  </div>
+  <!-- Hero Welcome Screen -->
+  <section class="hero">
+    <img src="logo.png" alt="GAD KAPITAL Logo" class="h-20 mb-6 animate-pulse">
+    <h1 class="hero-title">Welcome to GAD KAPITAL</h1>
+    <p class="text-gray-300 mt-4 text-lg max-w-xl">Your Gateway to Smart Real Estate & Agricultural Investments</p>
+    <a href="#projects" class="mt-10 px-6 py-3 rounded-full bg-yellow-400 text-gray-900 font-semibold hover:bg-yellow-300 transition">Explore Projects</a>
+  </section>
 
-  <script>
-    window.addEventListener("DOMContentLoaded", () => {
-      const typed = new Typed("#typed-text", {
-        strings: ["GAD KAPITAL", "India's Trusted Real Asset Platform"],
-        typeSpeed: 50,
-        backSpeed: 30,
-        backDelay: 1000,
-        loop: true
-      });
-      setTimeout(() => {
-        document.getElementById("intro").style.opacity = 0;
-        setTimeout(() => {
-          document.getElementById("intro").style.display = 'none';
-        }, 1000);
-      }, 3000);
-    });
-  </script>
+  <!-- Placeholder for Projects + Schemes Page -->
+  <section id="projects" class="px-6 py-16 bg-gray-100 text-gray-900">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-3xl font-bold text-center mb-12">Current Projects & Investment Schemes</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="glass-card p-6 rounded-xl">
+          <h3 class="text-xl font-semibold mb-2">Fractional Real Estate – Hyderabad</h3>
+          <p class="text-gray-600">₹12L minimum investment • 10% Yield • 5-year lock-in</p>
+        </div>
+        <div class="glass-card p-6 rounded-xl">
+          <h3 class="text-xl font-semibold mb-2">Agri Lease Opportunity – Nashik</h3>
+          <p class="text-gray-600">₹8L entry • 13% Projected ROI • Annual payouts</p>
+        </div>
+        <div class="glass-card p-6 rounded-xl">
+          <h3 class="text-xl font-semibold mb-2">Rental Return Scheme – Pan India</h3>
+          <p class="text-gray-600">Fixed 9% Rental Yield • Low risk • 3-year term</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
 </body>
 </html>
