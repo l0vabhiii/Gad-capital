@@ -3,114 +3,136 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>BrickShare & Agri Ventures</title>
+  <title>GLAD CAPITAL – Invest in Real Assets</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
   <style>
-    body { font-family: 'Inter', sans-serif; background-color: #f7fafc; }
-    .card:hover { transform: scale(1.02); transition: 0.3s ease; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #ffffff, #f9fafc);
+      color: #1f2937;
+    }
+    .glass {
+      backdrop-filter: blur(10px);
+      background: rgba(255, 255, 255, 0.75);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    .gold-text {
+      background: linear-gradient(to right, #b7950b, #ffd700);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .gold-btn {
+      background: linear-gradient(to right, #b7950b, #ffd700);
+      color: white;
+    }
+    .gold-btn:hover {
+      background: #b8860b;
+    }
   </style>
 </head>
 <body>
+
   <!-- Navbar -->
-  <header class="bg-white shadow-md p-4 flex justify-between items-center">
-    <div class="flex items-center">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Tux.svg/1024px-Tux.svg.png" alt="Logo" class="h-10 w-10 mr-2" />
-      <h1 class="text-xl font-bold text-blue-600">BrickShare Platform</h1>
-    </div>
-    <nav>
-      <a href="#brickshare" class="mx-2 text-gray-700 hover:text-blue-600">BrickShare</a>
-      <a href="#agri" class="mx-2 text-gray-700 hover:text-blue-600">Agri Ventures</a>
-      <a href="#login" class="mx-2 text-gray-700 hover:text-blue-600">Login</a>
-      <a href="#contact" class="mx-2 text-gray-700 hover:text-blue-600">Contact</a>
+  <header class="bg-white shadow-md p-6 flex justify-between items-center sticky top-0 z-50">
+    <h1 class="text-2xl font-bold gold-text">GLAD CAPITAL</h1>
+    <nav class="space-x-4">
+      <a href="#realestate" class="text-gray-700 hover:text-yellow-600 font-medium">Real Estate</a>
+      <a href="#agriventures" class="text-gray-700 hover:text-yellow-600 font-medium">Agri Ventures</a>
+      <a href="#schemes" class="text-gray-700 hover:text-yellow-600 font-medium">Schemes</a>
+      <a href="#contact" class="text-gray-700 hover:text-yellow-600 font-medium">Contact</a>
     </nav>
   </header>
 
   <!-- Hero Section -->
-  <section class="flex flex-col md:flex-row items-center justify-between px-10 py-16 bg-gradient-to-r from-blue-50 to-blue-100">
-    <div class="md:w-1/2 mb-10 md:mb-0">
-      <h2 class="text-4xl font-bold text-gray-800 mb-4">Invest Smart. Grow Together.</h2>
-      <p class="text-lg text-gray-600 mb-6">Fractional real estate investing meets agriculture business flipping. All in one trusted platform.</p>
-      <a href="#brickshare" class="bg-blue-600 text-white px-5 py-3 rounded-full font-semibold shadow hover:bg-blue-700 transition">Explore Now</a>
-    </div>
-    <div class="md:w-1/2">
-      <lottie-player src="https://assets9.lottiefiles.com/packages/lf20_tq9fjsyv.json" background="transparent" speed="1" style="width: 100%; height: 300px;" loop autoplay></lottie-player>
-    </div>
+  <section class="px-6 py-20 text-center bg-gradient-to-r from-white to-yellow-50">
+    <h2 class="text-5xl font-bold gold-text mb-4">Invest Confidently in Real & Agri Assets</h2>
+    <p class="text-lg text-gray-600 max-w-2xl mx-auto">GLAD CAPITAL connects investors to verified real estate and profitable agri-business opportunities, backed by data and transparency.</p>
+    <a href="#realestate" class="mt-8 inline-block gold-btn px-8 py-3 rounded-full font-semibold shadow-md">Start Exploring</a>
   </section>
 
-  <!-- BrickShare Cards -->
-  <section id="brickshare" class="px-6 py-12">
-    <h3 class="text-2xl font-bold text-gray-800 mb-6">Featured Properties</h3>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      <div class="card bg-white p-5 rounded-xl shadow">
-        <img src="https://source.unsplash.com/400x200/?apartment" class="rounded mb-4" alt="Property" />
-        <h4 class="font-bold text-lg">Mumbai Luxury Flat</h4>
-        <p class="text-sm text-gray-600">Expected Yield: 9% | ₹15L per share</p>
-        <button class="mt-3 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">View Details</button>
+  <!-- Real Estate Section -->
+  <section id="realestate" class="px-6 py-16">
+    <h3 class="text-3xl font-bold text-center gold-text mb-10">Real Estate Opportunities</h3>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="glass p-6 rounded-xl">
+        <img src="https://source.unsplash.com/400x200/?apartment" class="mb-4 rounded-lg">
+        <h4 class="text-xl font-semibold">South Delhi Builder Floor</h4>
+        <p class="text-gray-600">Fraction: ₹10L | Yield: 9% | Status: Open</p>
       </div>
-      <div class="card bg-white p-5 rounded-xl shadow">
-        <img src="https://source.unsplash.com/400x200/?office" class="rounded mb-4" alt="Property" />
-        <h4 class="font-bold text-lg">Bangalore IT Hub</h4>
-        <p class="text-sm text-gray-600">Expected Yield: 11% | ₹20L per share</p>
-        <button class="mt-3 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">View Details</button>
+      <div class="glass p-6 rounded-xl">
+        <img src="https://source.unsplash.com/400x200/?office" class="mb-4 rounded-lg">
+        <h4 class="text-xl font-semibold">Mumbai Corporate Tower</h4>
+        <p class="text-gray-600">Fraction: ₹18L | Yield: 11% | Status: Filling Fast</p>
       </div>
-      <div class="card bg-white p-5 rounded-xl shadow">
-        <img src="https://source.unsplash.com/400x200/?building" class="rounded mb-4" alt="Property" />
-        <h4 class="font-bold text-lg">Hyderabad Mall Unit</h4>
-        <p class="text-sm text-gray-600">Expected Yield: 8% | ₹12L per share</p>
-        <button class="mt-3 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">View Details</button>
+      <div class="glass p-6 rounded-xl">
+        <img src="https://source.unsplash.com/400x200/?real-estate" class="mb-4 rounded-lg">
+        <h4 class="text-xl font-semibold">Chennai Retail Complex</h4>
+        <p class="text-gray-600">Fraction: ₹12L | Yield: 8% | Status: New</p>
       </div>
     </div>
   </section>
 
-  <!-- Agri Ventures Cards -->
-  <section id="agri" class="px-6 py-12 bg-gray-50">
-    <h3 class="text-2xl font-bold text-gray-800 mb-6">Agri Ventures for Sale</h3>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      <div class="card bg-white p-5 rounded-xl shadow">
-        <img src="https://source.unsplash.com/400x200/?farm" class="rounded mb-4" alt="Business" />
-        <h4 class="font-bold text-lg">Organic Farm Business</h4>
-        <p class="text-sm text-gray-600">Annual Revenue: ₹30L | Asking: ₹12L</p>
-        <button class="mt-3 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Buy Now</button>
+  <!-- Agri Ventures Section -->
+  <section id="agriventures" class="px-6 py-16 bg-yellow-50">
+    <h3 class="text-3xl font-bold text-center gold-text mb-10">Agri Business Marketplace</h3>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="glass p-6 rounded-xl">
+        <img src="https://source.unsplash.com/400x200/?farm" class="mb-4 rounded-lg">
+        <h4 class="text-xl font-semibold">Organic Farm – Nashik</h4>
+        <p class="text-gray-600">Revenue: ₹25L | Listed: ₹10L | Category: Dairy</p>
       </div>
-      <div class="card bg-white p-5 rounded-xl shadow">
-        <img src="https://source.unsplash.com/400x200/?agriculture" class="rounded mb-4" alt="Business" />
-        <h4 class="font-bold text-lg">Hydroponic Greenhouse</h4>
-        <p class="text-sm text-gray-600">Annual Revenue: ₹40L | Asking: ₹20L</p>
-        <button class="mt-3 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Buy Now</button>
+      <div class="glass p-6 rounded-xl">
+        <img src="https://source.unsplash.com/400x200/?greenhouse" class="mb-4 rounded-lg">
+        <h4 class="text-xl font-semibold">Hydroponics Plant – Pune</h4>
+        <p class="text-gray-600">Revenue: ₹40L | Listed: ₹15L | Category: Tech Farm</p>
       </div>
-      <div class="card bg-white p-5 rounded-xl shadow">
-        <img src="https://source.unsplash.com/400x200/?tractor" class="rounded mb-4" alt="Business" />
-        <h4 class="font-bold text-lg">Tractor Leasing Biz</h4>
-        <p class="text-sm text-gray-600">Annual Revenue: ₹18L | Asking: ₹9L</p>
-        <button class="mt-3 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Buy Now</button>
+      <div class="glass p-6 rounded-xl">
+        <img src="https://source.unsplash.com/400x200/?tractor" class="mb-4 rounded-lg">
+        <h4 class="text-xl font-semibold">Agri Leasing Biz – Punjab</h4>
+        <p class="text-gray-600">Revenue: ₹18L | Listed: ₹8L | Category: Equipment</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Schemes Section -->
+  <section id="schemes" class="px-6 py-16">
+    <h3 class="text-3xl font-bold text-center gold-text mb-10">Featured Investment Schemes</h3>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+      <div class="glass p-6 rounded-xl">
+        <h4 class="text-lg font-semibold mb-2">5-Year Rental Yield Lock</h4>
+        <p class="text-gray-600">Guaranteed 10% rental income for 5 years from selected properties. Risk-adjusted for stability.</p>
+      </div>
+      <div class="glass p-6 rounded-xl">
+        <h4 class="text-lg font-semibold mb-2">Agri Expansion Bond – 2025</h4>
+        <p class="text-gray-600">Short-term agri investment scheme with 15% projected ROI. Capital secured via farm mortgage.</p>
       </div>
     </div>
   </section>
 
   <!-- Contact Section -->
-  <section id="contact" class="px-6 py-12">
-    <h3 class="text-2xl font-bold text-gray-800 mb-6">Contact Us</h3>
-    <form class="bg-white p-6 rounded-xl shadow-md max-w-xl mx-auto">
+  <section id="contact" class="px-6 py-16 bg-white">
+    <h3 class="text-3xl font-bold text-center gold-text mb-10">Let’s Get in Touch</h3>
+    <form class="max-w-xl mx-auto glass p-6 rounded-xl">
       <div class="mb-4">
-        <label class="block text-gray-700">Name</label>
-        <input type="text" class="w-full px-4 py-2 border rounded-md" placeholder="Your Name" />
+        <label class="block text-gray-700">Your Name</label>
+        <input type="text" class="w-full px-4 py-2 border rounded-md" placeholder="John Doe" />
       </div>
       <div class="mb-4">
-        <label class="block text-gray-700">Email</label>
+        <label class="block text-gray-700">Email Address</label>
         <input type="email" class="w-full px-4 py-2 border rounded-md" placeholder="you@example.com" />
       </div>
       <div class="mb-4">
         <label class="block text-gray-700">Message</label>
         <textarea class="w-full px-4 py-2 border rounded-md" rows="4" placeholder="Write your message here..."></textarea>
       </div>
-      <button class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700">Send Message</button>
+      <button class="gold-btn px-6 py-2 rounded font-semibold">Send Message</button>
     </form>
   </section>
 
   <!-- Footer -->
-  <footer class="bg-gray-800 text-white py-6 text-center">
-    &copy; 2025 BrickShare & Agri Ventures. All rights reserved.
+  <footer class="bg-gray-900 text-white text-center py-6">
+    &copy; 2025 GLAD CAPITAL. Built for visionaries.
   </footer>
+
 </body>
 </html>
