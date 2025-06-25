@@ -1,37 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GAD KAPITAL – Premium Investment Platform</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GAD KAPITAL – Invest with Confidence</title>
+  <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=DM+Serif+Display&display=swap" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <style>
     body {
       font-family: 'Inter', sans-serif;
-      color: #1e293b;
-      background-color: #f8fafc;
     }
     h1, h2, h3 {
       font-family: 'DM Serif Display', serif;
     }
-    .section {
-      padding: 4rem 1rem;
-    }
-    .card {
-      background: #ffffff;
-      border: 1px solid #e5e7eb;
-      border-radius: 0.75rem;
-      padding: 1.5rem;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.04);
-      transition: transform 0.3s ease;
-    }
-    .card:hover {
-      transform: translateY(-5px);
-    }
-    .hero {
-      background: linear-gradient(to right, #0f172a, #4b5563);
-      color: #ffffff;
+    html {
+      scroll-behavior: smooth;
     }
     .whatsapp-float {
       position: fixed;
@@ -47,14 +30,24 @@
       justify-content: center;
       font-size: 24px;
       z-index: 999;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    }
+    .whatsapp-float img {
+      width: 28px;
+      height: 28px;
+    }
+    .hero-bg {
+      background-image: url('https://images.unsplash.com/photo-1573164574472-cb89e39749b4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');
+      background-size: cover;
+      background-position: center;
     }
   </style>
 </head>
-<body>
+<body class="bg-slate-50 text-slate-800">
   <!-- Header -->
-  <header class="bg-white shadow-sm sticky top-0 z-50">
+  <header class="bg-white shadow sticky top-0 z-50">
     <div class="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
-      <div class="text-2xl font-bold text-gray-900">GAD KAPITAL</div>
+      <div class="text-2xl font-bold">GAD KAPITAL</div>
       <nav class="space-x-6 text-sm font-semibold">
         <a href="#brick" class="hover:text-blue-600">BrickShare</a>
         <a href="#agri" class="hover:text-blue-600">Agri Ventures</a>
@@ -63,76 +56,76 @@
     </div>
   </header>
 
-  <!-- Hero Section -->
-  <section class="hero section text-center">
-    <div class="max-w-3xl mx-auto">
+  <!-- Hero Section with Background Image -->
+  <section class="min-h-screen hero-bg text-white flex items-center justify-center text-center px-6">
+    <div class="bg-black bg-opacity-60 p-10 rounded-lg">
       <h1 class="text-5xl font-bold mb-4">Welcome to GAD KAPITAL</h1>
-      <p class="text-lg text-gray-200 mb-6">Building Wealth through Real Assets, Agri Business, and Private Market Opportunities</p>
-      <a href="#brick" class="inline-block px-6 py-3 bg-yellow-400 text-black font-semibold rounded-full shadow hover:bg-yellow-300">Start Investing</a>
+      <p class="text-xl text-gray-200 mb-6">Invest confidently in Real Estate, Agriculture, and Private Ventures</p>
+      <a href="#brick" class="inline-block px-6 py-3 bg-yellow-400 text-black font-semibold rounded-full shadow hover:bg-yellow-300">Explore Investments</a>
     </div>
   </section>
 
   <!-- BrickShare Section -->
-  <section id="brick" class="section bg-slate-50">
+  <section id="brick" class="py-16 px-6 bg-white">
     <div class="max-w-7xl mx-auto">
-      <h2 class="text-4xl font-semibold mb-8 text-center">BrickShare – Real Estate Ownership</h2>
+      <h2 class="text-4xl font-semibold mb-10 text-center">BrickShare – Real Estate Ownership</h2>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="card">
+        <div class="bg-white rounded-lg shadow p-6 hover:shadow-lg transition">
           <h3 class="text-xl font-semibold mb-2">Urban Rise, Hyderabad</h3>
-          <p>₹8L • 9.25% Yield • 6 Years Lock-in</p>
+          <p class="text-gray-600">₹8L • 9.25% Yield • 6 Years Lock-in</p>
         </div>
-        <div class="card">
+        <div class="bg-white rounded-lg shadow p-6 hover:shadow-lg transition">
           <h3 class="text-xl font-semibold mb-2">Royal Avenue, Pune</h3>
-          <p>₹10L • 10% Yield • 5 Years Lock-in</p>
+          <p class="text-gray-600">₹10L • 10% Yield • 5 Years Lock-in</p>
         </div>
-        <div class="card">
+        <div class="bg-white rounded-lg shadow p-6 hover:shadow-lg transition">
           <h3 class="text-xl font-semibold mb-2">REIT Commercial Pool</h3>
-          <p>₹15L • 10.5% Yield • Mixed Commercial</p>
+          <p class="text-gray-600">₹15L • 10.5% Yield • Mixed Commercial</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Agri Ventures Section -->
-  <section id="agri" class="section bg-white">
+  <section id="agri" class="py-16 px-6 bg-slate-50">
     <div class="max-w-7xl mx-auto">
-      <h2 class="text-4xl font-semibold mb-8 text-center">Agri Ventures – Rural Growth Investments</h2>
+      <h2 class="text-4xl font-semibold mb-10 text-center">Agri Ventures – Rural Growth</h2>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="card">
+        <div class="bg-white rounded-lg shadow p-6 hover:shadow-lg transition">
           <h3 class="text-xl font-semibold mb-2">Ravi Farms – Nashik</h3>
-          <p>₹6L • 12.5% ROI • 3 Year Lease</p>
+          <p class="text-gray-600">₹6L • 12.5% ROI • 3 Year Lease</p>
         </div>
-        <div class="card">
+        <div class="bg-white rounded-lg shadow p-6 hover:shadow-lg transition">
           <h3 class="text-xl font-semibold mb-2">GreenZone Hydroponics</h3>
-          <p>₹5L • 15–18% ROI • Franchise Model</p>
+          <p class="text-gray-600">₹5L • 15–18% ROI • Franchise Model</p>
         </div>
-        <div class="card">
+        <div class="bg-white rounded-lg shadow p-6 hover:shadow-lg transition">
           <h3 class="text-xl font-semibold mb-2">Organic Farm Biz</h3>
-          <p>₹3.5L • 14% Projected Return • Entry Buy-in</p>
+          <p class="text-gray-600">₹3.5L • 14% Projected Return</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Marketplace Section -->
-  <section id="market" class="section bg-slate-100">
+  <section id="market" class="py-16 px-6 bg-white">
     <div class="max-w-7xl mx-auto">
-      <h2 class="text-4xl font-semibold mb-8 text-center">Marketplace – Private Business Listings</h2>
+      <h2 class="text-4xl font-semibold mb-10 text-center">Marketplace – Buy/Sell Businesses</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div class="card">
+        <div class="bg-white rounded-lg shadow p-6 hover:shadow-lg transition">
           <h3 class="text-xl font-semibold mb-2">Dairy Biz – Punjab</h3>
-          <p class="text-gray-600">Revenue: ₹12L/year • Asking: ₹5L</p>
-          <p>Established supply chain, high-margin distribution.</p>
+          <p class="text-gray-600">Revenue ₹12L/year • Asking ₹5L</p>
+          <p>Established dairy distribution chain in Punjab</p>
         </div>
-        <div class="card">
+        <div class="bg-white rounded-lg shadow p-6 hover:shadow-lg transition">
           <h3 class="text-xl font-semibold mb-2">Agri Tools Distributor – Gujarat</h3>
-          <p class="text-gray-600">Revenue: ₹20L/year • Asking: ₹9L</p>
-          <p>National B2B network with recurring contracts.</p>
+          <p class="text-gray-600">Revenue ₹20L/year • Asking ₹9L</p>
+          <p>Pan-India B2B network for agri machinery</p>
         </div>
-        <div class="card">
+        <div class="bg-white rounded-lg shadow p-6 hover:shadow-lg transition">
           <h3 class="text-xl font-semibold mb-2">Poultry Franchise</h3>
-          <p class="text-gray-600">Income: ₹1.2L/month • Buy: ₹7.5L</p>
-          <p>Franchise business with rural operations & 4-year lease.</p>
+          <p class="text-gray-600">₹1.2L/month Income • Buy @ ₹7.5L</p>
+          <p>Rural poultry business with 4-year lease</p>
         </div>
       </div>
     </div>
@@ -143,7 +136,9 @@
     <p class="text-sm text-gray-500">© 2025 GAD KAPITAL. All rights reserved.</p>
   </footer>
 
-  <!-- WhatsApp Button -->
-  <a href="https://wa.me/919136913890" class="whatsapp-float" target="_blank" title="Chat on WhatsApp">🟢</a>
+  <!-- WhatsApp Button with Icon -->
+  <a href="https://wa.me/919136913890" class="whatsapp-float" target="_blank" title="Chat on WhatsApp">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
+  </a>
 </body>
 </html>
