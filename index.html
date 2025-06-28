@@ -3,29 +3,39 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <!-- SEO + Title -->
+    
+    <!-- SEO Meta -->
     <title>GAD Capital | Invest. Grow. Empower.</title>
-    <meta name="description" content="India’s trusted investment platform for Real Estate, Agriculture, Business & Tenders." />
-    <meta name="keywords" content="GAD Capital, BrickShare, Investment Platform, Real Estate, Agri, Business Buy Sell, Tender Investment" />
-    <meta name="author" content="GAD Capital Team" />
+    <meta name="description" content="India’s trusted platform for investing in Real Estate, Agri, Business & Tenders.">
     <meta name="theme-color" content="#0f172a" />
-
-    <!-- TailwindCSS CDN (for test/dev use only, for production use Tailwind CLI) -->
+    <meta name="author" content="GAD Capital" />
+    
+    <!-- Tailwind CSS CDN (for basic styling) -->
     <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- Fonts (Optional: Poppins / Inter / Nunito) -->
+    
+    <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
-
+    
     <!-- Favicon -->
     <link rel="icon" href="/favicon.ico" />
-
-    <!-- Open Graph for social media preview -->
+    
+    <!-- Open Graph -->
     <meta property="og:title" content="GAD Capital – Invest. Grow. Empower." />
-    <meta property="og:description" content="Explore investment projects in real estate, agri, business and tenders on GAD Capital's trusted platform." />
+    <meta property="og:description" content="Explore Real Estate, Agri, Tender and Business investment opportunities." />
     <meta property="og:image" content="/og-image.jpg" />
-    <meta property="og:url" content="https://gadcapital.in" />
+    <meta property="og:url" content="https://l0vabhiii.github.io/Gad-capital/" />
     <meta property="og:type" content="website" />
+
+    <!-- GitHub Pages Fix: Redirect non-root paths to root -->
+    <script>
+      if (
+        window.location.pathname !== '/' &&
+        !window.location.pathname.includes('/index.html') &&
+        !window.location.pathname.startsWith('/#')
+      ) {
+        window.location.replace('/#' + window.location.pathname);
+      }
+    </script>
   </head>
 
   <body class="bg-white text-gray-800 font-[Inter]">
