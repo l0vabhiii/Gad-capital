@@ -1,45 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
-    <!-- SEO Meta -->
-    <title>GAD Capital | Invest. Grow. Empower.</title>
-    <meta name="description" content="India’s trusted platform for investing in Real Estate, Agri, Business & Tenders.">
-    <meta name="theme-color" content="#0f172a" />
-    <meta name="author" content="GAD Capital" />
-    
-    <!-- Tailwind CSS CDN (for basic styling) -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
-    
-    <!-- Favicon -->
-    <link rel="icon" href="/favicon.ico" />
-    
-    <!-- Open Graph -->
-    <meta property="og:title" content="GAD Capital – Invest. Grow. Empower." />
-    <meta property="og:description" content="Explore Real Estate, Agri, Tender and Business investment opportunities." />
-    <meta property="og:image" content="/og-image.jpg" />
-    <meta property="og:url" content="https://l0vabhiii.github.io/Gad-capital/" />
-    <meta property="og:type" content="website" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GAD Capital</title>
 
-    <!-- GitHub Pages Fix: Redirect non-root paths to root -->
-    <script>
-      if (
-        window.location.pathname !== '/' &&
-        !window.location.pathname.includes('/index.html') &&
-        !window.location.pathname.startsWith('/#')
-      ) {
-        window.location.replace('/#' + window.location.pathname);
-      }
-    </script>
-  </head>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
-  <body class="bg-white text-gray-800 font-[Inter]">
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-  </body>
+  <!-- AOS Animation Library -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+  <style>
+    .testimonial-slide { display: none; }
+    .testimonial-slide.active { display: block; }
+  </style>
+</head>
+<body class="bg-white text-gray-900 font-sans">
+
+  <!-- Navbar -->
+  <nav class="flex justify-between px-6 py-4 bg-[#0f172a] text-white shadow-md" data-aos="fade-down">
+    <h1 class="font-bold text-xl">GAD Capital</h1>
+    <div class="space-x-4">
+      <a href="#home" onclick="showPage('home')">Home</a>
+      <a href="#invest" onclick="showPage('invest')">Invest</a>
+      <a href="#buysell" onclick="showPage('buysell')">Buy/Sell</a>
+    </div>
+  </nav>
+
+  <!-- Home Section -->
+  <div id="home" class="p-6">
+    <section class="text-center py-10" data-aos="zoom-in">
+      <h2 class="text-4xl font-bold text-[#0f172a] mb-4">Invest. Grow. Empower.</h2>
+      <p class="text-gray-600 mb-6">India’s trusted platform for Real Estate, Agri, Tender, and Business Investment.</p>
+      <div class="flex justify-center gap-4">
+        <button class="bg-blue-700 text-white px-5 py-2 rounded shadow hover:bg-blue-800 transition">Explore</button>
+        <button class="bg-gray-800 text-white px-5 py-2 rounded shadow hover:bg-gray-900 transition">Submit Idea</button>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <div class="mt-10 max-w-xl mx-auto" data-aos="fade-up">
+      <h3 class="text-xl font-bold mb-4 text-center">What Our Investors Say</h3>
+      <div class="testimonial-slide active text-center text-gray-700">
+        <p>"GAD Capital helped me invest in real estate with confidence!"</p>
+        <span class="text-sm text-gray-500">– Rahul Mehta, Mumbai</span>
+      </div>
+      <div class="testimonial-slide text-center text-gray-700">
+        <p>"Earned monthly rental income in just 30 days!"</p>
+        <span class="text-sm text-gray-500">– Kavita Desai, Pune</span>
+      </div>
+      <div class="testimonial-slide text-center text-gray-700">
+        <p>"Flawless platform for buying and selling small businesses."</p>
+        <span class="text-sm text-gray-500">– Akash Jain, Delhi</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Invest Section -->
+  <div id="invest" class="p-6 hidden">
+    <h2 class="text-2xl font-bold text-[#0f172a] mb-4" data-aos="fade-right">Investment Opportunities</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="border p-4 rounded-lg shadow" data-aos="fade-up">
+        <h3 class="font-semibold text-xl mb-2">Retail Unit – LB Nagar</h3>
+        <p class="text-gray-600">₹1,00,000 | ROI ₹800/month</p>
+        <button class="mt-4 bg-blue-700 text-white px-4 py-2 rounded-md hover:bg-blue-800 transition">View Details</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Buy/Sell Section -->
+  <div id="buysell" class="p-6 hidden">
+    <h2 class="text-2xl font-bold text-[#0f172a] mb-4" data-aos="fade-left">Buy & Sell Marketplace</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="border p-4 rounded-lg shadow" data-aos="zoom-in-up">
+        <h3 class="font-semibold text-xl mb-2">Cloud Kitchen – Mumbai</h3>
+        <p class="text-gray-600">₹5L | Profit ₹40K/month | Verified</p>
+        <button class="mt-4 bg-blue-700 text-white px-4 py-2 rounded-md hover:bg-blue-800 transition">View Listing</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-[#0f172a] text-white text-center py-6 mt-12" data-aos="fade-up">
+    <p>&copy; 2025 GAD Capital. All rights reserved.</p>
+    <p class="text-sm mt-1">Contact: support@gadcapital.in | WhatsApp: +91-9136913890</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    AOS.init();
+
+    function showPage(id) {
+      document.getElementById("home").classList.add("hidden");
+      document.getElementById("invest").classList.add("hidden");
+      document.getElementById("buysell").classList.add("hidden");
+      document.getElementById(id).classList.remove("hidden");
+    }
+
+    // Testimonials slider
+    let current = 0;
+    const slides = document.querySelectorAll(".testimonial-slide");
+    setInterval(() => {
+      slides[current].classList.remove("active");
+      current = (current + 1) % slides.length;
+      slides[current].classList.add("active");
+    }, 4000);
+  </script>
+
+</body>
 </html>
