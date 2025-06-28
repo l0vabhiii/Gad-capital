@@ -8,7 +8,7 @@
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- AOS Animation Library -->
+  <!-- AOS Animations -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
@@ -29,14 +29,16 @@
     </div>
   </nav>
 
-  <!-- Home Section -->
+  <!-- HOME -->
   <div id="home" class="p-6">
-    <section class="text-center py-10" data-aos="zoom-in">
-      <h2 class="text-4xl font-bold text-[#0f172a] mb-4">Invest. Grow. Empower.</h2>
-      <p class="text-gray-600 mb-6">India’s trusted platform for Real Estate, Agri, Tender, and Business Investment.</p>
-      <div class="flex justify-center gap-4">
-        <button class="bg-blue-700 text-white px-5 py-2 rounded shadow hover:bg-blue-800 transition">Explore</button>
-        <button class="bg-gray-800 text-white px-5 py-2 rounded shadow hover:bg-gray-900 transition">Submit Idea</button>
+    <section class="text-center py-20 bg-cover bg-center rounded-xl shadow-lg" style="background-image: url('https://images.unsplash.com/photo-1581092334712-de8b0ac6f249?auto=format&fit=crop&w=1200&q=80');" data-aos="zoom-in">
+      <div class="bg-black bg-opacity-50 p-8 rounded">
+        <h2 class="text-4xl font-bold text-white mb-4">Invest. Grow. Empower.</h2>
+        <p class="text-gray-100 mb-6">India’s trusted platform for Real Estate, Agri, Tender, and Business Investment.</p>
+        <div class="flex justify-center gap-4">
+          <button class="bg-blue-700 text-white px-5 py-2 rounded hover:bg-blue-800 transition">Explore</button>
+          <button onclick="openCTA()" class="bg-white text-blue-700 px-5 py-2 rounded hover:bg-gray-100 transition">Submit Idea</button>
+        </div>
       </div>
     </section>
 
@@ -58,7 +60,7 @@
     </div>
   </div>
 
-  <!-- Invest Section -->
+  <!-- INVEST -->
   <div id="invest" class="p-6 hidden">
     <h2 class="text-2xl font-bold text-[#0f172a] mb-4" data-aos="fade-right">Investment Opportunities</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -70,7 +72,7 @@
     </div>
   </div>
 
-  <!-- Buy/Sell Section -->
+  <!-- BUYSELL -->
   <div id="buysell" class="p-6 hidden">
     <h2 class="text-2xl font-bold text-[#0f172a] mb-4" data-aos="fade-left">Buy & Sell Marketplace</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -79,14 +81,33 @@
         <p class="text-gray-600">₹5L | Profit ₹40K/month | Verified</p>
         <button class="mt-4 bg-blue-700 text-white px-4 py-2 rounded-md hover:bg-blue-800 transition">View Listing</button>
       </div>
+      <div class="border p-4 rounded-lg shadow" data-aos="zoom-in-up">
+        <h3 class="font-semibold text-xl mb-2">Gadget Shop – Delhi</h3>
+        <p class="text-gray-600">₹3L | ROI ₹20K/month | KYC Done</p>
+        <button class="mt-4 bg-blue-700 text-white px-4 py-2 rounded-md hover:bg-blue-800 transition">View Listing</button>
+      </div>
     </div>
   </div>
 
-  <!-- Footer -->
+  <!-- FOOTER -->
   <footer class="bg-[#0f172a] text-white text-center py-6 mt-12" data-aos="fade-up">
     <p>&copy; 2025 GAD Capital. All rights reserved.</p>
     <p class="text-sm mt-1">Contact: support@gadcapital.in | WhatsApp: +91-9136913890</p>
   </footer>
+
+  <!-- CTA FORM -->
+  <div id="ctaForm" class="fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-lg border-t p-6 z-50 shadow-lg hidden" data-aos="fade-up">
+    <div class="max-w-lg mx-auto relative">
+      <button onclick="closeCTA()" class="absolute top-0 right-0 text-gray-600 hover:text-red-500 text-2xl">&times;</button>
+      <h3 class="text-xl font-bold text-[#0f172a] mb-3">🚀 Submit Your Business Idea</h3>
+      <form class="space-y-3">
+        <input type="text" placeholder="Full Name" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        <input type="email" placeholder="Email Address" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        <textarea placeholder="Your Business Pitch..." class="w-full p-3 border border-gray-300 rounded-md h-24 focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+        <button type="submit" class="w-full bg-blue-700 text-white py-2 rounded-md hover:bg-blue-800 transition">Send Pitch</button>
+      </form>
+    </div>
+  </div>
 
   <!-- Scripts -->
   <script>
@@ -99,7 +120,14 @@
       document.getElementById(id).classList.remove("hidden");
     }
 
-    // Testimonials slider
+    function openCTA() {
+      document.getElementById('ctaForm').classList.remove('hidden');
+    }
+
+    function closeCTA() {
+      document.getElementById('ctaForm').classList.add('hidden');
+    }
+
     let current = 0;
     const slides = document.querySelectorAll(".testimonial-slide");
     setInterval(() => {
