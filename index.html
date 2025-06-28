@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GAD Capital - One Page</title>
+  <title>GAD Capital - Empowering Smart Investments</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -12,15 +12,13 @@
     .section.active { display: block; }
   </style>
 </head>
-<body class="bg-[#f9fafb] text-gray-900 font-sans">
-
-  <!-- Navbar -->
-  <nav class="flex justify-between px-6 py-4 bg-[#0f172a] text-white shadow sticky top-0 z-50">
-    <h1 class="font-bold text-xl">GAD Capital</h1>
+<body class="bg-white text-gray-900 font-sans">
+  <nav class="flex justify-between items-center px-6 py-4 bg-[#0f172a] text-white shadow sticky top-0 z-50">
+    <h1 class="text-2xl font-bold">GAD Capital</h1>
     <div class="space-x-4">
       <button onclick="showPage('home')">Home</button>
       <button onclick="showPage('invest')">Invest</button>
-      <button onclick="showPage('buysell')">Buy/Sell</button>
+      <button onclick="showPage('marketplace')">Buy/Sell</button>
       <button onclick="showPage('about')">About</button>
       <button onclick="showPage('contact')">Contact</button>
       <button onclick="showPage('submitidea')">Submit Idea</button>
@@ -28,83 +26,146 @@
     </div>
   </nav>
 
-  <!-- Sections -->
-  <section id="home" class="section active p-6" data-aos="fade-up">
-    <h2 class="text-4xl font-bold mb-4">Invest. Grow. Empower.</h2>
-    <p class="text-gray-600">India’s trusted platform for Real Estate, Agri, Tender & Business.</p>
+  <!-- Hero -->
+  <section id="home" class="section active relative h-screen bg-cover bg-center flex items-center justify-center text-white" style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80');">
+    <div class="bg-black bg-opacity-60 p-10 rounded-lg text-center max-w-2xl" data-aos="zoom-in">
+      <h2 class="text-4xl font-bold mb-4">India's Smart Investment Platform</h2>
+      <p class="text-lg text-gray-200 mb-6">Fractional ownership in Real Estate, Agri Ventures & Verified Businesses</p>
+      <a href="#" onclick="showPage('invest')" class="bg-yellow-400 text-black px-6 py-3 rounded font-semibold hover:bg-yellow-300 transition">Start Investing</a>
+    </div>
   </section>
 
-  <section id="invest" class="section p-6" data-aos="fade-up">
-    <h2 class="text-3xl font-bold mb-4">Investment Opportunities</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      <div class="border p-4 rounded shadow">
-        <h3 class="font-semibold">Retail Unit - Hyderabad</h3>
-        <p class="text-sm text-gray-500">₹1L Minimum | ROI ₹800/mo</p>
+  <!-- Invest -->
+  <section id="invest" class="section py-16 bg-gray-50" data-aos="fade-up">
+    <div class="max-w-6xl mx-auto px-6">
+      <h2 class="text-4xl font-bold text-[#0f172a] mb-8">Investment Opportunities</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-white p-5 rounded-lg shadow border">
+          <h3 class="text-xl font-semibold text-[#0f172a] mb-1">Retail Unit – LB Nagar</h3>
+          <p class="text-sm text-gray-500">₹1L Share | ₹800 Monthly ROI</p>
+        </div>
+        <div class="bg-white p-5 rounded-lg shadow border">
+          <h3 class="text-xl font-semibold text-[#0f172a] mb-1">Organic Farm – Nashik</h3>
+          <p class="text-sm text-gray-500">₹30K Share | ₹1.4K Yield</p>
+        </div>
+        <div class="bg-white p-5 rounded-lg shadow border">
+          <h3 class="text-xl font-semibold text-[#0f172a] mb-1">Cloud Kitchen – Mumbai</h3>
+          <p class="text-sm text-gray-500">₹5L Cost | ₹40K/mo Revenue</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <section id="buysell" class="section p-6" data-aos="fade-up">
-    <h2 class="text-3xl font-bold mb-4">Buy/Sell Marketplace</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      <div class="border p-4 rounded shadow">
-        <h3 class="font-semibold">Cloud Kitchen - Mumbai</h3>
-        <p class="text-sm text-gray-500">₹5L | ₹40K/mo | Verified</p>
+  <!-- Buy/Sell -->
+  <section id="marketplace" class="section py-16 bg-gray-100" data-aos="fade-up">
+    <div class="max-w-7xl mx-auto px-6">
+      <h2 class="text-4xl font-bold text-[#0f172a] mb-6 text-center">Buy & Sell Businesses</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-white p-5 rounded-lg shadow border">
+          <div class="flex justify-between items-center mb-2">
+            <h3 class="text-lg font-semibold text-[#0f172a]">Cloud Kitchen - Mumbai</h3>
+            <span class="text-sm bg-green-100 text-green-700 px-2 py-1 rounded">✔ Verified</span>
+          </div>
+          <p class="text-sm text-gray-500 mb-2">Monthly Profit: ₹40K</p>
+          <p class="text-sm text-gray-600 mb-3">Running food business with Zomato/Swiggy setup.</p>
+          <div class="flex justify-between mt-2">
+            <span class="font-semibold text-blue-700">₹5 Lakhs</span>
+            <a href="#" class="text-sm text-blue-600 hover:underline">View Details</a>
+          </div>
+        </div>
+
+        <div class="bg-white p-5 rounded-lg shadow border">
+          <div class="flex justify-between items-center mb-2">
+            <h3 class="text-lg font-semibold text-[#0f172a]">Gadget Store - Delhi</h3>
+            <span class="text-sm bg-yellow-100 text-yellow-700 px-2 py-1 rounded">🔁 Owner Exiting</span>
+          </div>
+          <p class="text-sm text-gray-500 mb-2">ROI: ₹20K/month</p>
+          <p class="text-sm text-gray-600 mb-3">Offline + Instagram DM sales. Google My Biz verified.</p>
+          <div class="flex justify-between mt-2">
+            <span class="font-semibold text-blue-700">₹3 Lakhs</span>
+            <a href="#" class="text-sm text-blue-600 hover:underline">View Details</a>
+          </div>
+        </div>
+
+        <div class="bg-white p-5 rounded-lg shadow border">
+          <div class="flex justify-between items-center mb-2">
+            <h3 class="text-lg font-semibold text-[#0f172a]">Online Dropshipping – PAN India</h3>
+            <span class="text-sm bg-purple-100 text-purple-700 px-2 py-1 rounded">💻 Digital Biz</span>
+          </div>
+          <p class="text-sm text-gray-500 mb-2">35% Profit Margin</p>
+          <p class="text-sm text-gray-600 mb-3">Shopify store with gateway ready. 8K+ mailing list.</p>
+          <div class="flex justify-between mt-2">
+            <span class="font-semibold text-blue-700">₹2.2 Lakhs</span>
+            <a href="#" class="text-sm text-blue-600 hover:underline">View Details</a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <section id="about" class="section p-6" data-aos="fade-up">
-    <h2 class="text-3xl font-bold mb-4">About GAD Capital</h2>
-    <p class="text-gray-600">Our mission is to democratize investment for every Indian by enabling access to verified business and property ventures.</p>
+  <!-- About -->
+  <section id="about" class="section py-16 bg-white" data-aos="fade-up">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <h2 class="text-4xl font-bold text-[#0f172a] mb-4">About GAD Capital</h2>
+      <p class="text-gray-600 text-lg">We’re redefining wealth creation in India through community-owned investments, data-driven transparency and trust-first technology. Real estate, agriculture, and local businesses — now accessible to everyone.</p>
+    </div>
   </section>
 
-  <section id="contact" class="section p-6" data-aos="fade-up">
-    <h2 class="text-3xl font-bold mb-4">Contact Us</h2>
-    <form class="space-y-3 max-w-md">
-      <input type="text" placeholder="Name" class="w-full border p-2 rounded" />
-      <input type="email" placeholder="Email" class="w-full border p-2 rounded" />
-      <textarea placeholder="Message" class="w-full border p-2 rounded"></textarea>
-      <button type="submit" class="bg-blue-700 text-white px-4 py-2 rounded">Send</button>
-    </form>
+  <!-- Contact -->
+  <section id="contact" class="section py-16 bg-gray-50" data-aos="fade-up">
+    <div class="max-w-3xl mx-auto px-6">
+      <h2 class="text-3xl font-bold text-[#0f172a] mb-6">Contact Us</h2>
+      <form class="space-y-4">
+        <input type="text" placeholder="Your Name" class="w-full border p-3 rounded" />
+        <input type="email" placeholder="Email" class="w-full border p-3 rounded" />
+        <textarea placeholder="Your Message" class="w-full border p-3 rounded"></textarea>
+        <button type="submit" class="bg-blue-700 text-white px-6 py-2 rounded hover:bg-blue-800">Send</button>
+      </form>
+    </div>
   </section>
 
-  <section id="submitidea" class="section p-6" data-aos="fade-up">
-    <h2 class="text-3xl font-bold mb-4">Submit Your Business Idea</h2>
-    <form class="space-y-3 max-w-md">
-      <input type="text" placeholder="Full Name" class="w-full border p-2 rounded" />
-      <input type="email" placeholder="Email Address" class="w-full border p-2 rounded" />
-      <textarea placeholder="Describe your business..." class="w-full border p-2 rounded"></textarea>
-      <button type="submit" class="bg-yellow-500 text-black px-4 py-2 rounded">Submit Idea</button>
-    </form>
+  <!-- Submit Idea -->
+  <section id="submitidea" class="section py-16 bg-white" data-aos="fade-up">
+    <div class="max-w-3xl mx-auto px-6">
+      <h2 class="text-3xl font-bold text-[#0f172a] mb-6">Submit Your Business Idea</h2>
+      <form class="space-y-4">
+        <input type="text" placeholder="Full Name" class="w-full border p-3 rounded" />
+        <input type="email" placeholder="Email Address" class="w-full border p-3 rounded" />
+        <textarea placeholder="Business Description" class="w-full border p-3 rounded"></textarea>
+        <button type="submit" class="bg-yellow-400 text-black px-6 py-2 rounded hover:bg-yellow-300">Submit</button>
+      </form>
+    </div>
   </section>
 
-  <section id="login" class="section p-6" data-aos="fade-up">
-    <h2 class="text-3xl font-bold mb-4">Login</h2>
-    <form class="space-y-3 max-w-md">
-      <select class="w-full border p-2 rounded">
-        <option>Owner</option>
-        <option>Admin</option>
-        <option>Developer</option>
-      </select>
-      <input type="email" placeholder="Email" class="w-full border p-2 rounded" />
-      <input type="password" placeholder="Password" class="w-full border p-2 rounded" />
-      <button type="submit" class="bg-[#0f172a] text-white px-4 py-2 rounded">Login</button>
-    </form>
+  <!-- Login -->
+  <section id="login" class="section py-16 bg-gray-50" data-aos="fade-up">
+    <div class="max-w-md mx-auto px-6">
+      <h2 class="text-3xl font-bold text-[#0f172a] mb-6">Login</h2>
+      <form class="space-y-4">
+        <select class="w-full border p-3 rounded">
+          <option>Owner</option>
+          <option>Admin</option>
+          <option>Developer</option>
+        </select>
+        <input type="email" placeholder="Email" class="w-full border p-3 rounded" />
+        <input type="password" placeholder="Password" class="w-full border p-3 rounded" />
+        <button type="submit" class="bg-[#0f172a] text-white px-6 py-2 rounded hover:bg-[#1e293b]">Login</button>
+      </form>
+    </div>
   </section>
 
   <!-- Footer -->
-  <footer class="bg-[#0f172a] text-white text-center py-6 mt-12">
-    <p>&copy; 2025 GAD Capital. All rights reserved.</p>
+  <footer class="bg-[#0f172a] text-white text-center py-6">
+    <p class="font-semibold">© 2025 GAD Capital. All rights reserved.</p>
     <p class="text-sm">support@gadcapital.in | WhatsApp: +91-9136913890</p>
   </footer>
 
-  <!-- Scripts -->
   <script>
     AOS.init();
     function showPage(id) {
       document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
       document.getElementById(id).classList.add('active');
+      window.scrollTo(0, 0);
     }
   </script>
 </body>
