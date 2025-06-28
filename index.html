@@ -3,139 +3,91 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GAD Capital</title>
-
-  <!-- Tailwind CSS -->
+  <title>GAD Capital - Invest</title>
   <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- AOS Animations -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
-  <style>
-    .testimonial-slide { display: none; }
-    .testimonial-slide.active { display: block; }
-  </style>
 </head>
-<body class="bg-white text-gray-900 font-sans">
+<body class="bg-[#f9fafb] text-gray-900 font-sans">
 
   <!-- Navbar -->
-  <nav class="flex justify-between px-6 py-4 bg-[#0f172a] text-white shadow-md" data-aos="fade-down">
+  <nav class="flex justify-between px-6 py-4 bg-[#0f172a] text-white shadow">
     <h1 class="font-bold text-xl">GAD Capital</h1>
     <div class="space-x-4">
-      <a href="#home" onclick="showPage('home')">Home</a>
-      <a href="#invest" onclick="showPage('invest')">Invest</a>
-      <a href="#buysell" onclick="showPage('buysell')">Buy/Sell</a>
+      <a href="index.html" class="hover:underline">Home</a>
+      <a href="invest.html" class="underline font-semibold">Invest</a>
+      <a href="buy-sell.html" class="hover:underline">Buy/Sell</a>
+      <a href="about.html" class="hover:underline">About</a>
+      <a href="contact.html" class="hover:underline">Contact</a>
     </div>
   </nav>
 
-  <!-- HOME -->
-  <div id="home" class="p-6">
-    <section class="text-center py-20 bg-cover bg-center rounded-xl shadow-lg" style="background-image: url('https://images.unsplash.com/photo-1581092334712-de8b0ac6f249?auto=format&fit=crop&w=1200&q=80');" data-aos="zoom-in">
-      <div class="bg-black bg-opacity-50 p-8 rounded">
-        <h2 class="text-4xl font-bold text-white mb-4">Invest. Grow. Empower.</h2>
-        <p class="text-gray-100 mb-6">India’s trusted platform for Real Estate, Agri, Tender, and Business Investment.</p>
-        <div class="flex justify-center gap-4">
-          <button class="bg-blue-700 text-white px-5 py-2 rounded hover:bg-blue-800 transition">Explore</button>
-          <button onclick="openCTA()" class="bg-white text-blue-700 px-5 py-2 rounded hover:bg-gray-100 transition">Submit Idea</button>
-        </div>
-      </div>
-    </section>
+  <!-- Page Header -->
+  <section class="text-center py-12 bg-gradient-to-r from-blue-800 to-blue-600 text-white shadow" data-aos="fade-down">
+    <h2 class="text-4xl font-bold">Investment Opportunities</h2>
+    <p class="text-gray-200 mt-2">Choose from Real Estate, Agriculture, and Government Tenders</p>
+  </section>
 
-    <!-- Testimonials -->
-    <div class="mt-10 max-w-xl mx-auto" data-aos="fade-up">
-      <h3 class="text-xl font-bold mb-4 text-center">What Our Investors Say</h3>
-      <div class="testimonial-slide active text-center text-gray-700">
-        <p>"GAD Capital helped me invest in real estate with confidence!"</p>
-        <span class="text-sm text-gray-500">– Rahul Mehta, Mumbai</span>
-      </div>
-      <div class="testimonial-slide text-center text-gray-700">
-        <p>"Earned monthly rental income in just 30 days!"</p>
-        <span class="text-sm text-gray-500">– Kavita Desai, Pune</span>
-      </div>
-      <div class="testimonial-slide text-center text-gray-700">
-        <p>"Flawless platform for buying and selling small businesses."</p>
-        <span class="text-sm text-gray-500">– Akash Jain, Delhi</span>
-      </div>
-    </div>
+  <!-- Categories Tabs -->
+  <div class="max-w-4xl mx-auto px-4 py-8 flex justify-center gap-4" data-aos="fade-up">
+    <button class="tab-btn bg-blue-700 text-white px-4 py-2 rounded shadow active">BrickShare</button>
+    <button class="tab-btn bg-white border px-4 py-2 rounded shadow">Agri Ventures</button>
+    <button class="tab-btn bg-white border px-4 py-2 rounded shadow">Tender Deals</button>
   </div>
 
-  <!-- INVEST -->
-  <div id="invest" class="p-6 hidden">
-    <h2 class="text-2xl font-bold text-[#0f172a] mb-4" data-aos="fade-right">Investment Opportunities</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      <div class="border p-4 rounded-lg shadow" data-aos="fade-up">
-        <h3 class="font-semibold text-xl mb-2">Retail Unit – LB Nagar</h3>
-        <p class="text-gray-600">₹1,00,000 | ROI ₹800/month</p>
-        <button class="mt-4 bg-blue-700 text-white px-4 py-2 rounded-md hover:bg-blue-800 transition">View Details</button>
-      </div>
+  <!-- Card Listings -->
+  <section class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 px-4 pb-16" data-aos="fade-up">
+    <!-- Property Card -->
+    <div class="bg-white p-4 shadow rounded-lg border">
+      <h3 class="text-xl font-bold text-[#0f172a]">Retail Unit – LB Nagar</h3>
+      <p class="text-gray-500">₹1,00,000 Minimum | ROI ₹800/month</p>
+      <span class="text-green-600 text-sm">✔ Fully Rented | 10% Yield</span>
+      <button class="mt-4 block bg-blue-700 text-white px-4 py-2 rounded hover:bg-blue-800">Invest Now</button>
     </div>
-  </div>
 
-  <!-- BUYSELL -->
-  <div id="buysell" class="p-6 hidden">
-    <h2 class="text-2xl font-bold text-[#0f172a] mb-4" data-aos="fade-left">Buy & Sell Marketplace</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      <div class="border p-4 rounded-lg shadow" data-aos="zoom-in-up">
-        <h3 class="font-semibold text-xl mb-2">Cloud Kitchen – Mumbai</h3>
-        <p class="text-gray-600">₹5L | Profit ₹40K/month | Verified</p>
-        <button class="mt-4 bg-blue-700 text-white px-4 py-2 rounded-md hover:bg-blue-800 transition">View Listing</button>
-      </div>
-      <div class="border p-4 rounded-lg shadow" data-aos="zoom-in-up">
-        <h3 class="font-semibold text-xl mb-2">Gadget Shop – Delhi</h3>
-        <p class="text-gray-600">₹3L | ROI ₹20K/month | KYC Done</p>
-        <button class="mt-4 bg-blue-700 text-white px-4 py-2 rounded-md hover:bg-blue-800 transition">View Listing</button>
-      </div>
+    <!-- Agri Card -->
+    <div class="bg-white p-4 shadow rounded-lg border hidden agri">
+      <h3 class="text-xl font-bold text-[#0f172a]">Organic Banana Farm – Nashik</h3>
+      <p class="text-gray-500">₹50,000 Minimum | Seasonal Payouts</p>
+      <span class="text-green-600 text-sm">✔ Farmer-Verified | 14% Yield</span>
+      <button class="mt-4 block bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Invest Now</button>
     </div>
-  </div>
 
-  <!-- FOOTER -->
-  <footer class="bg-[#0f172a] text-white text-center py-6 mt-12" data-aos="fade-up">
-    <p>&copy; 2025 GAD Capital. All rights reserved.</p>
-    <p class="text-sm mt-1">Contact: support@gadcapital.in | WhatsApp: +91-9136913890</p>
+    <!-- Tender Card -->
+    <div class="bg-white p-4 shadow rounded-lg border hidden tender">
+      <h3 class="text-xl font-bold text-[#0f172a]">Pune Road Work – ₹12 Cr</h3>
+      <p class="text-gray-500">₹5L Entry | 30 Days Completion</p>
+      <span class="text-yellow-600 text-sm">⚠ Government Tender | Fast ROI</span>
+      <button class="mt-4 block bg-yellow-500 text-black px-4 py-2 rounded hover:bg-yellow-400">Join Deal</button>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-[#0f172a] text-white text-center py-6 mt-12">
+    <p class="font-semibold">© 2025 GAD Capital. All rights reserved.</p>
+    <p class="text-sm">support@gadcapital.in | WhatsApp: +91-9136913890</p>
   </footer>
-
-  <!-- CTA FORM -->
-  <div id="ctaForm" class="fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-lg border-t p-6 z-50 shadow-lg hidden" data-aos="fade-up">
-    <div class="max-w-lg mx-auto relative">
-      <button onclick="closeCTA()" class="absolute top-0 right-0 text-gray-600 hover:text-red-500 text-2xl">&times;</button>
-      <h3 class="text-xl font-bold text-[#0f172a] mb-3">🚀 Submit Your Business Idea</h3>
-      <form class="space-y-3">
-        <input type="text" placeholder="Full Name" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" />
-        <input type="email" placeholder="Email Address" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" />
-        <textarea placeholder="Your Business Pitch..." class="w-full p-3 border border-gray-300 rounded-md h-24 focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
-        <button type="submit" class="w-full bg-blue-700 text-white py-2 rounded-md hover:bg-blue-800 transition">Send Pitch</button>
-      </form>
-    </div>
-  </div>
 
   <!-- Scripts -->
   <script>
     AOS.init();
 
-    function showPage(id) {
-      document.getElementById("home").classList.add("hidden");
-      document.getElementById("invest").classList.add("hidden");
-      document.getElementById("buysell").classList.add("hidden");
-      document.getElementById(id).classList.remove("hidden");
-    }
+    const tabs = document.querySelectorAll(".tab-btn");
+    const cards = document.querySelectorAll(".grid > div");
 
-    function openCTA() {
-      document.getElementById('ctaForm').classList.remove('hidden');
-    }
+    tabs.forEach((tab, i) => {
+      tab.addEventListener("click", () => {
+        tabs.forEach(t => t.classList.remove("bg-blue-700", "text-white", "active"));
+        tab.classList.add("bg-blue-700", "text-white", "active");
 
-    function closeCTA() {
-      document.getElementById('ctaForm').classList.add('hidden');
-    }
-
-    let current = 0;
-    const slides = document.querySelectorAll(".testimonial-slide");
-    setInterval(() => {
-      slides[current].classList.remove("active");
-      current = (current + 1) % slides.length;
-      slides[current].classList.add("active");
-    }, 4000);
+        cards.forEach(card => {
+          card.style.display = "none";
+          if (i === 0 && !card.classList.contains("agri") && !card.classList.contains("tender")) card.style.display = "block";
+          if (i === 1 && card.classList.contains("agri")) card.style.display = "block";
+          if (i === 2 && card.classList.contains("tender")) card.style.display = "block";
+        });
+      });
+    });
   </script>
-
 </body>
 </html>
