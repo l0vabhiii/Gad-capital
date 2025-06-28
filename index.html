@@ -35,20 +35,20 @@
 </nav>
 
 <!-- Hero Section -->
-<section id="home" class="h-screen flex items-center justify-center bg-cover bg-center text-white" style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80');">
-  <div class="bg-black bg-opacity-70 p-10 rounded-lg text-center max-w-xl" data-aos="zoom-in">
-    <h2 class="text-4xl font-bold mb-2">India's Smart Investment Platform</h2>
-    <p class="text-lg text-gray-300 mb-6">Verified opportunities in real estate, agriculture, and digital businesses.</p>
-    <a href="#invest" class="bg-yellow-400 text-black px-6 py-3 rounded font-semibold hover:bg-yellow-300 transition">Explore Opportunities</a>
-    <div class="mt-6 text-sm text-gray-400">Scroll down to discover more ↓</div>
+<section id="home" class="h-screen flex items-center justify-center bg-cover bg-center text-white relative" style="background-image: url('https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=1600&q=80');">
+  <div class="absolute inset-0 bg-black bg-opacity-60"></div>
+  <div class="relative z-10 text-center px-4">
+    <h1 class="text-4xl md:text-5xl font-bold mb-4">Welcome to <span class="text-yellow-400">GAD Capital</span></h1>
+    <p class="text-lg md:text-xl text-gray-200 mb-6">India’s Private Investment Network for Real Estate, Agriculture, and Businesses</p>
+    <a href="#invest" class="bg-yellow-400 text-black font-semibold px-6 py-3 rounded-full hover:bg-yellow-300 transition">Explore Opportunities</a>
   </div>
 </section>
-
 <!-- Investment Section Start -->
 <section id="invest" class="py-16 bg-gray-50" data-aos="fade-up">
   <div class="max-w-6xl mx-auto px-6">
     <h2 class="text-4xl font-bold text-center text-[#0f172a] mb-10">Investment Opportunities</h2>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
       <div class="bg-white p-6 rounded-xl shadow-md border hover:shadow-lg transition duration-300">
         <div class="flex items-center gap-3 mb-2">
           <span class="text-blue-600 text-lg">🏠</span>
@@ -75,6 +75,7 @@
         <p class="text-gray-500 text-sm">₹5L • ₹40K/mo</p>
         <div class="mt-2 text-xs bg-yellow-100 text-yellow-600 inline-block px-2 py-1 rounded">F&B</div>
       </div>
+
       <div class="bg-white p-6 rounded-xl shadow-md border hover:shadow-lg transition duration-300">
         <div class="flex items-center gap-3 mb-2">
           <span class="text-purple-600 text-lg">🏢</span>
@@ -101,6 +102,7 @@
         <p class="text-gray-500 text-sm">₹50K • Lease Model</p>
         <div class="mt-2 text-xs bg-gray-100 text-gray-600 inline-block px-2 py-1 rounded">Logistics</div>
       </div>
+
     </div>
   </div>
 </section>
@@ -110,7 +112,7 @@
   <div class="max-w-7xl mx-auto px-6">
     <h2 class="text-4xl font-bold text-center text-[#0f172a] mb-10">Buy & Sell Verified Businesses</h2>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-      
+
       <div class="bg-gray-50 p-6 rounded-xl shadow-md border hover:shadow-lg transition">
         <div class="flex items-center gap-3 mb-2">
           <span class="text-blue-600 text-lg">🛒</span>
@@ -167,8 +169,8 @@
 
     </div>
   </div>
-</section>
-<!-- Stats Section -->
+  </section>
+  <!-- Stats Section -->
 <section id="impact" class="bg-gray-100 py-12 text-center" data-aos="fade-up">
   <h2 class="text-3xl font-bold text-[#0f172a] mb-6">Our Impact</h2>
   <div class="flex justify-center gap-10 text-xl font-semibold text-[#0f172a]">
@@ -206,7 +208,6 @@
     <p class="text-gray-600 text-lg">We aim to democratize investment by enabling every Indian to access verified, high-performing assets across sectors. From farmland to tech startups, GAD Capital brings transparent opportunities to your fingertips.</p>
   </div>
 </section>
-
 <!-- Contact -->
 <section id="contact" class="py-16 bg-gray-50" data-aos="fade-up">
   <div class="max-w-3xl mx-auto px-6">
@@ -215,7 +216,7 @@
       <input type="text" placeholder="Your Name" class="w-full border p-3 rounded" />
       <input type="email" placeholder="Email Address" class="w-full border p-3 rounded" />
       <textarea placeholder="Message" class="w-full border p-3 rounded"></textarea>
-      <button class="bg-blue-700 text-white px-6 py-2 rounded">Send Message</button>
+      <button class="bg-blue-700 text-white px-6 py-2 rounded hover:bg-blue-800 transition">Send Message</button>
     </form>
   </div>
 </section>
@@ -228,10 +229,11 @@
       <input type="text" placeholder="Your Name" class="w-full border p-3 rounded" />
       <input type="email" placeholder="Email" class="w-full border p-3 rounded" />
       <textarea placeholder="Describe your idea..." class="w-full border p-3 rounded"></textarea>
-      <button class="bg-yellow-400 text-black px-6 py-2 rounded hover:bg-yellow-300">Submit</button>
+      <button class="bg-yellow-400 text-black px-6 py-2 rounded hover:bg-yellow-300 transition">Submit</button>
     </form>
   </div>
 </section>
+
 <!-- Footer -->
 <footer class="bg-[#0f172a] text-white text-center py-6">
   <p class="font-semibold">© 2025 GAD Capital. All rights reserved.</p>
@@ -241,7 +243,6 @@
 <!-- Scripts -->
 <script>
   AOS.init();
-
   document.addEventListener("DOMContentLoaded", () => {
     const animate = (id, target) => {
       let i = 0;
@@ -259,3 +260,68 @@
 
 </body>
 </html>
+<!-- Floating WhatsApp CTA (Already at top) -->
+<a href="https://wa.me/919136913890" target="_blank"
+   class="fixed bottom-5 right-5 bg-green-500 text-white px-4 py-2 rounded-full shadow-lg z-50 hover:bg-green-600 transition duration-300">
+   💬 Chat with Advisor
+</a>
+
+<!-- Additional UI Polish -->
+<style>
+  /* Improve section spacing on small screens */
+  @media (max-width: 768px) {
+    section {
+      padding-top: 3rem;
+      padding-bottom: 3rem;
+    }
+
+    h2 {
+      font-size: 1.75rem;
+    }
+
+    nav div a {
+      display: inline-block;
+      margin-bottom: 6px;
+    }
+  }
+
+  /* Animated underline on navbar hover */
+  nav a {
+    position: relative;
+  }
+
+  nav a::after {
+    content: "";
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #facc15;
+    transition: width 0.3s;
+  }
+
+  nav a:hover::after {
+    width: 100%;
+  }
+
+  /* Card lift on hover */
+  .hover\\:shadow-lg:hover {
+    transform: translateY(-4px);
+    transition: all 0.3s ease-in-out;
+  }
+</style>
+<!-- ✅ Inside <head> tag add this (already included in your base but polishing again here) -->
+<meta name="author" content="GAD Capital Pvt Ltd" />
+<meta name="robots" content="index, follow" />
+<meta name="theme-color" content="#0f172a" />
+
+<!-- 📸 Social Sharing (WhatsApp, LinkedIn, Twitter) -->
+<meta property="og:title" content="GAD Capital – Invest Smart Across India" />
+<meta property="og:description" content="India’s private network for real estate, agriculture, and startup investments. Fully verified projects with real returns." />
+<meta property="og:image" content="https://yourdomain.in/og-image.jpg" />
+<meta property="og:url" content="https://yourdomain.in/" />
+<meta name="twitter:card" content="summary_large_image" />
+
+<!-- 🔗 Favicon (host in root or use direct link) -->
+<link rel="icon" type="image/png" href="https://yourdomain.in/favicon.png" />
