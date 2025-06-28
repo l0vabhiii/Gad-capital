@@ -3,91 +3,109 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GAD Capital - Invest</title>
+  <title>GAD Capital - One Page</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <style>
+    .section { display: none; }
+    .section.active { display: block; }
+  </style>
 </head>
 <body class="bg-[#f9fafb] text-gray-900 font-sans">
 
   <!-- Navbar -->
-  <nav class="flex justify-between px-6 py-4 bg-[#0f172a] text-white shadow">
+  <nav class="flex justify-between px-6 py-4 bg-[#0f172a] text-white shadow sticky top-0 z-50">
     <h1 class="font-bold text-xl">GAD Capital</h1>
     <div class="space-x-4">
-      <a href="index.html" class="hover:underline">Home</a>
-      <a href="invest.html" class="underline font-semibold">Invest</a>
-      <a href="buy-sell.html" class="hover:underline">Buy/Sell</a>
-      <a href="about.html" class="hover:underline">About</a>
-      <a href="contact.html" class="hover:underline">Contact</a>
+      <button onclick="showPage('home')">Home</button>
+      <button onclick="showPage('invest')">Invest</button>
+      <button onclick="showPage('buysell')">Buy/Sell</button>
+      <button onclick="showPage('about')">About</button>
+      <button onclick="showPage('contact')">Contact</button>
+      <button onclick="showPage('submitidea')">Submit Idea</button>
+      <button onclick="showPage('login')">Login</button>
     </div>
   </nav>
 
-  <!-- Page Header -->
-  <section class="text-center py-12 bg-gradient-to-r from-blue-800 to-blue-600 text-white shadow" data-aos="fade-down">
-    <h2 class="text-4xl font-bold">Investment Opportunities</h2>
-    <p class="text-gray-200 mt-2">Choose from Real Estate, Agriculture, and Government Tenders</p>
+  <!-- Sections -->
+  <section id="home" class="section active p-6" data-aos="fade-up">
+    <h2 class="text-4xl font-bold mb-4">Invest. Grow. Empower.</h2>
+    <p class="text-gray-600">India’s trusted platform for Real Estate, Agri, Tender & Business.</p>
   </section>
 
-  <!-- Categories Tabs -->
-  <div class="max-w-4xl mx-auto px-4 py-8 flex justify-center gap-4" data-aos="fade-up">
-    <button class="tab-btn bg-blue-700 text-white px-4 py-2 rounded shadow active">BrickShare</button>
-    <button class="tab-btn bg-white border px-4 py-2 rounded shadow">Agri Ventures</button>
-    <button class="tab-btn bg-white border px-4 py-2 rounded shadow">Tender Deals</button>
-  </div>
-
-  <!-- Card Listings -->
-  <section class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 px-4 pb-16" data-aos="fade-up">
-    <!-- Property Card -->
-    <div class="bg-white p-4 shadow rounded-lg border">
-      <h3 class="text-xl font-bold text-[#0f172a]">Retail Unit – LB Nagar</h3>
-      <p class="text-gray-500">₹1,00,000 Minimum | ROI ₹800/month</p>
-      <span class="text-green-600 text-sm">✔ Fully Rented | 10% Yield</span>
-      <button class="mt-4 block bg-blue-700 text-white px-4 py-2 rounded hover:bg-blue-800">Invest Now</button>
+  <section id="invest" class="section p-6" data-aos="fade-up">
+    <h2 class="text-3xl font-bold mb-4">Investment Opportunities</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="border p-4 rounded shadow">
+        <h3 class="font-semibold">Retail Unit - Hyderabad</h3>
+        <p class="text-sm text-gray-500">₹1L Minimum | ROI ₹800/mo</p>
+      </div>
     </div>
+  </section>
 
-    <!-- Agri Card -->
-    <div class="bg-white p-4 shadow rounded-lg border hidden agri">
-      <h3 class="text-xl font-bold text-[#0f172a]">Organic Banana Farm – Nashik</h3>
-      <p class="text-gray-500">₹50,000 Minimum | Seasonal Payouts</p>
-      <span class="text-green-600 text-sm">✔ Farmer-Verified | 14% Yield</span>
-      <button class="mt-4 block bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Invest Now</button>
+  <section id="buysell" class="section p-6" data-aos="fade-up">
+    <h2 class="text-3xl font-bold mb-4">Buy/Sell Marketplace</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="border p-4 rounded shadow">
+        <h3 class="font-semibold">Cloud Kitchen - Mumbai</h3>
+        <p class="text-sm text-gray-500">₹5L | ₹40K/mo | Verified</p>
+      </div>
     </div>
+  </section>
 
-    <!-- Tender Card -->
-    <div class="bg-white p-4 shadow rounded-lg border hidden tender">
-      <h3 class="text-xl font-bold text-[#0f172a]">Pune Road Work – ₹12 Cr</h3>
-      <p class="text-gray-500">₹5L Entry | 30 Days Completion</p>
-      <span class="text-yellow-600 text-sm">⚠ Government Tender | Fast ROI</span>
-      <button class="mt-4 block bg-yellow-500 text-black px-4 py-2 rounded hover:bg-yellow-400">Join Deal</button>
-    </div>
+  <section id="about" class="section p-6" data-aos="fade-up">
+    <h2 class="text-3xl font-bold mb-4">About GAD Capital</h2>
+    <p class="text-gray-600">Our mission is to democratize investment for every Indian by enabling access to verified business and property ventures.</p>
+  </section>
+
+  <section id="contact" class="section p-6" data-aos="fade-up">
+    <h2 class="text-3xl font-bold mb-4">Contact Us</h2>
+    <form class="space-y-3 max-w-md">
+      <input type="text" placeholder="Name" class="w-full border p-2 rounded" />
+      <input type="email" placeholder="Email" class="w-full border p-2 rounded" />
+      <textarea placeholder="Message" class="w-full border p-2 rounded"></textarea>
+      <button type="submit" class="bg-blue-700 text-white px-4 py-2 rounded">Send</button>
+    </form>
+  </section>
+
+  <section id="submitidea" class="section p-6" data-aos="fade-up">
+    <h2 class="text-3xl font-bold mb-4">Submit Your Business Idea</h2>
+    <form class="space-y-3 max-w-md">
+      <input type="text" placeholder="Full Name" class="w-full border p-2 rounded" />
+      <input type="email" placeholder="Email Address" class="w-full border p-2 rounded" />
+      <textarea placeholder="Describe your business..." class="w-full border p-2 rounded"></textarea>
+      <button type="submit" class="bg-yellow-500 text-black px-4 py-2 rounded">Submit Idea</button>
+    </form>
+  </section>
+
+  <section id="login" class="section p-6" data-aos="fade-up">
+    <h2 class="text-3xl font-bold mb-4">Login</h2>
+    <form class="space-y-3 max-w-md">
+      <select class="w-full border p-2 rounded">
+        <option>Owner</option>
+        <option>Admin</option>
+        <option>Developer</option>
+      </select>
+      <input type="email" placeholder="Email" class="w-full border p-2 rounded" />
+      <input type="password" placeholder="Password" class="w-full border p-2 rounded" />
+      <button type="submit" class="bg-[#0f172a] text-white px-4 py-2 rounded">Login</button>
+    </form>
   </section>
 
   <!-- Footer -->
   <footer class="bg-[#0f172a] text-white text-center py-6 mt-12">
-    <p class="font-semibold">© 2025 GAD Capital. All rights reserved.</p>
+    <p>&copy; 2025 GAD Capital. All rights reserved.</p>
     <p class="text-sm">support@gadcapital.in | WhatsApp: +91-9136913890</p>
   </footer>
 
   <!-- Scripts -->
   <script>
     AOS.init();
-
-    const tabs = document.querySelectorAll(".tab-btn");
-    const cards = document.querySelectorAll(".grid > div");
-
-    tabs.forEach((tab, i) => {
-      tab.addEventListener("click", () => {
-        tabs.forEach(t => t.classList.remove("bg-blue-700", "text-white", "active"));
-        tab.classList.add("bg-blue-700", "text-white", "active");
-
-        cards.forEach(card => {
-          card.style.display = "none";
-          if (i === 0 && !card.classList.contains("agri") && !card.classList.contains("tender")) card.style.display = "block";
-          if (i === 1 && card.classList.contains("agri")) card.style.display = "block";
-          if (i === 2 && card.classList.contains("tender")) card.style.display = "block";
-        });
-      });
-    });
+    function showPage(id) {
+      document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+    }
   </script>
 </body>
 </html>
