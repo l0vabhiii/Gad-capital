@@ -3,23 +3,25 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GAD Capital - Invest Smart</title>
+  <title>GAD Capital - Invest Smarter</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <link rel="icon" href="favicon.png" type="image/png" />
   <style>
     html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; }
     #mobile-menu { display: none; }
   </style>
 </head>
-<body class="bg-[#0f172a] text-white font-sans">
+<body class="bg-[#0f172a] text-white">
 
 <!-- WhatsApp CTA -->
 <a href="https://wa.me/919136913890" target="_blank" class="fixed bottom-5 right-5 bg-green-500 text-white px-4 py-2 rounded-full shadow-lg z-50 hover:bg-green-600 transition">💬 Chat with Advisor</a>
 
 <!-- Navbar -->
-<header class="bg-[#1e293b] fixed top-0 w-full z-50">
+<header class="bg-[#1e293b] fixed top-0 w-full z-50 shadow">
   <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
     <a href="#home" class="flex items-center gap-2">
       <img src="logo.png" alt="GAD Capital" class="h-8 w-auto" />
@@ -30,13 +32,12 @@
         <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
       </svg>
     </button>
-    <nav class="hidden md:flex space-x-4 text-sm text-white">
+    <nav class="hidden md:flex space-x-5 text-sm text-white">
       <a href="#home" class="hover:text-yellow-400">Home</a>
       <a href="#brickshare" class="hover:text-yellow-400">BrickShare</a>
       <a href="#agriventure" class="hover:text-yellow-400">AgriVenture</a>
       <a href="#buy" class="hover:text-yellow-400">Buy/Sell</a>
       <a href="#tenders" class="hover:text-yellow-400">Tenders</a>
-      <a href="#testimonials" class="hover:text-yellow-400">Reviews</a>
       <a href="#about" class="hover:text-yellow-400">About</a>
       <a href="#contact" class="hover:text-yellow-400">Contact</a>
       <a href="#submitidea" class="hover:text-yellow-400">Submit Idea</a>
@@ -50,7 +51,6 @@
     <a href="#agriventure" class="block hover:text-yellow-300">AgriVenture</a>
     <a href="#buy" class="block hover:text-yellow-300">Buy/Sell</a>
     <a href="#tenders" class="block hover:text-yellow-300">Tenders</a>
-    <a href="#testimonials" class="block hover:text-yellow-300">Reviews</a>
     <a href="#about" class="block hover:text-yellow-300">About</a>
     <a href="#contact" class="block hover:text-yellow-300">Contact</a>
     <a href="#submitidea" class="block hover:text-yellow-300">Submit Idea</a>
@@ -60,12 +60,12 @@
 </header>
 
 <!-- Hero Section -->
-<section id="home" class="h-screen flex items-center justify-center bg-cover bg-center text-white relative" style="background-image: url('https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=1600&q=80'); margin-top: 64px;">
+<section id="home" class="h-screen flex items-center justify-center bg-cover bg-center relative" style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80'); margin-top: 64px;">
   <div class="absolute inset-0 bg-black bg-opacity-60"></div>
-  <div class="relative z-10 text-center px-4">
-    <h1 class="text-4xl md:text-5xl font-bold mb-4">Welcome to <span class="text-yellow-400">GAD Capital</span></h1>
-    <p class="text-lg md:text-xl text-gray-200 mb-6">India’s Private Investment Network for Real Estate, Agriculture, and Businesses</p>
-    <a href="#brickshare" class="bg-yellow-400 text-black font-semibold px-6 py-3 rounded-full hover:bg-yellow-300 transition">Explore Opportunities</a>
+  <div class="relative z-10 text-center px-4 max-w-2xl" data-aos="fade-up">
+    <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-4">Smart Investments. Trusted Opportunities.</h1>
+    <p class="text-lg md:text-xl text-gray-300 mb-6">Verified options across real estate, agriculture, and business ventures in India.</p>
+    <a href="#brickshare" class="bg-yellow-400 text-black font-semibold px-6 py-3 rounded-full hover:bg-yellow-300 transition">Start Exploring</a>
   </div>
 </section>
 <!-- BrickShare Section -->
@@ -126,14 +126,14 @@
     </div>
   </div>
 </section>
-
-<!-- Tenders Section -->
+  <!-- Tenders Section -->
 <section id="tenders" class="py-16 bg-gray-900 text-white" data-aos="fade-up">
   <div class="max-w-6xl mx-auto px-6 text-center">
     <h2 class="text-3xl font-bold mb-4">Govt & Infra Tenders</h2>
     <p class="text-gray-300">We list pre-vetted government and infrastructure tenders for private collaboration.</p>
   </div>
 </section>
+
 <!-- Testimonials -->
 <section id="testimonials" class="py-16 bg-gray-100 text-gray-900" data-aos="fade-up">
   <div class="max-w-6xl mx-auto px-6">
@@ -212,6 +212,37 @@
 <!-- Scripts -->
 <script>
   AOS.init();
+  document.getElementById(\"menu-btn\").addEventListener(\"click\", () => {
+    const menu = document.getElementById(\"mobile-menu\");
+    menu.classList.toggle(\"hidden\");
+  });
+</script>
+
+</body>
+  </html>
+<!-- Impact Section -->
+<section id="impact" class="py-16 bg-gray-800 text-white" data-aos="fade-up">
+  <div class="max-w-4xl mx-auto text-center">
+    <h2 class="text-3xl font-bold mb-6">Our Impact</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-yellow-400 font-semibold text-xl">
+      <div>400+ Investors</div>
+      <div>₹5 Cr Invested</div>
+      <div>10 Cities</div>
+      <div>4 Countries</div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-[#1e293b] text-white text-center py-6">
+  <p class="font-semibold">© 2025 GAD Capital. All rights reserved.</p>
+  <p class="text-sm">support@gadcapital.in | WhatsApp: +91-9136913890</p>
+  <p class="text-sm">1st Floor, 27th Main, HSR Layout, Sector 1, Bangalore</p>
+</footer>
+
+<!-- Scripts -->
+<script>
+  AOS.init();
   document.getElementById("menu-btn").addEventListener("click", () => {
     const menu = document.getElementById("mobile-menu");
     menu.classList.toggle("hidden");
@@ -220,3 +251,21 @@
 
 </body>
 </html>
+<!-- Preloader -->
+<div id="preloader" class="fixed inset-0 bg-[#0f172a] flex items-center justify-center z-50">
+  <div class="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-yellow-400"></div>
+</div>
+
+<script>
+  window.addEventListener("load", () => {
+    document.getElementById("preloader").style.display = "none";
+  });
+</script>
+<!-- Scroll to Top -->
+<button onclick="window.scrollTo({ top: 0, behavior: 'smooth' });"
+class="fixed bottom-20 right-5 bg-yellow-400 text-black p-2 rounded-full shadow hover:bg-yellow-300">
+⬆
+</button>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
