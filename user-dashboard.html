@@ -7,13 +7,12 @@
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
 </head>
-<body class="bg-[#0f172a] text-white flex flex-col items-center justify-center h-screen">
-
-  <div class="bg-white text-black p-8 rounded-lg shadow-lg w-full max-w-md text-center">
+<body class="bg-[#0f172a] text-white flex items-center justify-center h-screen text-center">
+  <div class="bg-white text-black p-6 rounded-lg shadow max-w-md w-full">
     <h2 class="text-2xl font-bold mb-4 text-[#0f172a]">Welcome to GAD Capital</h2>
     <p>You are logged in as:</p>
-    <p id="user-email" class="font-semibold text-blue-700 my-4"></p>
-    <button onclick="logout()" class="bg-red-600 text-white px-6 py-2 rounded hover:bg-red-500">Logout</button>
+    <p id="user-email" class="font-semibold my-2 text-blue-700"></p>
+    <button onclick="logout()" class="bg-red-600 text-white px-6 py-2 rounded hover:bg-red-500 mt-4">Logout</button>
   </div>
 
   <script>
@@ -23,8 +22,8 @@
       projectId: "gad-capital",
       storageBucket: "gad-capital.appspot.com",
       messagingSenderId: "978239151328",
-      appId: "1:978239151328:web:d48895a2cad82ffbd8c485",
-      measurementId: "G-GCM3JWSSY4"
+      appId: "1:978239151328:web:2795c165105c4485d8c485",
+      measurementId: "G-MTBV3ZSFPC"
     };
     firebase.initializeApp(firebaseConfig);
     const auth = firebase.auth();
@@ -43,6 +42,5 @@
       });
     }
   </script>
-
 </body>
 </html>
