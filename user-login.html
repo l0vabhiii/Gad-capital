@@ -8,12 +8,12 @@
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
 </head>
 <body class="bg-[#0f172a] text-white flex items-center justify-center h-screen">
-  <div class="bg-white text-black p-8 rounded-lg shadow-lg w-full max-w-md">
-    <h2 class="text-2xl font-bold mb-4 text-center text-[#0f172a]">User Login</h2>
-    <input id="email" type="email" placeholder="Email" class="w-full p-3 mb-3 border rounded" />
-    <input id="password" type="password" placeholder="Password" class="w-full p-3 mb-4 border rounded" />
-    <button onclick="login()" class="w-full bg-yellow-400 text-black py-2 rounded hover:bg-yellow-300 font-semibold">Login</button>
-    <p id="msg" class="mt-4 text-center text-red-600 font-semibold"></p>
+  <div class="bg-white text-black p-6 rounded shadow-lg w-full max-w-md">
+    <h2 class="text-xl font-bold text-center mb-4 text-[#0f172a]">Login to GAD Capital</h2>
+    <input id="email" type="email" placeholder="Email" class="w-full border p-2 mb-3 rounded" />
+    <input id="password" type="password" placeholder="Password" class="w-full border p-2 mb-3 rounded" />
+    <button onclick="login()" class="w-full bg-yellow-400 text-black font-semibold py-2 rounded hover:bg-yellow-300">Login</button>
+    <p id="msg" class="text-center mt-3 font-medium text-red-600"></p>
   </div>
 
   <script>
@@ -23,8 +23,8 @@
       projectId: "gad-capital",
       storageBucket: "gad-capital.appspot.com",
       messagingSenderId: "978239151328",
-      appId: "1:978239151328:web:d48895a2cad82ffbd8c485",
-      measurementId: "G-GCM3JWSSY4"
+      appId: "1:978239151328:web:2795c165105c4485d8c485",
+      measurementId: "G-MTBV3ZSFPC"
     };
     firebase.initializeApp(firebaseConfig);
     const auth = firebase.auth();
@@ -36,7 +36,7 @@
         .then(() => {
           window.location.href = "user-dashboard.html";
         })
-        .catch((error) => {
+        .catch(error => {
           document.getElementById("msg").innerText = "❌ " + error.message;
         });
     }
