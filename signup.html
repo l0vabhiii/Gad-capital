@@ -5,70 +5,43 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Sign Up - GAD Capital</title>
   <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center h-screen">
+
+  <form id="signupForm" class="bg-white p-6 rounded shadow w-full max-w-sm space-y-4">
+    <h2 class="text-xl font-bold text-center">Create Account</h2>
+    <input type="text" id="name" placeholder="Full Name" class="w-full p-2 border rounded" required />
+    <input type="email" id="email" placeholder="Email" class="w-full p-2 border rounded" required />
+    <input type="tel" id="phone" placeholder="Phone Number" class="w-full p-2 border rounded" required />
+    <input type="password" id="password" placeholder="Password" class="w-full p-2 border rounded" required />
+    <button type="submit" class="w-full bg-blue-700 text-white p-2 rounded hover:bg-blue-600">Register</button>
+    <p id="success" class="text-green-600 text-sm hidden">Account created successfully!</p>
+  </form>
+
   <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-    import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-    import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+    import { db } from './firebase-config.js';
+    import { collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-    const firebaseConfig = {
-      apiKey: "AIzaSyAoOcgmwn6F9hdl0Es9hpTUXNerukbcyHs",
-      authDomain: "gad-capital.firebaseapp.com",
-      projectId: "gad-capital",
-      storageBucket: "gad-capital.appspot.com",
-      messagingSenderId: "978239151328",
-      appId: "1:978239151328:web:2795c165105c4485d8c485",
-      measurementId: "G-MTBV3ZSFPC"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-    const db = getFirestore(app);
-
-    window.signupUser = async function(e) {
+    const form = document.getElementById('signupForm');
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const name = document.getElementById('name').value;
-      const phone = document.getElementById('phone').value;
-      const email = document.getElementById('email').value;
-      const password = document.getElementById('password').value;
+
+      const data = {
+        name: form.name.value,
+        email: form.email.value,
+        phone: form.phone.value,
+        password: form.password.value,
+        role: \"user\" // default role
+      };
 
       try {
-        const userCred = await createUserWithEmailAndPassword(auth, email, password);
-        const uid = userCred.user.uid;
-
-        await setDoc(doc(db, "users", uid), {
-          name,
-          phone,
-          email,
-          createdAt: new Date().toISOString()
-        });
-
-        alert("Signup successful! Redirecting...");
-        window.location.href = "user-dashboard.html";
+        await addDoc(collection(db, \"users\"), data);
+        document.getElementById(\"success\").classList.remove(\"hidden\");
+        form.reset();
       } catch (error) {
-        alert(error.message);
+        alert(\"Error: \" + error.message);
       }
-    };
+    });
   </script>
-</head>
-<body class="bg-[#0f172a] text-white flex items-center justify-center h-screen">
-  <form onsubmit="signupUser(event)" class="bg-white text-black rounded-lg p-8 w-full max-w-md shadow-md">
-    <h2 class="text-2xl font-bold text-center mb-6 text-[#0f172a]">Create Your Account</h2>
-
-    <label class="block mb-2 font-medium">Full Name</label>
-    <input id="name" type="text" required class="w-full p-3 border rounded mb-4"/>
-
-    <label class="block mb-2 font-medium">Phone Number</label>
-    <input id="phone" type="tel" required class="w-full p-3 border rounded mb-4"/>
-
-    <label class="block mb-2 font-medium">Email</label>
-    <input id="email" type="email" required class="w-full p-3 border rounded mb-4"/>
-
-    <label class="block mb-2 font-medium">Password</label>
-    <input id="password" type="password" required class="w-full p-3 border rounded mb-6"/>
-
-    <button type="submit" class="w-full bg-yellow-400 text-black font-semibold py-3 rounded hover:bg-yellow-300 transition">Sign Up</button>
-
-    <p class="text-center text-sm mt-4 text-gray-600">Already registered? <a href="user-login.html" class="text-blue-600 underline">Login here</a></p>
-  </form>
 </body>
 </html>
