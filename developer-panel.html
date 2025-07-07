@@ -5,90 +5,44 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Developer Panel - GAD Capital</title>
   <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white text-gray-900 min-h-screen p-6">
+  <h1 class="text-3xl font-bold text-center text-[#0f172a] mb-8">💻 Developer Panel</h1>
+
+  <form id="projectForm" class="max-w-xl mx-auto space-y-4 bg-gray-100 p-6 rounded shadow">
+    <input type="text" id="title" placeholder="Project Title" class="w-full p-2 border rounded" required />
+    <input type="text" id="price" placeholder="Price/Details (e.g. ₹1L • ₹10K/mo)" class="w-full p-2 border rounded" required />
+    <input type="text" id="tag" placeholder="Tag (e.g. Retail, Farming)" class="w-full p-2 border rounded" required />
+    <input type="text" id="emoji" placeholder="Emoji (e.g. 🏠, 🌾)" class="w-full p-2 border rounded" required />
+    <input type="text" id="category" placeholder="Category (brickshare, agriventure, buy)" class="w-full p-2 border rounded" required />
+    <button type="submit" class="w-full bg-blue-600 text-white p-2 rounded hover:bg-blue-500">Add Project</button>
+    <p id="success" class="text-green-600 hidden text-center">Project added successfully!</p>
+  </form>
+
   <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-    import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+    import { db } from './firebase-config.js';
+    import { collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-    const firebaseConfig = {
-      apiKey: "AIzaSyAoOcgmwn6F9hdl0Es9hpTUXNerukbcyHs",
-      authDomain: "gad-capital.firebaseapp.com",
-      projectId: "gad-capital",
-      storageBucket: "gad-capital.appspot.com",
-      messagingSenderId: "978239151328",
-      appId: "1:978239151328:web:2795c165105c4485d8c485",
-      measurementId: "G-MTBV3ZSFPC"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
-
-    window.addListing = async function (e) {
+    const form = document.getElementById("projectForm");
+    form.addEventListener("submit", async (e) => {
       e.preventDefault();
-      const title = document.getElementById("title").value;
-      const type = document.getElementById("type").value;
-      const city = document.getElementById("city").value;
-      const budget = document.getElementById("budget").value;
-      const description = document.getElementById("description").value;
+
+      const data = {
+        title: form.title.value,
+        price: form.price.value,
+        tag: form.tag.value,
+        emoji: form.emoji.value,
+        category: form.category.value
+      };
 
       try {
-        await addDoc(collection(db, "projects"), {
-          title,
-          type,
-          city,
-          budget,
-          description,
-          createdAt: new Date().toISOString()
-        });
-        alert("Project added successfully ✅");
-        e.target.reset();
-      } catch (err) {
-        alert("Error: " + err.message);
+        await addDoc(collection(db, "projects"), data);
+        document.getElementById("success").classList.remove("hidden");
+        form.reset();
+      } catch (error) {
+        alert("Error adding project: " + error.message);
       }
-    };
+    });
   </script>
-</head>
-<body class="bg-[#0f172a] text-white min-h-screen p-6">
-  <div class="max-w-3xl mx-auto bg-white text-black rounded-lg p-6 shadow-md">
-    <h1 class="text-2xl font-bold mb-4 text-[#0f172a]">Developer Panel – Add New Project</h1>
-
-    <form onsubmit="addListing(event)" class="space-y-4">
-      <div>
-        <label class="block mb-1 font-medium">Project Title</label>
-        <input id="title" type="text" required class="w-full p-3 border rounded" />
-      </div>
-
-      <div>
-        <label class="block mb-1 font-medium">Type</label>
-        <select id="type" required class="w-full p-3 border rounded">
-          <option value="">-- Select Type --</option>
-          <option>Real Estate</option>
-          <option>AgriVenture</option>
-          <option>Startup</option>
-          <option>Buy/Sell</option>
-          <option>Tender</option>
-        </select>
-      </div>
-
-      <div>
-        <label class="block mb-1 font-medium">City</label>
-        <input id="city" type="text" required class="w-full p-3 border rounded" />
-      </div>
-
-      <div>
-        <label class="block mb-1 font-medium">Budget / Investment</label>
-        <input id="budget" type="text" required class="w-full p-3 border rounded" />
-      </div>
-
-      <div>
-        <label class="block mb-1 font-medium">Description</label>
-        <textarea id="description" rows="4" required class="w-full p-3 border rounded"></textarea>
-      </div>
-
-      <button type="submit" class="bg-yellow-400 text-black px-6 py-3 rounded hover:bg-yellow-300 font-semibold">
-        ➕ Add Project
-      </button>
-    </form>
-  </div>
-
 </body>
 </html>
