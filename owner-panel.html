@@ -1,69 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Owner Panel - GAD Capital</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100 min-h-screen p-6 text-gray-900">
+<body class="bg-gray-900 text-white min-h-screen p-6">
+  <div class="max-w-6xl mx-auto">
+    <h1 class="text-3xl font-bold text-yellow-400 mb-4">Owner Dashboard</h1>
+    <p class="text-sm text-gray-300 mb-6">Welcome, <span id="owner-email"></span></p>
 
-  <h1 class="text-3xl font-bold text-center text-[#0f172a] mb-6">🏢 Owner Panel - GAD Capital</h1>
+    <div class="mb-10">
+      <h2 class="text-2xl font-semibold mb-3">📋 Registered Users</h2>
+      <table class="w-full bg-gray-800 rounded shadow overflow-hidden text-sm">
+        <thead>
+          <tr class="bg-gray-700 text-yellow-400 text-left">
+            <th class="p-3">Email</th>
+            <th class="p-3">Phone</th>
+            <th class="p-3">Signup Date</th>
+          </tr>
+        </thead>
+        <tbody id="users-table" class="text-white"></tbody>
+      </table>
+    </div>
 
-  <!-- Company Info -->
-  <section class="bg-white rounded shadow p-6 mb-8 max-w-4xl mx-auto">
-    <h2 class="text-xl font-semibold mb-2">📍 Company Info</h2>
-    <p><strong>Address:</strong> 1st Floor, 27th Main, HSR Layout, Sector 1, Bangalore</p>
-    <p><strong>Email:</strong> support@gadcapital.in</p>
-    <p><strong>WhatsApp:</strong> +91-9136913890</p>
-    <p><strong>Reach:</strong> 400+ Investors | ₹5 Cr Invested | 10 Cities | 4 Countries</p>
-  </section>
+    <div>
+      <h2 class="text-2xl font-semibold mb-3">📂 All Projects</h2>
+      <div id="projects-list" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
+    </div>
 
-  <!-- All Users -->
-  <section class="bg-white rounded shadow p-6 mb-8 max-w-5xl mx-auto">
-    <h2 class="text-xl font-semibold mb-4">👥 Registered Users</h2>
-    <div id="ownerUsers" class="space-y-3"></div>
-  </section>
+    <button id="logout-btn" class="mt-10 bg-red-600 px-4 py-2 rounded hover:bg-red-500 font-semibold">Logout</button>
+  </div>
 
-  <!-- All Projects -->
-  <section class="bg-white rounded shadow p-6 max-w-5xl mx-auto">
-    <h2 class="text-xl font-semibold mb-4">📊 All Projects</h2>
-    <div id="ownerProjects" class="space-y-3"></div>
-  </section>
-
+  <!-- Firebase Script -->
   <script type="module">
-    import { db } from './firebase-config.js';
-    import { collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
+    import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
 
-    const userList = document.getElementById("ownerUsers");
-    const projectList = document.getElementById("ownerProjects");
+    const firebaseConfig = {
+      apiKey: "AIzaSyAoOcgmwn6F9hdl0Es9hpTUXNerukbcyHs",
+      authDomain: "gad-capital.firebaseapp.com",
+      projectId: "gad-capital",
+      storageBucket: "gad-capital.firebaseapp.com",
+      messagingSenderId: "978239151328",
+      appId: "1:978239151328:web:2795c165105c4485d8c485",
+      measurementId: "G-MTBV3ZSFPC"
+    };
 
-    // Load Users
-    const userSnapshot = await getDocs(collection(db, "users"));
-    userSnapshot.forEach(doc => {
-      const u = doc.data();
-      const div = document.createElement("div");
-      div.className = "border p-3 rounded bg-gray-50";
-      div.innerHTML = `
-        <strong>${u.name}</strong> – ${u.email}<br/>
-        📞 ${u.phone} | Role: <span class="text-blue-700">${u.role || 'user'}</span>
-      `;
-      userList.appendChild(div);
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    const usersTable = document.getElementById("users-table");
+    const projectsList = document.getElementById("projects-list");
+
+    onAuthStateChanged(auth, async (user) => {
+      if (!user) {
+        window.location.href = "login.html";
+        return;
+      }
+
+      document.getElementById("owner-email").textContent = user.email;
+
+      if (user.email !== "gadcapitalindia@gadcapital.in") {
+        alert("Unauthorized Access!");
+        window.location.href = "login.html";
+        return;
+      }
+
+      // Load users
+      const userSnap = await getDocs(collection(db, "users"));
+      userSnap.forEach((doc) => {
+        const data = doc.data();
+        const row = `
+          <tr>
+            <td class="p-3">${data.email}</td>
+            <td class="p-3">${data.phone || '-'}</td>
+            <td class="p-3">${data.createdAt || '-'}</td>
+          </tr>`;
+        usersTable.innerHTML += row;
+      });
+
+      // Load projects
+      const projSnap = await getDocs(collection(db, "projects"));
+      projSnap.forEach((doc) => {
+        const data = doc.data();
+        const card = document.createElement("div");
+        card.className = "bg-gray-800 p-4 rounded shadow";
+        card.innerHTML = `
+          <h3 class="text-yellow-300 font-semibold text-lg">${data.title}</h3>
+          <p class="text-sm text-gray-300 mb-1">Category: ${data.category}</p>
+          <p class="text-sm text-gray-300 mb-1">Investment: ${data.investment}</p>
+          <p class="text-sm text-gray-400">${data.description}</p>`;
+        projectsList.appendChild(card);
+      });
     });
 
-    // Load Projects
-    const projectSnapshot = await getDocs(collection(db, "projects"));
-    projectSnapshot.forEach(doc => {
-      const p = doc.data();
-      const div = document.createElement("div");
-      div.className = "border p-3 rounded bg-gray-50";
-      div.innerHTML = `
-        <span>${p.emoji}</span> <strong>${p.title}</strong> <br/>
-        💰 ${p.price} | 🏷️ ${p.tag} | 📁 ${p.category}
-      `;
-      projectList.appendChild(div);
+    document.getElementById("logout-btn").addEventListener("click", () => {
+      signOut(auth).then(() => {
+        window.location.href = "login.html";
+      });
     });
   </script>
-
 </body>
 </html>
