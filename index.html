@@ -4,9 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>GAD Capital - Invest Smart</title>
-  <meta name="description" content="India’s Private Investment Network for Real Estate, Agriculture, and Businesses" />
-  <link rel="icon" href="favicon.png" />
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" href="favicon.png" type="image/png" />
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <style>
@@ -14,10 +13,8 @@
     #mobile-menu { display: none; }
   </style>
 </head>
-
 <body class="bg-[#0f172a] text-white font-sans">
-
-<!-- WhatsApp CTA -->
+  <!-- WhatsApp CTA -->
 <a href="https://wa.me/919136913890" target="_blank" class="fixed bottom-5 right-5 bg-green-500 text-white px-4 py-2 rounded-full shadow-lg z-50 hover:bg-green-600 transition">💬 Chat with Advisor</a>
 
 <!-- Navbar -->
@@ -39,9 +36,9 @@
         <a href="#contact" class="hover:text-yellow-400">Contact</a>
         <a href="#submitidea" class="hover:text-yellow-400">Submit Idea</a>
         <a href="#partner" class="hover:text-yellow-400">Partner Program</a>
-        <a href="#signup" class="hover:text-yellow-400">Sign Up</a>
+        <a href="signup.html" class="hover:text-yellow-400">Sign Up</a>
       </nav>
-      <a href="#signup" class="text-sm font-semibold bg-yellow-400 text-black px-4 py-1 rounded hover:bg-yellow-300">Login</a>
+      <a href="user-login.html" class="text-sm font-semibold bg-yellow-400 text-black px-4 py-1 rounded hover:bg-yellow-300">User Login</a>
     </div>
     <button id="menu-btn" class="md:hidden text-white">
       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -60,12 +57,11 @@
     <a href="#contact" class="block hover:text-yellow-300">Contact</a>
     <a href="#submitidea" class="block hover:text-yellow-300">Submit Idea</a>
     <a href="#partner" class="block hover:text-yellow-300">Partner Program</a>
-    <a href="#signup" class="block hover:text-yellow-300">Sign Up</a>
-    <a href="#signup" class="block hover:text-yellow-300 font-bold">Login</a>
+    <a href="signup.html" class="block hover:text-yellow-300">Sign Up</a>
+    <a href="user-login.html" class="block hover:text-yellow-300 font-bold">User Login</a>
   </div>
-</header>
-
-<!-- Hero Section -->
+      </header>
+      <!-- Hero Section -->
 <section id="home" class="h-screen flex items-center justify-center bg-cover bg-center text-white relative" style="background-image: url('https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=1600&q=80'); margin-top: 64px;">
   <div class="absolute inset-0 bg-black bg-opacity-60"></div>
   <div class="relative z-10 text-center px-4">
@@ -74,109 +70,13 @@
     <a href="#brickshare" class="bg-yellow-400 text-black font-semibold px-6 py-3 rounded-full hover:bg-yellow-300 transition">Explore Opportunities</a>
   </div>
 </section>
-<!-- Sign Up Section -->
-<section id="signup" class="py-16 bg-white text-black">
-  <div class="max-w-md mx-auto p-6 bg-white rounded-lg shadow">
-    <h2 class="text-2xl font-bold mb-4">Create an Account</h2>
-    <form id="signupForm" class="space-y-4">
-      <input type="text" id="name" placeholder="Full Name" required class="w-full p-3 border rounded" />
-      <input type="email" id="email" placeholder="Email" required class="w-full p-3 border rounded" />
-      <input type="tel" id="phone" placeholder="Phone Number" required class="w-full p-3 border rounded" />
-      <input type="password" id="password" placeholder="Password" required class="w-full p-3 border rounded" />
-      <button type="submit" class="bg-yellow-400 w-full py-2 rounded font-semibold hover:bg-yellow-300">Sign Up</button>
-    </form>
-    <p id="msg" class="text-center mt-3 text-green-700 font-medium"></p>
-    <hr class="my-4" />
-    <button id="googleLogin" class="bg-red-500 text-white px-4 py-2 w-full rounded hover:bg-red-400">Sign Up with Google</button>
-  </div>
-</section>
 
-<!-- Firebase SDK -->
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
-  import { getAuth, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js";
-  import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
-
-  const firebaseConfig = {
-    apiKey: "AIzaSyAoOcgmwn6F9hdl0Es9hpTUXNerukbcyHs",
-    authDomain: "gad-capital.firebaseapp.com",
-    projectId: "gad-capital",
-    storageBucket: "gad-capital.appspot.com",
-    messagingSenderId: "978239151328",
-    appId: "1:978239151328:web:2795c165105c4485d8c485",
-    measurementId: "G-MTBV3ZSFPC"
-  };
-
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
-  const db = getFirestore(app);
-  const provider = new GoogleAuthProvider();
-
-  window.addEventListener("DOMContentLoaded", () => {
-    const form = document.getElementById("signupForm");
-    const msg = document.getElementById("msg");
-    const googleBtn = document.getElementById("googleLogin");
-
-    if (form) {
-      form.addEventListener("submit", async (e) => {
-        e.preventDefault();
-        const name = document.getElementById("name").value;
-        const email = document.getElementById("email").value;
-        const phone = document.getElementById("phone").value;
-        const password = document.getElementById("password").value;
-
-        try {
-          const userCred = await createUserWithEmailAndPassword(auth, email, password);
-          await setDoc(doc(db, "users", userCred.user.uid), {
-            name,
-            email,
-            phone,
-            registeredAt: new Date().toISOString()
-          });
-          msg.textContent = "✅ Registered Successfully!";
-          window.location.href = "user-dashboard.html";
-        } catch (error) {
-          msg.textContent = "❌ " + error.message;
-        }
-      });
-    }
-
-    if (googleBtn) {
-      googleBtn.addEventListener("click", async () => {
-        try {
-          const result = await signInWithPopup(auth, provider);
-          const user = result.user;
-          await setDoc(doc(db, "users", user.uid), {
-            name: user.displayName,
-            email: user.email,
-            phone: user.phoneNumber || "",
-            registeredVia: "Google",
-            registeredAt: new Date().toISOString()
-          });
-          msg.textContent = "✅ Google Login Success!";
-          window.location.href = "user-dashboard.html";
-        } catch (error) {
-          msg.textContent = "❌ " + error.message;
-        }
-      });
-    }
-  });
-</script>
-<!-- Footer -->
-<footer class="bg-[#1e293b] text-center text-white py-6 mt-16">
-  <div class="text-sm">
-    <p>© 2025 GAD Capital. All rights reserved.</p>
-    <p>support@gadcapital.in | WhatsApp: +91-9136913890</p>
-    <p>1st Floor, 27th Main, HSR Layout, Sector 1, Bangalore</p>
-  </div>
-</footer>
-
-<!-- AOS Animation Init & Navbar Toggle -->
+<!-- AOS Script Init -->
 <script>
   AOS.init();
-  document.getElementById("menu-btn").onclick = () => {
-    const menu = document.getElementById("mobile-menu");
-    menu.classList.toggle("hidden");
+  document.getElementById(\"menu-btn\").onclick = () => {
+    const menu = document.getElementById(\"mobile-menu\");
+    menu.classList.toggle(\"hidden\");
   };
 </script>
 
