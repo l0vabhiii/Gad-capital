@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Owner Panel - GAD Capital</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen p-6 text-gray-900">
+
+  <h1 class="text-3xl font-bold text-center text-[#0f172a] mb-6">🏢 Owner Panel - GAD Capital</h1>
+
+  <!-- Company Info -->
+  <section class="bg-white rounded shadow p-6 mb-8 max-w-4xl mx-auto">
+    <h2 class="text-xl font-semibold mb-2">📍 Company Info</h2>
+    <p><strong>Address:</strong> 1st Floor, 27th Main, HSR Layout, Sector 1, Bangalore</p>
+    <p><strong>Email:</strong> support@gadcapital.in</p>
+    <p><strong>WhatsApp:</strong> +91-9136913890</p>
+    <p><strong>Reach:</strong> 400+ Investors | ₹5 Cr Invested | 10 Cities | 4 Countries</p>
+  </section>
+
+  <!-- All Users -->
+  <section class="bg-white rounded shadow p-6 mb-8 max-w-5xl mx-auto">
+    <h2 class="text-xl font-semibold mb-4">👥 Registered Users</h2>
+    <div id="ownerUsers" class="space-y-3"></div>
+  </section>
+
+  <!-- All Projects -->
+  <section class="bg-white rounded shadow p-6 max-w-5xl mx-auto">
+    <h2 class="text-xl font-semibold mb-4">📊 All Projects</h2>
+    <div id="ownerProjects" class="space-y-3"></div>
+  </section>
+
+  <script type="module">
+    import { db } from './firebase-config.js';
+    import { collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+    const userList = document.getElementById("ownerUsers");
+    const projectList = document.getElementById("ownerProjects");
+
+    // Load Users
+    const userSnapshot = await getDocs(collection(db, "users"));
+    userSnapshot.forEach(doc => {
+      const u = doc.data();
+      const div = document.createElement("div");
+      div.className = "border p-3 rounded bg-gray-50";
+      div.innerHTML = `
+        <strong>${u.name}</strong> – ${u.email}<br/>
+        📞 ${u.phone} | Role: <span class="text-blue-700">${u.role || 'user'}</span>
+      `;
+      userList.appendChild(div);
+    });
+
+    // Load Projects
+    const projectSnapshot = await getDocs(collection(db, "projects"));
+    projectSnapshot.forEach(doc => {
+      const p = doc.data();
+      const div = document.createElement("div");
+      div.className = "border p-3 rounded bg-gray-50";
+      div.innerHTML = `
+        <span>${p.emoji}</span> <strong>${p.title}</strong> <br/>
+        💰 ${p.price} | 🏷️ ${p.tag} | 📁 ${p.category}
+      `;
+      projectList.appendChild(div);
+    });
+  </script>
+
+</body>
+</html>
