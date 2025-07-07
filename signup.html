@@ -1,23 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Signup - GAD Capital</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sign Up - GAD Capital</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
-</head>
-<body class="bg-[#0f172a] text-white flex items-center justify-center h-screen">
-  <div class="bg-white text-black p-6 rounded shadow-lg w-full max-w-md">
-    <h2 class="text-xl font-bold text-center mb-4 text-[#0f172a]">Create GAD Account</h2>
-    <input id="email" type="email" placeholder="Email" class="w-full border p-2 mb-3 rounded" />
-    <input id="password" type="password" placeholder="Password" class="w-full border p-2 mb-3 rounded" />
-    <button onclick="signup()" class="w-full bg-yellow-400 text-black font-semibold py-2 rounded hover:bg-yellow-300">Sign Up</button>
-    <p id="msg" class="text-center mt-3 font-medium"></p>
-    <p class="text-sm text-center mt-2">Already registered? <a href="user-login.html" class="text-blue-600 underline">Login</a></p>
-  </div>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+    import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-  <script>
     const firebaseConfig = {
       apiKey: "AIzaSyAoOcgmwn6F9hdl0Es9hpTUXNerukbcyHs",
       authDomain: "gad-capital.firebaseapp.com",
@@ -27,20 +19,56 @@
       appId: "1:978239151328:web:2795c165105c4485d8c485",
       measurementId: "G-MTBV3ZSFPC"
     };
-    firebase.initializeApp(firebaseConfig);
-    const auth = firebase.auth();
 
-    function signup() {
-      const email = document.getElementById("email").value;
-      const password = document.getElementById("password").value;
-      auth.createUserWithEmailAndPassword(email, password)
-        .then(() => {
-          document.getElementById("msg").innerText = "✅ Signup successful!";
-        })
-        .catch(error => {
-          document.getElementById("msg").innerText = "❌ " + error.message;
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    window.signupUser = async function(e) {
+      e.preventDefault();
+      const name = document.getElementById('name').value;
+      const phone = document.getElementById('phone').value;
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+
+      try {
+        const userCred = await createUserWithEmailAndPassword(auth, email, password);
+        const uid = userCred.user.uid;
+
+        await setDoc(doc(db, "users", uid), {
+          name,
+          phone,
+          email,
+          createdAt: new Date().toISOString()
         });
-    }
+
+        alert("Signup successful! Redirecting...");
+        window.location.href = "user-dashboard.html";
+      } catch (error) {
+        alert(error.message);
+      }
+    };
   </script>
+</head>
+<body class="bg-[#0f172a] text-white flex items-center justify-center h-screen">
+  <form onsubmit="signupUser(event)" class="bg-white text-black rounded-lg p-8 w-full max-w-md shadow-md">
+    <h2 class="text-2xl font-bold text-center mb-6 text-[#0f172a]">Create Your Account</h2>
+
+    <label class="block mb-2 font-medium">Full Name</label>
+    <input id="name" type="text" required class="w-full p-3 border rounded mb-4"/>
+
+    <label class="block mb-2 font-medium">Phone Number</label>
+    <input id="phone" type="tel" required class="w-full p-3 border rounded mb-4"/>
+
+    <label class="block mb-2 font-medium">Email</label>
+    <input id="email" type="email" required class="w-full p-3 border rounded mb-4"/>
+
+    <label class="block mb-2 font-medium">Password</label>
+    <input id="password" type="password" required class="w-full p-3 border rounded mb-6"/>
+
+    <button type="submit" class="w-full bg-yellow-400 text-black font-semibold py-3 rounded hover:bg-yellow-300 transition">Sign Up</button>
+
+    <p class="text-center text-sm mt-4 text-gray-600">Already registered? <a href="user-login.html" class="text-blue-600 underline">Login here</a></p>
+  </form>
 </body>
 </html>
