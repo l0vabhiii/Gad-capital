@@ -2,52 +2,66 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>User Login - GAD Capital</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GAD Capital - Login</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-slate-100 flex items-center justify-center h-screen">
+<body class="bg-gray-900 text-white flex items-center justify-center h-screen">
 
-  <form id="loginForm" class="bg-white p-6 rounded shadow w-full max-w-sm space-y-4">
-    <h2 class="text-xl font-bold text-center">Login to GAD Capital</h2>
-    <input type="text" id="email" placeholder="Email or Username" class="w-full p-2 border rounded" required />
-    <input type="password" id="password" placeholder="Password" class="w-full p-2 border rounded" required />
-    <button type="submit" class="w-full bg-green-600 text-white p-2 rounded hover:bg-green-500">Login</button>
-    <p id="error" class="text-red-500 text-sm hidden">Invalid credentials</p>
-  </form>
+  <div class="bg-[#1e293b] p-8 rounded-lg shadow-md w-full max-w-md">
+    <h2 class="text-2xl font-bold mb-6 text-center text-yellow-400">Login to GAD Capital</h2>
 
+    <form id="login-form" class="space-y-4">
+      <input type="email" id="email" placeholder="Email" required class="w-full px-4 py-2 rounded text-black" />
+      <input type="password" id="password" placeholder="Password" required class="w-full px-4 py-2 rounded text-black" />
+      <button type="submit" class="w-full bg-yellow-400 text-black font-semibold py-2 rounded hover:bg-yellow-300">Login</button>
+    </form>
+
+    <p class="mt-4 text-sm text-center text-gray-300">Don’t have an account?
+      <a href="signup.html" class="text-yellow-400 hover:underline">Sign Up</a>
+    </p>
+  </div>
+
+  <!-- Firebase Login Script -->
   <script type="module">
-    import { db } from './firebase-config.js';
-    import { collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+    import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
 
-    const form = document.getElementById('loginForm');
-    form.addEventListener('submit', async (e) => {
+    const firebaseConfig = {
+      apiKey: "AIzaSyAoOcgmwn6F9hdl0Es9hpTUXNerukbcyHs",
+      authDomain: "gad-capital.firebaseapp.com",
+      projectId: "gad-capital",
+      storageBucket: "gad-capital.firebaseapp.com",
+      messagingSenderId: "978239151328",
+      appId: "1:978239151328:web:2795c165105c4485d8c485",
+      measurementId: "G-MTBV3ZSFPC"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    document.getElementById('login-form').addEventListener('submit', async (e) => {
       e.preventDefault();
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
 
-      const email = form.email.value.trim();
-      const pass = form.password.value.trim();
+      try {
+        await signInWithEmailAndPassword(auth, email, password);
 
-      const snapshot = await getDocs(collection(db, "users"));
-      let found = false;
-
-      snapshot.forEach(doc => {
-        const user = doc.data();
-        if ((user.email === email || user.name === email) && user.password === pass) {
-          found = true;
-
-          // Role-based redirection
-          if (user.role === "admin") window.location.href = "admin-panel.html";
-          else if (user.role === "developer") window.location.href = "developer-panel.html";
-          else if (user.role === "owner") window.location.href = "owner-panel.html";
-          else window.location.href = "user-dashboard.html";
+        // Redirection logic
+        if (email === "admin@gadcapital.in") {
+          window.location.href = "admin-panel.html";
+        } else if (email === "abhishek@gadcapital.in") {
+          window.location.href = "developer-panel.html";
+        } else if (email === "gadcapitalindia@gadcapital.in") {
+          window.location.href = "owner-panel.html";
+        } else {
+          window.location.href = "user-dashboard.html";
         }
-      });
-
-      if (!found) {
-        document.getElementById('error').classList.remove('hidden');
+      } catch (error) {
+        alert("Login failed: " + error.message);
       }
     });
   </script>
-
 </body>
 </html>
