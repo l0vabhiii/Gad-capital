@@ -3,55 +3,51 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Login - GAD Capital</title>
+  <title>User Login - GAD Capital</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-    import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-
-    const firebaseConfig = {
-      apiKey: "AIzaSyAoOcgmwn6F9hdl0Es9hpTUXNerukbcyHs",
-      authDomain: "gad-capital.firebaseapp.com",
-      projectId: "gad-capital",
-      storageBucket: "gad-capital.appspot.com",
-      messagingSenderId: "978239151328",
-      appId: "1:978239151328:web:2795c165105c4485d8c485",
-      measurementId: "G-MTBV3ZSFPC"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-
-    window.loginUser = async function(e) {
-      e.preventDefault();
-      const email = document.getElementById('email').value;
-      const password = document.getElementById('password').value;
-
-      try {
-        const userCred = await signInWithEmailAndPassword(auth, email, password);
-        const uid = userCred.user.uid;
-
-        // Simple redirect (sab user dashboard me hi jayenge)
-        window.location.href = "user-dashboard.html";
-      } catch (error) {
-        alert("Login Failed: " + error.message);
-      }
-    };
-  </script>
 </head>
-<body class="bg-[#0f172a] text-white flex items-center justify-center h-screen">
-  <form onsubmit="loginUser(event)" class="bg-white text-black rounded-lg p-8 w-full max-w-md shadow-md">
-    <h2 class="text-2xl font-bold text-center mb-6 text-[#0f172a]">User Login</h2>
+<body class="bg-slate-100 flex items-center justify-center h-screen">
 
-    <label class="block mb-2 font-medium">Email</label>
-    <input id="email" type="email" required class="w-full p-3 border rounded mb-4"/>
-
-    <label class="block mb-2 font-medium">Password</label>
-    <input id="password" type="password" required class="w-full p-3 border rounded mb-6"/>
-
-    <button type="submit" class="w-full bg-yellow-400 text-black font-semibold py-3 rounded hover:bg-yellow-300 transition">Login</button>
-
-    <p class="text-center text-sm mt-4 text-gray-600">Don't have an account? <a href="signup.html" class="text-blue-600 underline">Sign up</a></p>
+  <form id="loginForm" class="bg-white p-6 rounded shadow w-full max-w-sm space-y-4">
+    <h2 class="text-xl font-bold text-center">Login to GAD Capital</h2>
+    <input type="text" id="email" placeholder="Email or Username" class="w-full p-2 border rounded" required />
+    <input type="password" id="password" placeholder="Password" class="w-full p-2 border rounded" required />
+    <button type="submit" class="w-full bg-green-600 text-white p-2 rounded hover:bg-green-500">Login</button>
+    <p id="error" class="text-red-500 text-sm hidden">Invalid credentials</p>
   </form>
+
+  <script type="module">
+    import { db } from './firebase-config.js';
+    import { collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+    const form = document.getElementById('loginForm');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const email = form.email.value.trim();
+      const pass = form.password.value.trim();
+
+      const snapshot = await getDocs(collection(db, "users"));
+      let found = false;
+
+      snapshot.forEach(doc => {
+        const user = doc.data();
+        if ((user.email === email || user.name === email) && user.password === pass) {
+          found = true;
+
+          // Role-based redirection
+          if (user.role === "admin") window.location.href = "admin-panel.html";
+          else if (user.role === "developer") window.location.href = "developer-panel.html";
+          else if (user.role === "owner") window.location.href = "owner-panel.html";
+          else window.location.href = "user-dashboard.html";
+        }
+      });
+
+      if (!found) {
+        document.getElementById('error').classList.remove('hidden');
+      }
+    });
+  </script>
+
 </body>
 </html>
