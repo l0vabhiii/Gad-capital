@@ -6,35 +6,80 @@
   <title>Admin Panel - GAD Capital</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100 text-gray-900 min-h-screen p-6">
-  <h1 class="text-3xl font-bold text-center text-[#0f172a] mb-8">🛡️ Admin Panel</h1>
+<body class="bg-gray-900 text-white min-h-screen p-6">
+  <div class="max-w-5xl mx-auto">
+    <h1 class="text-3xl font-bold text-yellow-400 mb-6">Admin Dashboard - GAD Capital</h1>
+    <p class="mb-4 text-sm text-gray-300">Logged in as: <span id="admin-email"></span></p>
 
-  <div id="userList" class="space-y-4 max-w-4xl mx-auto"></div>
+    <h2 class="text-xl font-semibold mb-2">Registered Users:</h2>
+    <table class="w-full bg-gray-800 rounded shadow overflow-hidden text-sm">
+      <thead>
+        <tr class="bg-gray-700 text-left text-yellow-400">
+          <th class="p-3">Email</th>
+          <th class="p-3">Phone</th>
+          <th class="p-3">Signup Time</th>
+        </tr>
+      </thead>
+      <tbody id="user-table" class="text-white"></tbody>
+    </table>
 
+    <button id="logout-btn" class="mt-6 bg-red-600 px-4 py-2 rounded hover:bg-red-500 font-semibold">Logout</button>
+  </div>
+
+  <!-- Firebase -->
   <script type="module">
-    import { db } from './firebase-config.js';
-    import { collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
+    import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
 
-    const userList = document.getElementById("userList");
+    const firebaseConfig = {
+      apiKey: "AIzaSyAoOcgmwn6F9hdl0Es9hpTUXNerukbcyHs",
+      authDomain: "gad-capital.firebaseapp.com",
+      projectId: "gad-capital",
+      storageBucket: "gad-capital.firebaseapp.com",
+      messagingSenderId: "978239151328",
+      appId: "1:978239151328:web:2795c165105c4485d8c485",
+      measurementId: "G-MTBV3ZSFPC"
+    };
 
-    const snapshot = await getDocs(collection(db, "users"));
-    if (snapshot.empty) {
-      userList.innerHTML = "<p class='text-center text-red-500'>No user data found.</p>";
-    } else {
-      snapshot.forEach(doc => {
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    const userTable = document.getElementById("user-table");
+
+    onAuthStateChanged(auth, async (user) => {
+      if (!user) {
+        window.location.href = "login.html";
+        return;
+      }
+
+      document.getElementById("admin-email").textContent = user.email;
+
+      if (user.email !== "admin@gadcapital.in") {
+        alert("Unauthorized Access!");
+        window.location.href = "login.html";
+        return;
+      }
+
+      const querySnapshot = await getDocs(collection(db, "users"));
+      querySnapshot.forEach((doc) => {
         const data = doc.data();
-        const card = document.createElement("div");
-        card.className = "bg-white shadow p-4 rounded border";
-
-        card.innerHTML = `
-          <p><strong>Name:</strong> ${data.name}</p>
-          <p><strong>Email:</strong> ${data.email}</p>
-          <p><strong>Phone:</strong> ${data.phone}</p>
-          <p><strong>Role:</strong> <span class="text-blue-600 font-semibold">${data.role || "user"}</span></p>
-        `;
-        userList.appendChild(card);
+        const row = `
+          <tr>
+            <td class="p-3">${data.email}</td>
+            <td class="p-3">${data.phone || '-'}</td>
+            <td class="p-3">${data.createdAt || '-'}</td>
+          </tr>`;
+        userTable.innerHTML += row;
       });
-    }
+    });
+
+    document.getElementById("logout-btn").addEventListener("click", () => {
+      signOut(auth).then(() => {
+        window.location.href = "login.html";
+      });
+    });
   </script>
 </body>
 </html>
