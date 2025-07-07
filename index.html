@@ -6,17 +6,15 @@
   <title>GAD Capital - Invest Smart</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="icon" href="favicon.png" type="image/png" />
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <style>
     html { scroll-behavior: smooth; }
     #mobile-menu { display: none; }
   </style>
 </head>
 <body class="bg-[#0f172a] text-white font-sans">
-  <!-- WhatsApp CTA -->
-<a href="https://wa.me/919136913890" target="_blank" class="fixed bottom-5 right-5 bg-green-500 text-white px-4 py-2 rounded-full shadow-lg z-50 hover:bg-green-600 transition">💬 Chat with Advisor</a>
 
+<!-- WhatsApp CTA -->
+<a href="https://wa.me/919136913890" target="_blank" class="fixed bottom-5 right-5 bg-green-500 text-white px-4 py-2 rounded-full shadow-lg z-50 hover:bg-green-600 transition">💬 Chat with Advisor</a>
 <!-- Navbar -->
 <header class="bg-[#1e293b] fixed top-0 w-full z-50">
   <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
@@ -38,7 +36,7 @@
         <a href="#partner" class="hover:text-yellow-400">Partner Program</a>
         <a href="signup.html" class="hover:text-yellow-400">Sign Up</a>
       </nav>
-      <a href="user-login.html" class="text-sm font-semibold bg-yellow-400 text-black px-4 py-1 rounded hover:bg-yellow-300">User Login</a>
+      <a href="login.html" class="text-sm font-semibold bg-yellow-400 text-black px-4 py-1 rounded hover:bg-yellow-300">Login</a>
     </div>
     <button id="menu-btn" class="md:hidden text-white">
       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -46,6 +44,7 @@
       </svg>
     </button>
   </div>
+  <!-- Mobile Menu -->
   <div id="mobile-menu" class="md:hidden bg-[#1e293b] text-white px-6 py-4 space-y-2 hidden">
     <a href="#home" class="block hover:text-yellow-300">Home</a>
     <a href="#brickshare" class="block hover:text-yellow-300">BrickShare</a>
@@ -58,10 +57,10 @@
     <a href="#submitidea" class="block hover:text-yellow-300">Submit Idea</a>
     <a href="#partner" class="block hover:text-yellow-300">Partner Program</a>
     <a href="signup.html" class="block hover:text-yellow-300">Sign Up</a>
-    <a href="user-login.html" class="block hover:text-yellow-300 font-bold">User Login</a>
+    <a href="login.html" class="block hover:text-yellow-300 font-bold">Login</a>
   </div>
-      </header>
-      <!-- Hero Section -->
+</header>
+<!-- Hero Section -->
 <section id="home" class="h-screen flex items-center justify-center bg-cover bg-center text-white relative" style="background-image: url('https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=1600&q=80'); margin-top: 64px;">
   <div class="absolute inset-0 bg-black bg-opacity-60"></div>
   <div class="relative z-10 text-center px-4">
@@ -70,13 +69,27 @@
     <a href="#brickshare" class="bg-yellow-400 text-black font-semibold px-6 py-3 rounded-full hover:bg-yellow-300 transition">Explore Opportunities</a>
   </div>
 </section>
-
-<!-- AOS Script Init -->
+<!-- Firebase (optional if you’re using it) -->
+<script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-analytics.js"></script>
 <script>
-  AOS.init();
-  document.getElementById(\"menu-btn\").onclick = () => {
-    const menu = document.getElementById(\"mobile-menu\");
-    menu.classList.toggle(\"hidden\");
+  const firebaseConfig = {
+    apiKey: "AIzaSyAoOcgmwn6F9hdl0Es9hpTUXNerukbcyHs",
+    authDomain: "gad-capital.firebaseapp.com",
+    projectId: "gad-capital",
+    storageBucket: "gad-capital.appspot.com",
+    messagingSenderId: "978239151328",
+    appId: "1:978239151328:web:2795c165105c4485d8c485",
+    measurementId: "G-MTBV3ZSFPC"
+  };
+  firebase.initializeApp(firebaseConfig);
+</script>
+
+<!-- Menu toggle script -->
+<script>
+  document.getElementById("menu-btn").onclick = () => {
+    const menu = document.getElementById("mobile-menu");
+    menu.classList.toggle("hidden");
   };
 </script>
 
