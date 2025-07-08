@@ -2,51 +2,78 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>User Dashboard - GAD Capital</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-900 text-white min-h-screen flex items-center justify-center">
+<body class="bg-[#0f172a] text-white min-h-screen px-4 py-6">
 
-  <div class="bg-[#1e293b] p-8 rounded-lg shadow-lg w-full max-w-md text-center">
-    <h2 class="text-2xl font-bold text-yellow-400 mb-4">Welcome to GAD Capital 👋</h2>
-    <p class="mb-6 text-sm text-gray-300">You are successfully logged in as:</p>
-    <p id="user-email" class="mb-4 font-semibold text-white"></p>
-    <button id="logout-btn" class="bg-red-500 px-4 py-2 rounded hover:bg-red-600 font-semibold">Logout</button>
+  <div class="max-w-4xl mx-auto">
+    <div class="bg-[#1e293b] p-6 rounded-xl shadow text-center mb-6">
+      <h1 class="text-3xl font-bold text-yellow-400 mb-2">Welcome to GAD Capital</h1>
+      <p class="text-sm text-gray-300" id="userEmail">Fetching user info...</p>
+    </div>
+
+    <div class="bg-[#1e293b] p-6 rounded-xl shadow mt-4">
+      <h2 class="text-xl font-semibold mb-4 text-yellow-300">Post Your Requirement</h2>
+      <input id="requirement" placeholder="Describe your need..." class="w-full mb-4 px-4 py-2 rounded text-black" />
+      <button onclick="submitRequirement()" class="bg-yellow-400 text-black px-6 py-2 rounded hover:bg-yellow-300">Submit</button>
+    </div>
+
+    <div class="text-center mt-10">
+      <button onclick="logout()" class="text-sm bg-red-500 px-4 py-2 rounded hover:bg-red-600">Logout</button>
+    </div>
   </div>
 
-  <!-- Firebase Script -->
   <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
-    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
+    import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js";
 
     const firebaseConfig = {
       apiKey: "AIzaSyAoOcgmwn6F9hdl0Es9hpTUXNerukbcyHs",
       authDomain: "gad-capital.firebaseapp.com",
       projectId: "gad-capital",
-      storageBucket: "gad-capital.firebaseapp.com",
+      storageBucket: "gad-capital.appspot.com",
       messagingSenderId: "978239151328",
-      appId: "1:978239151328:web:2795c165105c4485d8c485",
-      measurementId: "G-MTBV3ZSFPC"
+      appId: "1:978239151328:web:2795c165105c4485d8c485"
     };
 
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    const userEmail = document.getElementById("userEmail");
 
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        document.getElementById('user-email').textContent = user.email;
+        userEmail.textContent = `Logged in as: ${user.email}`;
       } else {
-        window.location.href = "login.html";
+        window.location.href = "user-login.html";
       }
     });
 
-    document.getElementById("logout-btn").addEventListener("click", () => {
-      signOut(auth).then(() => {
-        alert("Logged out!");
-        window.location.href = "login.html";
-      });
-    });
+    window.logout = async () => {
+      await signOut(auth);
+      window.location.href = "user-login.html";
+    };
+
+    window.submitRequirement = async () => {
+      const requirement = document.getElementById("requirement").value;
+      if (!requirement) return alert("Please enter your requirement");
+      try {
+        await addDoc(collection(db, "requirements"), {
+          email: auth.currentUser.email,
+          message: requirement,
+          createdAt: new Date()
+        });
+        alert("Submitted successfully!");
+        document.getElementById("requirement").value = "";
+      } catch (e) {
+        alert("Error: " + e.message);
+      }
+    };
   </script>
+
 </body>
 </html>
