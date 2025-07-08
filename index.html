@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>GAD Capital - Invest Smart</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <link rel="icon" href="favicon.png" type="image/png" />
   <style>
     html { scroll-behavior: smooth; }
@@ -15,6 +17,7 @@
 
 <!-- WhatsApp CTA -->
 <a href="https://wa.me/919136913890" target="_blank" class="fixed bottom-5 right-5 bg-green-500 text-white px-4 py-2 rounded-full shadow-lg z-50 hover:bg-green-600 transition">💬 Chat with Advisor</a>
+
 <!-- Navbar -->
 <header class="bg-[#1e293b] fixed top-0 w-full z-50">
   <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
@@ -34,9 +37,9 @@
         <a href="#contact" class="hover:text-yellow-400">Contact</a>
         <a href="#submitidea" class="hover:text-yellow-400">Submit Idea</a>
         <a href="#partner" class="hover:text-yellow-400">Partner Program</a>
-        <a href="signup.html" class="hover:text-yellow-400">Sign Up</a>
+        <a href="#signup" class="hover:text-yellow-400">Sign Up</a>
       </nav>
-      <a href="login.html" class="text-sm font-semibold bg-yellow-400 text-black px-4 py-1 rounded hover:bg-yellow-300">Login</a>
+      <a href="#login" class="text-sm font-semibold bg-yellow-400 text-black px-4 py-1 rounded hover:bg-yellow-300">Login</a>
     </div>
     <button id="menu-btn" class="md:hidden text-white">
       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -44,7 +47,6 @@
       </svg>
     </button>
   </div>
-  <!-- Mobile Menu -->
   <div id="mobile-menu" class="md:hidden bg-[#1e293b] text-white px-6 py-4 space-y-2 hidden">
     <a href="#home" class="block hover:text-yellow-300">Home</a>
     <a href="#brickshare" class="block hover:text-yellow-300">BrickShare</a>
@@ -56,10 +58,11 @@
     <a href="#contact" class="block hover:text-yellow-300">Contact</a>
     <a href="#submitidea" class="block hover:text-yellow-300">Submit Idea</a>
     <a href="#partner" class="block hover:text-yellow-300">Partner Program</a>
-    <a href="signup.html" class="block hover:text-yellow-300">Sign Up</a>
-    <a href="login.html" class="block hover:text-yellow-300 font-bold">Login</a>
+    <a href="#signup" class="block hover:text-yellow-300">Sign Up</a>
+    <a href="#login" class="block hover:text-yellow-300 font-bold">Login</a>
   </div>
 </header>
+
 <!-- Hero Section -->
 <section id="home" class="h-screen flex items-center justify-center bg-cover bg-center text-white relative" style="background-image: url('https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=1600&q=80'); margin-top: 64px;">
   <div class="absolute inset-0 bg-black bg-opacity-60"></div>
@@ -69,24 +72,36 @@
     <a href="#brickshare" class="bg-yellow-400 text-black font-semibold px-6 py-3 rounded-full hover:bg-yellow-300 transition">Explore Opportunities</a>
   </div>
 </section>
-<!-- Firebase (optional if you’re using it) -->
-<script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-analytics.js"></script>
-<script>
-  const firebaseConfig = {
-    apiKey: "AIzaSyAoOcgmwn6F9hdl0Es9hpTUXNerukbcyHs",
-    authDomain: "gad-capital.firebaseapp.com",
-    projectId: "gad-capital",
-    storageBucket: "gad-capital.appspot.com",
-    messagingSenderId: "978239151328",
-    appId: "1:978239151328:web:2795c165105c4485d8c485",
-    measurementId: "G-MTBV3ZSFPC"
-  };
-  firebase.initializeApp(firebaseConfig);
-</script>
+<!-- BrickShare Projects -->
+<section id="brickshare" class="py-16 bg-white text-[#0f172a]" data-aos="fade-up">
+  <div class="max-w-6xl mx-auto px-4">
+    <h2 class="text-4xl font-bold text-center mb-12">BrickShare Projects</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
 
-<!-- Menu toggle script -->
+      <div class="bg-gray-50 p-6 rounded-xl shadow hover:shadow-lg border">
+        <h3 class="text-xl font-semibold mb-2">Commercial Space – Hyderabad</h3>
+        <p class="text-gray-600 text-sm mb-2">Investment: ₹1.5L | ROI: ₹8K/month</p>
+        <div class="text-xs bg-blue-100 text-blue-600 px-2 py-1 inline-block rounded">Retail</div>
+      </div>
+
+      <div class="bg-gray-50 p-6 rounded-xl shadow hover:shadow-lg border">
+        <h3 class="text-xl font-semibold mb-2">IT Office – Noida</h3>
+        <p class="text-gray-600 text-sm mb-2">Investment: ₹2.2L | ROI: ₹12K/month</p>
+        <div class="text-xs bg-purple-100 text-purple-600 px-2 py-1 inline-block rounded">Corporate</div>
+      </div>
+
+      <div class="bg-gray-50 p-6 rounded-xl shadow hover:shadow-lg border">
+        <h3 class="text-xl font-semibold mb-2">Retail Store – Bengaluru</h3>
+        <p class="text-gray-600 text-sm mb-2">Investment: ₹1L | Lease Model</p>
+        <div class="text-xs bg-green-100 text-green-600 px-2 py-1 inline-block rounded">Retail</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+<!-- AOS Script Init -->
 <script>
+  AOS.init();
   document.getElementById("menu-btn").onclick = () => {
     const menu = document.getElementById("mobile-menu");
     menu.classList.toggle("hidden");
@@ -95,3 +110,222 @@
 
 </body>
 </html>
+<!-- AgriVenture Projects -->
+<section id="agriventure" class="py-16 bg-[#f7fafc] text-[#0f172a]" data-aos="fade-up">
+  <div class="max-w-6xl mx-auto px-4">
+    <h2 class="text-4xl font-bold text-center mb-12">AgriVenture Projects</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+      <div class="bg-white p-6 rounded-xl shadow hover:shadow-lg border">
+        <h3 class="text-xl font-semibold mb-2">Organic Farm – Nashik</h3>
+        <p class="text-gray-600 text-sm mb-2">₹35K • Seasonal ROI</p>
+        <div class="text-xs bg-green-100 text-green-600 px-2 py-1 inline-block rounded">Farming</div>
+      </div>
+
+      <div class="bg-white p-6 rounded-xl shadow hover:shadow-lg border">
+        <h3 class="text-xl font-semibold mb-2">Hydroponic Unit – Pune</h3>
+        <p class="text-gray-600 text-sm mb-2">₹20K • 3 Months Cycle</p>
+        <div class="text-xs bg-blue-100 text-blue-600 px-2 py-1 inline-block rounded">Urban Agri</div>
+      </div>
+
+      <div class="bg-white p-6 rounded-xl shadow hover:shadow-lg border">
+        <h3 class="text-xl font-semibold mb-2">Goat Farm – Andhra</h3>
+        <p class="text-gray-600 text-sm mb-2">₹15K • 2x in 6 Months</p>
+        <div class="text-xs bg-yellow-100 text-yellow-600 px-2 py-1 inline-block rounded">Livestock</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+<!-- Buy/Sell Businesses -->
+<section id="buy" class="py-16 bg-white text-[#0f172a]" data-aos="fade-up">
+  <div class="max-w-6xl mx-auto px-4">
+    <h2 class="text-4xl font-bold text-center mb-12">Buy & Sell Verified Businesses</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+      <div class="bg-gray-100 p-6 rounded-xl shadow hover:shadow-lg border">
+        <h3 class="text-xl font-semibold mb-2">E-commerce Store</h3>
+        <p class="text-gray-600 text-sm mb-2">Asking: ₹3L • ₹20K/month Profit</p>
+        <div class="text-xs bg-blue-100 text-blue-600 px-2 py-1 inline-block rounded">Digital</div>
+      </div>
+
+      <div class="bg-gray-100 p-6 rounded-xl shadow hover:shadow-lg border">
+        <h3 class="text-xl font-semibold mb-2">Cafe Franchise – Goa</h3>
+        <p class="text-gray-600 text-sm mb-2">₹6L • Beachside Location</p>
+        <div class="text-xs bg-yellow-100 text-yellow-600 px-2 py-1 inline-block rounded">F&B</div>
+      </div>
+
+      <div class="bg-gray-100 p-6 rounded-xl shadow hover:shadow-lg border">
+        <h3 class="text-xl font-semibold mb-2">Marketing Agency</h3>
+        <p class="text-gray-600 text-sm mb-2">₹5L • 7 Active Clients</p>
+        <div class="text-xs bg-indigo-100 text-indigo-600 px-2 py-1 inline-block rounded">Service</div>
+      </div>
+
+      <div class="bg-gray-100 p-6 rounded-xl shadow hover:shadow-lg border">
+        <h3 class="text-xl font-semibold mb-2">Salon Business – Mumbai</h3>
+        <p class="text-gray-600 text-sm mb-2">₹4.5L • Prime Location</p>
+        <div class="text-xs bg-pink-100 text-pink-600 px-2 py-1 inline-block rounded">Lifestyle</div>
+      </div>
+
+      <div class="bg-gray-100 p-6 rounded-xl shadow hover:shadow-lg border">
+        <h3 class="text-xl font-semibold mb-2">Online Print Store</h3>
+        <p class="text-gray-600 text-sm mb-2">₹2L • Auto Fulfilled Orders</p>
+        <div class="text-xs bg-red-100 text-red-600 px-2 py-1 inline-block rounded">Merchandise</div>
+      </div>
+
+      <div class="bg-gray-100 p-6 rounded-xl shadow hover:shadow-lg border">
+        <h3 class="text-xl font-semibold mb-2">Dropshipping Business</h3>
+        <p class="text-gray-600 text-sm mb-2">₹2.5L • Fully Automated</p>
+        <div class="text-xs bg-teal-100 text-teal-600 px-2 py-1 inline-block rounded">Online</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+<!-- Tenders Section -->
+<section id="tenders" class="py-16 bg-[#f7fafc] text-[#0f172a]" data-aos="fade-up">
+  <div class="max-w-6xl mx-auto px-4">
+    <h2 class="text-4xl font-bold text-center mb-12">Latest Government Tenders</h2>
+    <div class="space-y-6">
+
+      <div class="bg-white p-6 rounded-lg shadow hover:shadow-md border">
+        <h3 class="text-xl font-semibold">Tender – Solar Pump Installation</h3>
+        <p class="text-sm text-gray-600 mt-1">Location: Rajasthan • Deadline: 25 July 2025</p>
+        <p class="text-sm mt-2">Scope: Supply and installation of 5HP solar pumps under NABARD subsidy scheme.</p>
+        <span class="text-xs mt-2 inline-block bg-blue-100 text-blue-600 px-2 py-1 rounded">Agriculture</span>
+      </div>
+
+      <div class="bg-white p-6 rounded-lg shadow hover:shadow-md border">
+        <h3 class="text-xl font-semibold">Tender – Drip Irrigation Projects</h3>
+        <p class="text-sm text-gray-600 mt-1">Location: Maharashtra • Deadline: 10 Aug 2025</p>
+        <p class="text-sm mt-2">Scope: Turnkey implementation of drip irrigation systems in 5 districts.</p>
+        <span class="text-xs mt-2 inline-block bg-green-100 text-green-600 px-2 py-1 rounded">Water Management</span>
+      </div>
+
+      <div class="bg-white p-6 rounded-lg shadow hover:shadow-md border">
+        <h3 class="text-xl font-semibold">Tender – Smart Warehouse Setup</h3>
+        <p class="text-sm text-gray-600 mt-1">Location: Haryana • Deadline: 30 Aug 2025</p>
+        <p class="text-sm mt-2">Scope: Construction of tech-enabled agri-storage warehouse with IoT monitoring.</p>
+        <span class="text-xs mt-2 inline-block bg-purple-100 text-purple-600 px-2 py-1 rounded">Infrastructure</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+<!-- Testimonials Section -->
+<section id="testimonials" class="py-16 bg-white text-[#0f172a]" data-aos="fade-up">
+  <div class="max-w-6xl mx-auto px-4">
+    <h2 class="text-4xl font-bold text-center mb-12">What Our Investors Say</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+      <div class="bg-gray-100 p-6 rounded-lg shadow hover:shadow-md">
+        <p class="text-sm text-gray-700 italic">“GAD Capital made investing easy. I invested in a retail property in Hyderabad and receive regular payouts.”</p>
+        <div class="mt-4 text-sm font-bold text-[#0f172a]">– Rahul, Hyderabad</div>
+      </div>
+
+      <div class="bg-gray-100 p-6 rounded-lg shadow hover:shadow-md">
+        <p class="text-sm text-gray-700 italic">“Thanks to their AgriVenture platform, I now co-own a hydroponic farm. Simple process, clear returns.”</p>
+        <div class="mt-4 text-sm font-bold text-[#0f172a]">– Priya, Nashik</div>
+      </div>
+
+      <div class="bg-gray-100 p-6 rounded-lg shadow hover:shadow-md">
+        <p class="text-sm text-gray-700 italic">“I sold my eCommerce store through GAD’s Buy/Sell Marketplace in just 2 weeks. Great experience!”</p>
+        <div class="mt-4 text-sm font-bold text-[#0f172a]">– Aman, Delhi</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- About Section -->
+<section id="about" class="py-16 bg-[#f7fafc] text-[#0f172a]" data-aos="fade-up">
+  <div class="max-w-4xl mx-auto px-4 text-center">
+    <h2 class="text-4xl font-bold mb-6">About GAD Capital</h2>
+    <p class="text-lg text-gray-700 leading-relaxed">
+      GAD Capital is India’s leading private investment network. We connect verified investors with vetted opportunities
+      in real estate, agriculture, startups, and digital businesses. Our platform ensures transparency, risk analysis, and end-to-end support
+      for your wealth-building journey.
+    </p>
+    <p class="mt-4 text-md text-gray-600">
+      Whether you're a first-time investor or a business owner looking to exit or raise funds — we bring access, visibility, and professionalism.
+    </p>
+  </div>
+</section>
+<!-- Contact Section -->
+<section id="contact" class="py-16 bg-white text-[#0f172a]" data-aos="fade-up">
+  <div class="max-w-4xl mx-auto px-4">
+    <h2 class="text-4xl font-bold text-center mb-8">Contact Us</h2>
+
+    <div class="text-center mb-6">
+      <p class="mb-1">📍 1st Floor, 27th Main, HSR Layout, Sector 1, Bangalore</p>
+      <p class="mb-1">📞 WhatsApp: <a href="https://wa.me/919136913890" class="text-blue-600 hover:underline">+91-9136913890</a></p>
+      <p class="mb-1">✉️ Email: <a href="mailto:customercare@gadcapital.in" class="text-blue-600 hover:underline">customercare@gadcapital.in</a></p>
+    </div>
+
+    <form class="space-y-4 bg-gray-100 p-6 rounded-lg shadow">
+      <input type="text" placeholder="Your Name" class="w-full p-3 border rounded text-black" />
+      <input type="email" placeholder="Your Email" class="w-full p-3 border rounded text-black" />
+      <textarea placeholder="Your Message or Requirement..." class="w-full p-3 border rounded text-black"></textarea>
+      <button class="bg-yellow-400 text-black px-6 py-2 rounded hover:bg-yellow-300">Send Message</button>
+    </form>
+  </div>
+</section>
+<!-- Partner Program Section -->
+<section id="partner" class="py-16 bg-[#f7fafc] text-[#0f172a]" data-aos="fade-up">
+  <div class="max-w-4xl mx-auto px-4 text-center">
+    <h2 class="text-4xl font-bold mb-6">Partner With Us</h2>
+    <p class="text-lg text-gray-700 mb-4">
+      Are you an agent, real estate consultant, or community builder? Join our partner network and earn commissions by bringing investors or listing assets on GAD Capital.
+    </p>
+    <a href="mailto:partners@gadcapital.in" class="inline-block bg-yellow-400 text-black font-semibold px-6 py-2 rounded hover:bg-yellow-300">Become a Partner</a>
+  </div>
+</section>
+
+<!-- Submit Idea Section -->
+<section id="submitidea" class="py-16 bg-white text-[#0f172a]" data-aos="fade-up">
+  <div class="max-w-4xl mx-auto px-4">
+    <h2 class="text-4xl font-bold text-center mb-6">Submit Your Business Idea</h2>
+    <p class="text-center text-gray-600 mb-6">If you have a startup, product, or business plan — we want to hear it!</p>
+    <form class="space-y-4 bg-gray-100 p-6 rounded-lg shadow">
+      <input type="text" placeholder="Your Name" class="w-full p-3 border rounded text-black" />
+      <input type="email" placeholder="Your Email" class="w-full p-3 border rounded text-black" />
+      <textarea placeholder="Describe your business idea..." class="w-full p-3 border rounded text-black"></textarea>
+      <button class="bg-yellow-400 text-black px-6 py-2 rounded hover:bg-yellow-300">Submit Idea</button>
+    </form>
+  </div>
+</section>
+<!-- Impact Section -->
+<section id="impact" class="py-16 bg-[#fefce8] text-[#0f172a]" data-aos="fade-up">
+  <div class="max-w-6xl mx-auto px-4 text-center">
+    <h2 class="text-4xl font-bold mb-10">Our Impact</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-xl font-semibold">
+      <div>
+        <div class="text-3xl font-bold text-yellow-500">400+</div>
+        Investors
+      </div>
+      <div>
+        <div class="text-3xl font-bold text-yellow-500">₹5 Cr+</div>
+        Invested
+      </div>
+      <div>
+        <div class="text-3xl font-bold text-yellow-500">10</div>
+        Cities
+      </div>
+      <div>
+        <div class="text-3xl font-bold text-yellow-500">4</div>
+        Countries
+      </div>
+    </div>
+  </div>
+      </section>
+      <!-- Footer Section -->
+<footer class="bg-[#0f172a] text-white text-center py-6 mt-12">
+  <div class="max-w-4xl mx-auto px-4 text-sm">
+    <p class="font-semibold">© 2025 GAD Capital. All rights reserved.</p>
+    <p class="mt-1">📍 1st Floor, 27th Main, HSR Layout, Sector 1, Bangalore</p>
+    <p class="mt-1">
+      ✉️ <a href="mailto:customercare@gadcapital.in" class="underline hover:text-yellow-300">customercare@gadcapital.in</a> |
+      📞 <a href="https://wa.me/919136913890" class="underline hover:text-yellow-300">+91-9136913890</a>
+    </p>
+  </div>
+</footer>
