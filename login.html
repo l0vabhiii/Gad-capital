@@ -15,15 +15,14 @@
     <input type="password" id="loginPassword" placeholder="Password" class="w-full mb-6 px-4 py-2 rounded text-black" />
     <button onclick="loginUser()" class="bg-yellow-400 text-black px-6 py-2 rounded w-full hover:bg-yellow-300 transition">Login</button>
     <p class="text-sm mt-4 text-center">
-      Don't have an account?
-      <a href="signup.html" class="text-yellow-300 hover:underline">Sign Up</a>
+      Don't have an account? <a href="signup.html" class="text-yellow-300 hover:underline">Sign Up</a>
     </p>
   </div>
 
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
-    import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js";
-
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+  <script>
     const firebaseConfig = {
       apiKey: "AIzaSyAoOcgmwn6F9hdl0Es9hpTUXNerukbcyHs",
       authDomain: "gad-capital.firebaseapp.com",
@@ -33,21 +32,22 @@
       appId: "1:978239151328:web:2795c165105c4485d8c485"
     };
 
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
 
-    window.loginUser = async () => {
+    function loginUser() {
       const email = document.getElementById("loginEmail").value;
       const password = document.getElementById("loginPassword").value;
-      try {
-        await signInWithEmailAndPassword(auth, email, password);
-        alert("Login successful!");
-        window.location.href = "user-dashboard.html";
-      } catch (error) {
-        alert(error.message);
-      }
-    };
-  </script>
 
+      auth.signInWithEmailAndPassword(email, password)
+        .then(() => {
+          alert("Login successful!");
+          window.location.href = "user-dashboard.html";
+        })
+        .catch((error) => {
+          alert(error.message);
+        });
+    }
+  </script>
 </body>
 </html>
