@@ -5,20 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Login - GAD Capital</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" href="favicon.png" />
 </head>
-<body class="bg-[#0f172a] text-white min-h-screen flex items-center justify-center px-4">
+<body class="bg-[#0f172a] text-white flex items-center justify-center min-h-screen p-4">
 
-  <div class="bg-[#1e293b] p-8 rounded-xl shadow max-w-md w-full">
-    <h1 class="text-2xl font-bold mb-6 text-yellow-400">Login to Your Account</h1>
-    <input id="email" type="email" placeholder="Email" class="w-full mb-4 px-4 py-2 rounded text-black" />
-    <input id="password" type="password" placeholder="Password" class="w-full mb-6 px-4 py-2 rounded text-black" />
-    <button onclick="login()" class="w-full bg-yellow-400 text-black py-2 rounded hover:bg-yellow-300">Login</button>
-    <p class="mt-4 text-sm text-gray-300">Don't have an account? <a href="signup.html" class="text-yellow-400 underline">Sign up</a></p>
+  <div class="bg-[#1e293b] p-8 rounded-lg shadow-lg w-full max-w-md">
+    <h2 class="text-2xl font-bold mb-6 text-center">Login to GAD Capital</h2>
+    <input type="email" id="loginEmail" placeholder="Email" class="w-full mb-4 px-4 py-2 rounded text-black" />
+    <input type="password" id="loginPassword" placeholder="Password" class="w-full mb-6 px-4 py-2 rounded text-black" />
+    <button onclick="loginUser()" class="bg-yellow-400 text-black px-6 py-2 rounded w-full hover:bg-yellow-300 transition">Login</button>
+    <p class="text-sm mt-4 text-center">
+      Don't have an account?
+      <a href="signup.html" class="text-yellow-300 hover:underline">Sign Up</a>
+    </p>
   </div>
 
   <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
-    import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
+    import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js";
 
     const firebaseConfig = {
       apiKey: "AIzaSyAoOcgmwn6F9hdl0Es9hpTUXNerukbcyHs",
@@ -32,9 +36,9 @@
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
 
-    window.login = async () => {
-      const email = document.getElementById('email').value;
-      const password = document.getElementById('password').value;
+    window.loginUser = async () => {
+      const email = document.getElementById("loginEmail").value;
+      const password = document.getElementById("loginPassword").value;
       try {
         await signInWithEmailAndPassword(auth, email, password);
         alert("Login successful!");
