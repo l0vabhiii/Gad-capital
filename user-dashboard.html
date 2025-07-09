@@ -7,52 +7,39 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="icon" href="favicon.png" />
 </head>
-<body class="bg-[#0f172a] text-white min-h-screen flex flex-col">
+<body class="bg-[#f1f5f9] text-gray-800 font-sans min-h-screen">
 
-  <!-- Header -->
-  <header class="bg-[#1e293b] py-4 px-6 flex justify-between items-center shadow">
-    <h1 class="text-xl font-bold">👤 GAD Capital – User Dashboard</h1>
-    <button onclick="logout()" class="bg-red-500 hover:bg-red-600 px-4 py-2 rounded text-sm">Logout</button>
-  </header>
+  <!-- Navbar -->
+  <nav class="bg-[#0f172a] text-white px-6 py-4 flex justify-between items-center shadow">
+    <h1 class="text-xl font-bold">GAD Capital</h1>
+    <button onclick="logout()" class="bg-yellow-400 text-black px-4 py-1 rounded hover:bg-yellow-300 transition">Logout</button>
+  </nav>
 
-  <!-- Content -->
-  <main class="flex-grow p-6">
-    <h2 class="text-2xl font-bold mb-4">Welcome, <span id="userEmail" class="text-yellow-400"></span>!</h2>
-    <p class="text-gray-300 mb-6">You can explore available projects or submit your requirements below.</p>
+  <!-- Welcome Section -->
+  <section class="max-w-4xl mx-auto py-12 px-4">
+    <h2 class="text-3xl font-bold mb-4">Welcome, <span id="user-email" class="text-blue-600">Loading...</span></h2>
+    <p class="text-lg mb-8">This is your dashboard. Here you can view your investment activities and track your portfolio.</p>
 
-    <div class="grid md:grid-cols-2 gap-6">
-
-      <!-- Project Listings -->
-      <div class="bg-[#1e293b] border border-gray-700 rounded-lg p-6">
-        <h3 class="text-lg font-semibold mb-2">📦 Your Projects</h3>
-        <ul class="text-sm text-gray-400 list-disc pl-5">
-          <li>BrickShare – Retail Unit LB Nagar</li>
-          <li>AgriVenture – Farm Nashik</li>
-          <li>Buy/Sell – Cafe in Goa</li>
-        </ul>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition">
+        <h3 class="text-xl font-semibold mb-2 text-[#0f172a]">Your Investments</h3>
+        <p class="text-gray-600">Coming Soon</p>
       </div>
-
-      <!-- Inquiry Form -->
-      <div class="bg-[#1e293b] border border-gray-700 rounded-lg p-6">
-        <h3 class="text-lg font-semibold mb-4">📨 Submit a Requirement</h3>
-        <input type="text" id="fullName" placeholder="Full Name" class="w-full mb-3 p-2 rounded text-black" />
-        <input type="email" id="email" placeholder="Email" class="w-full mb-3 p-2 rounded text-black" />
-        <textarea id="requirement" placeholder="Write your requirement..." class="w-full mb-3 p-2 rounded text-black"></textarea>
-        <button onclick="submitInquiry()" class="bg-yellow-400 text-black px-4 py-2 rounded hover:bg-yellow-300">Submit</button>
+      <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition">
+        <h3 class="text-xl font-semibold mb-2 text-[#0f172a]">Submit New Idea</h3>
+        <a href="index.html#submitidea" class="text-blue-500 hover:underline text-sm">Click here to submit</a>
+      </div>
+      <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition">
+        <h3 class="text-xl font-semibold mb-2 text-[#0f172a]">Contact Support</h3>
+        <a href="https://wa.me/919136913890" class="text-green-600 hover:underline text-sm">Chat on WhatsApp</a>
       </div>
     </div>
-  </main>
+  </section>
 
-  <!-- Footer -->
-  <footer class="bg-[#1e293b] text-center text-sm text-gray-400 py-4">
-    GAD Capital – India's Smart Investment Platform. All rights reserved.
-  </footer>
-
-  <!-- Firebase Script -->
+  <!-- Firebase Auth Script -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
     import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js";
-    import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
 
     const firebaseConfig = {
       apiKey: "AIzaSyAoOcgmwn6F9hdl0Es9hpTUXNerukbcyHs",
@@ -65,43 +52,21 @@
 
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
-    const db = getFirestore(app);
 
-    // Show email
-    onAuthStateChanged(auth, (user) => {
+    const userEmailSpan = document.getElementById("user-email");
+
+    onAuthStateChanged(auth, user => {
       if (user) {
-        document.getElementById("userEmail").innerText = user.email;
+        userEmailSpan.textContent = user.email;
       } else {
-        window.location.href = "index.html"; // redirect if not logged in
+        window.location.href = "user-login.html";
       }
     });
 
-    // Logout
-    window.logout = async () => {
-      await signOut(auth);
-      window.location.href = "index.html";
-    };
-
-    // Submit Inquiry
-    window.submitInquiry = async () => {
-      const name = document.getElementById("fullName").value;
-      const email = document.getElementById("email").value;
-      const message = document.getElementById("requirement").value;
-
-      try {
-        await addDoc(collection(db, "inquiries"), {
-          name,
-          email,
-          message,
-          timestamp: new Date()
-        });
-        alert("Your requirement has been submitted!");
-        document.getElementById("fullName").value = "";
-        document.getElementById("email").value = "";
-        document.getElementById("requirement").value = "";
-      } catch (err) {
-        alert("Error submitting: " + err.message);
-      }
+    window.logout = () => {
+      signOut(auth).then(() => {
+        window.location.href = "user-login.html";
+      });
     };
   </script>
 
