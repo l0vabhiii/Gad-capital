@@ -1,53 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Login - GAD Capital</title>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>GAD Capital – Login / Signup</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="icon" href="favicon.png" />
+  <link rel="icon" href="favicon.png"/>
 </head>
-<body class="bg-[#0f172a] text-white flex items-center justify-center min-h-screen p-4">
+<body class="bg-gray-900 text-white min-h-screen flex items-center justify-center p-4">
 
-  <div class="bg-[#1e293b] p-8 rounded-lg shadow-lg w-full max-w-md">
-    <h2 class="text-2xl font-bold mb-6 text-center">Login to GAD Capital</h2>
-    <input type="email" id="loginEmail" placeholder="Email" class="w-full mb-4 px-4 py-2 rounded text-black" />
-    <input type="password" id="loginPassword" placeholder="Password" class="w-full mb-6 px-4 py-2 rounded text-black" />
-    <button onclick="loginUser()" class="bg-yellow-400 text-black px-6 py-2 rounded w-full hover:bg-yellow-300 transition">Login</button>
-    <p class="text-sm mt-4 text-center">
-      Don't have an account? <a href="signup.html" class="text-yellow-300 hover:underline">Sign Up</a>
-    </p>
+  <div class="bg-gray-800 rounded-lg shadow-lg w-full max-w-md p-6">
+    <h1 class="text-3xl font-bold mb-6 text-center">Welcome to <span class="text-yellow-400">GAD Capital</span></h1>
+
+    <!-- Tabs -->
+    <div class="flex justify-center mb-6">
+      <button id="tab-login" class="px-4 py-2 bg-yellow-400 text-black rounded-l">Login</button>
+      <button id="tab-signup" class="px-4 py-2 bg-gray-700 text-gray-300 rounded-r">Sign Up</button>
+    </div>
+
+    <!-- Login Form -->
+    <form id="form-login" class="space-y-4">
+      <input type="email" id="loginEmail" placeholder="Email" required class="w-full p-3 rounded text-black"/>
+      <input type="password" id="loginPassword" placeholder="Password" required class="w-full p-3 rounded text-black"/>
+      <button type="button" onclick="loginUser()" class="w-full bg-yellow-400 text-black rounded py-3 hover:bg-yellow-300">Login</button>
+    </form>
+
+    <!-- Sign-up Form -->
+    <form id="form-signup" class="space-y-4 hidden">
+      <input type="email" id="signupEmail" placeholder="Email" required class="w-full p-3 rounded text-black"/>
+      <input type="password" id="signupPassword" placeholder="Password (min 6 chars)" required class="w-full p-3 rounded text-black"/>
+      <button type="button" onclick="signupUser()" class="w-full bg-green-500 text-black rounded py-3 hover:bg-green-400">Create Account</button>
+    </form>
   </div>
 
-  <!-- Firebase -->
-  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
-  <script>
-    const firebaseConfig = {
-      apiKey: "AIzaSyAoOcgmwn6F9hdl0Es9hpTUXNerukbcyHs",
-      authDomain: "gad-capital.firebaseapp.com",
-      projectId: "gad-capital",
-      storageBucket: "gad-capital.appspot.com",
-      messagingSenderId: "978239151328",
-      appId: "1:978239151328:web:2795c165105c4485d8c485"
-    };
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
+  import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js";
 
-    firebase.initializeApp(firebaseConfig);
-    const auth = firebase.auth();
+  const firebaseConfig = {
+    apiKey: "AIzaSyAoOcgmwn6F9hdl0Es9hpTUXNerukbcyHs",
+    authDomain: "gad-capital.firebaseapp.com",
+    projectId: "gad-capital",
+    storageBucket: "gad-capital.appspot.com",
+    messagingSenderId: "978239151328",
+    appId: "1:978239151328:web:2795c165105c4485d8c485"
+  };
 
-    function loginUser() {
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  document.getElementById('tab-login').onclick = () => { showTab('login'); };
+  document.getElementById('tab-signup').onclick = () => { showTab('signup'); };
+
+  function showTab(tab) {
+    document.getElementById('form-login').classList.toggle('hidden', tab!=='login');
+    document.getElementById('form-signup').classList.toggle('hidden', tab!=='signup');
+    document.getElementById('tab-login').classList.toggle('bg-yellow-400 text-black', tab==='login');
+    document.getElementById('tab-signup').classList.toggle('bg-yellow-400 text-black', tab==='signup');
+  }
+
+  window.loginUser = async () => {
+    try {
       const email = document.getElementById("loginEmail").value;
-      const password = document.getElementById("loginPassword").value;
+      const pwd = document.getElementById("loginPassword").value;
+      await signInWithEmailAndPassword(auth, email, pwd);
+      window.location.href = "user-dashboard.html";
+    } catch (e) { alert(e.message); }
+  };
 
-      auth.signInWithEmailAndPassword(email, password)
-        .then(() => {
-          alert("Login successful!");
-          window.location.href = "user-dashboard.html";
-        })
-        .catch((error) => {
-          alert(error.message);
-        });
-    }
-  </script>
+  window.signupUser = async () => {
+    try {
+      const email = document.getElementById("signupEmail").value;
+      const pwd = document.getElementById("signupPassword").value;
+      await createUserWithEmailAndPassword(auth, email, pwd);
+      alert("Account created! You are logged in.");
+      window.location.href = "user-dashboard.html";
+    } catch (e) { alert(e.message); }
+  };
+</script>
 </body>
 </html>
