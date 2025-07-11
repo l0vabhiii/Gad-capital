@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sign Up - GAD Capital</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="icon" href="favicon.png" />
@@ -10,19 +10,20 @@
 <body class="bg-[#0f172a] text-white flex items-center justify-center min-h-screen p-4">
 
   <div class="bg-[#1e293b] p-8 rounded-lg shadow-lg w-full max-w-md">
-    <h2 class="text-2xl font-bold mb-6 text-center">Create an Account</h2>
+    <h2 class="text-2xl font-bold mb-6 text-center">Create GAD Capital Account</h2>
     <input type="email" id="signupEmail" placeholder="Email" class="w-full mb-4 px-4 py-2 rounded text-black" />
     <input type="password" id="signupPassword" placeholder="Password" class="w-full mb-6 px-4 py-2 rounded text-black" />
-    <button onclick="signupUser()" class="bg-yellow-400 text-black px-6 py-2 rounded w-full hover:bg-yellow-300 transition">Sign Up</button>
+    <button onclick="signupUser()" class="bg-yellow-400 text-black px-6 py-2 rounded w-full hover:bg-yellow-300 transition">Create Account</button>
     <p class="text-sm mt-4 text-center">
-      Already have an account? <a href="login.html" class="text-yellow-300 hover:underline">Login</a>
+      Already have an account?
+      <a href="login.html" class="text-yellow-300 hover:underline">Login</a>
     </p>
   </div>
 
-  <!-- Firebase -->
-  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
-  <script>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
+    import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js";
+
     const firebaseConfig = {
       apiKey: "AIzaSyAoOcgmwn6F9hdl0Es9hpTUXNerukbcyHs",
       authDomain: "gad-capital.firebaseapp.com",
@@ -32,22 +33,21 @@
       appId: "1:978239151328:web:2795c165105c4485d8c485"
     };
 
-    firebase.initializeApp(firebaseConfig);
-    const auth = firebase.auth();
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
 
-    function signupUser() {
+    window.signupUser = async () => {
       const email = document.getElementById("signupEmail").value;
       const password = document.getElementById("signupPassword").value;
-
-      auth.createUserWithEmailAndPassword(email, password)
-        .then(() => {
-          alert("Signup successful!");
-          window.location.href = "user-dashboard.html";
-        })
-        .catch((error) => {
-          alert(error.message);
-        });
-    }
+      try {
+        await createUserWithEmailAndPassword(auth, email, password);
+        alert("Signup successful!");
+        window.location.href = "user-dashboard.html";
+      } catch (error) {
+        alert(error.message);
+      }
+    };
   </script>
+
 </body>
 </html>
