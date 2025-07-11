@@ -1,28 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Admin Panel - GAD Capital</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="icon" href="favicon.png">
+  <link rel="icon" href="favicon.png" />
 </head>
-<body class="bg-[#0f172a] text-white min-h-screen">
+<body class="bg-gray-900 text-white font-sans p-6">
 
-  <!-- Header -->
-  <header class="bg-[#1e293b] py-4 px-6 flex justify-between items-center shadow">
-    <h1 class="text-xl font-bold">🛡️ Admin Panel - GAD Capital</h1>
-    <button onclick="logout()" class="bg-red-500 hover:bg-red-600 px-4 py-2 rounded text-sm">Logout</button>
-  </header>
+  <h1 class="text-3xl font-bold text-yellow-400 mb-6 text-center">👨‍💼 Admin Dashboard - GAD Capital</h1>
 
-  <main class="p-6">
-    <h2 class="text-2xl font-bold mb-6">User Inquiries</h2>
-    <div id="inquiryList" class="space-y-4"></div>
-  </main>
+  <div id="userTableContainer" class="bg-gray-800 rounded-lg shadow-lg overflow-x-auto">
+    <table class="min-w-full table-auto border-collapse text-sm">
+      <thead class="bg-yellow-400 text-black">
+        <tr>
+          <th class="px-4 py-2 text-left">Email</th>
+          <th class="px-4 py-2 text-left">UID</th>
+        </tr>
+      </thead>
+      <tbody id="userTable" class="text-white">
+        <!-- Users will be loaded here -->
+      </tbody>
+    </table>
+  </div>
 
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
-    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js";
+    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js";
     import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
 
     const firebaseConfig = {
@@ -35,36 +40,23 @@
     };
 
     const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
     const db = getFirestore(app);
 
-    onAuthStateChanged(auth, async (user) => {
-      if (!user) {
-        window.location.href = "index.html";
-        return;
-      }
-
-      // Load inquiries
-      const querySnapshot = await getDocs(collection(db, "inquiries"));
-      const list = document.getElementById("inquiryList");
-      list.innerHTML = "";
-      querySnapshot.forEach(doc => {
-        const data = doc.data();
-        const box = document.createElement("div");
-        box.className = "bg-[#1e293b] border border-gray-700 rounded-lg p-4";
-        box.innerHTML = `
-          <h3 class="text-lg font-semibold">${data.name}</h3>
-          <p class="text-sm text-yellow-400">${data.email}</p>
-          <p class="text-sm mt-2">${data.message}</p>
-        `;
-        list.appendChild(box);
+    async function loadUsers() {
+      const querySnapshot = await getDocs(collection(db, "users"));
+      const userTable = document.getElementById("userTable");
+      userTable.innerHTML = "";
+      querySnapshot.forEach((doc) => {
+        const user = doc.data();
+        userTable.innerHTML += `
+          <tr class="border-b border-gray-700 hover:bg-gray-700">
+            <td class="px-4 py-2">${user.email}</td>
+            <td class="px-4 py-2">${doc.id}</td>
+          </tr>`;
       });
-    });
+    }
 
-    window.logout = async () => {
-      await signOut(auth);
-      window.location.href = "index.html";
-    };
+    loadUsers();
   </script>
 </body>
 </html>
