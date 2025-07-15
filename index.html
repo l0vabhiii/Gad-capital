@@ -14,8 +14,9 @@
 <body class="bg-[#0f172a] text-white font-sans">
 
 <!-- ✅ WhatsApp CTA -->
-<a href="https://wa.me/919136913890" target="_blank" class="fixed bottom-4 right-4 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-full z-50 shadow-lg">
-  💬 Chat with Advisor
+<a href="https://wa.me/919136913890" target="_blank"
+   class="fixed bottom-4 right-4 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-full z-50 shadow-lg">
+   💬 Chat with Advisor
 </a>
 
 <!-- ✅ Navbar -->
@@ -25,6 +26,7 @@
       <img src="logo.png" alt="GAD Capital" class="h-8" />
       <span class="text-yellow-400 font-bold text-xl">GAD Capital</span>
     </a>
+    <!-- Desktop Nav -->
     <nav class="hidden md:flex space-x-5 text-sm">
       <a href="#home" class="hover:text-yellow-400">Home</a>
       <a href="#brickshare" class="hover:text-yellow-400">BrickShare</a>
@@ -35,105 +37,39 @@
       <a href="#about" class="hover:text-yellow-400">About</a>
       <a href="#contact" class="hover:text-yellow-400">Contact</a>
       <a href="#partner" class="hover:text-yellow-400">Partner Program</a>
-      <a href="#quick-signup" class="hover:text-yellow-400">Sign Up</a>
-      <a href="#quick-login" class="bg-yellow-400 text-black px-3 py-1 rounded hover:bg-yellow-300">Login</a>
+      <a href="signup.html" class="hover:text-yellow-400">Sign Up</a>
+      <a href="user-login.html" class="bg-yellow-400 text-black px-3 py-1 rounded hover:bg-yellow-300">Login</a>
     </nav>
+    <!-- Mobile Menu Icon -->
+    <button id="menu-btn" class="md:hidden text-white focus:outline-none">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+      </svg>
+    </button>
+  </div>
+  <!-- Mobile Dropdown -->
+  <div id="mobile-menu" class="md:hidden px-4 pb-4 space-y-2 bg-[#1e293b] hidden">
+    <a href="#home" class="block hover:text-yellow-300">Home</a>
+    <a href="#brickshare" class="block hover:text-yellow-300">BrickShare</a>
+    <a href="#agriventure" class="block hover:text-yellow-300">AgriVenture</a>
+    <a href="#buy" class="block hover:text-yellow-300">Buy/Sell</a>
+    <a href="#tenders" class="block hover:text-yellow-300">Tenders</a>
+    <a href="#testimonials" class="block hover:text-yellow-300">Reviews</a>
+    <a href="#about" class="block hover:text-yellow-300">About</a>
+    <a href="#contact" class="block hover:text-yellow-300">Contact</a>
+    <a href="#partner" class="block hover:text-yellow-300">Partner Program</a>
+    <a href="signup.html" class="block hover:text-yellow-300">Sign Up</a>
+    <a href="user-login.html" class="block hover:text-yellow-300 font-bold">Login</a>
   </div>
 </header>
 
-<!-- ✅ Hero Section -->
-<section id="home" class="h-screen flex items-center justify-center bg-cover bg-center relative" style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80'); padding-top: 64px;">
-  <div class="absolute inset-0 bg-black bg-opacity-60"></div>
-  <div class="relative z-10 text-center px-6">
-    <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Smart Investments <span class="text-yellow-400">Made Easy</span></h1>
-    <p class="text-lg text-gray-300 mb-6">India’s trusted network for Real Estate, Agri & Business Deals</p>
-    <a href="#brickshare" class="bg-yellow-400 text-black px-6 py-3 rounded-full font-semibold hover:bg-yellow-300 transition">Explore Opportunities</a>
-  </div>
-</section>
-
-<!-- ✅ Inline Signup Section -->
-<section id="quick-signup" class="bg-[#1e293b] py-16 text-white text-center">
-  <h2 class="text-2xl font-bold mb-6 text-yellow-400">Create Your GAD Capital Account</h2>
-  <form id="signup-form" class="max-w-md mx-auto space-y-4 px-4">
-    <input type="text" id="name" placeholder="Full Name" class="w-full p-3 rounded text-black" required />
-    <input type="email" id="email" placeholder="Email" class="w-full p-3 rounded text-black" required />
-    <input type="password" id="password" placeholder="Password" class="w-full p-3 rounded text-black" required />
-    <button type="submit" class="bg-yellow-400 text-black px-6 py-2 rounded hover:bg-yellow-300 w-full">Register Now</button>
-    <p id="error" class="text-red-400 text-sm mt-2"></p>
-  </form>
-</section>
-
-<!-- ✅ Inline Login Section -->
-<section id="quick-login" class="bg-[#0f172a] py-16 text-white text-center">
-  <h2 class="text-2xl font-bold mb-6 text-yellow-400">Login to Dashboard</h2>
-  <form id="login-form" class="max-w-md mx-auto space-y-4 px-4">
-    <input type="email" id="login-email" placeholder="Email" class="w-full p-3 rounded text-black" required />
-    <input type="password" id="login-password" placeholder="Password" class="w-full p-3 rounded text-black" required />
-    <button type="submit" class="bg-yellow-400 text-black px-6 py-2 rounded hover:bg-yellow-300 w-full">Login</button>
-    <p id="login-error" class="text-red-400 text-sm mt-2"></p>
-  </form>
-</section>
-
-<!-- ✅ Firebase Auth Script -->
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
-  import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js";
-  import { getFirestore, doc, setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
-
-  const firebaseConfig = {
-    apiKey: "AIzaSyAoOcgmwn6F9hdl0Es9hpTUXNerukbcyHs",
-    authDomain: "gad-capital.firebaseapp.com",
-    projectId: "gad-capital",
-    storageBucket: "gad-capital.appspot.com",
-    messagingSenderId: "978239151328",
-    appId: "1:978239151328:web:2795c165105c4485d8c485"
-  };
-
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
-  const db = getFirestore(app);
-
-  const signupForm = document.getElementById("signup-form");
-  const signupError = document.getElementById("error");
-
-  signupForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const name = signupForm.name.value.trim();
-    const email = signupForm.email.value.trim();
-    const password = signupForm.password.value;
-
-    try {
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-      const user = userCredential.user;
-
-      await setDoc(doc(db, "users", user.uid), {
-        name: name,
-        email: email,
-        createdAt: serverTimestamp()
-      });
-
-      window.location.href = "user-dashboard.html";
-    } catch (err) {
-      signupError.textContent = err.message;
-    }
-  });
-
-  const loginForm = document.getElementById("login-form");
-  const loginError = document.getElementById("login-error");
-
-  loginForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const email = loginForm["login-email"].value.trim();
-    const password = loginForm["login-password"].value;
-
-    try {
-      await signInWithEmailAndPassword(auth, email, password);
-      window.location.href = "user-dashboard.html";
-    } catch (err) {
-      loginError.textContent = err.message;
-    }
+<!-- 🔁 Toggle Script for Mobile Menu -->
+<script>
+  const btn = document.getElementById("menu-btn");
+  const menu = document.getElementById("mobile-menu");
+  btn.addEventListener("click", () => {
+    menu.classList.toggle("hidden");
   });
 </script>
-
 </body>
 </html>
