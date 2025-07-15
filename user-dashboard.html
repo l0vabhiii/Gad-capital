@@ -2,127 +2,150 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>User Dashboard - GAD Capital</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    body { font-family: 'Inter', sans-serif; }
+    body { font-family: 'Inter', sans-serif; background: #f9fafb; }
     html { scroll-behavior: smooth; }
     @keyframes fadeInUp {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
-    .fade-in-up {
-      animation: fadeInUp 0.7s ease-out both;
-    }
+    .fade-in-up { animation: fadeInUp 0.6s ease-out both; }
   </style>
 </head>
-<body class="bg-gray-100 text-gray-900">
+<body class="text-gray-800">
 
 <!-- ✅ Header -->
-<header class="bg-[#1e293b] text-white p-4 flex justify-between items-center">
-  <h1 class="text-xl font-bold">👋 Welcome to GAD Capital Dashboard</h1>
-  <button onclick="logout()" class="bg-red-500 hover:bg-red-600 px-4 py-2 rounded text-sm font-semibold">Logout</button>
+<header class="bg-[#1e293b] text-white p-4 flex justify-between items-center shadow">
+  <h1 class="text-lg font-bold">👋 Welcome to GAD Capital</h1>
+  <div class="relative">
+    <button id="menu-btn">
+      <svg class="w-6 h-6" fill="none" stroke="white" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+      </svg>
+    </button>
+    <div id="dropdown" class="hidden absolute right-0 mt-2 bg-white text-black rounded shadow w-44 z-50">
+      <a href="#contact" class="block px-4 py-2 hover:bg-gray-100">📬 Contact Us</a>
+      <a href="https://wa.me/919136913890" class="block px-4 py-2 hover:bg-gray-100" target="_blank">💬 WhatsApp</a>
+      <button onclick="logout()" class="w-full text-left px-4 py-2 hover:bg-gray-100">🚪 Logout</button>
+    </div>
+  </div>
 </header>
 
+<!-- ✅ Menu Script -->
+<script>
+  document.getElementById('menu-btn').addEventListener('click', () => {
+    document.getElementById('dropdown').classList.toggle('hidden');
+  });
+</script>
+
 <!-- ✅ Impact Section -->
+<section class="p-6 max-w-6xl mx-auto mt-6 bg-white rounded shadow fade-in-up text-center">
+  <h2 class="text-2xl font-bold mb-6 text-[#0f172a]">📊 Our Impact</h2>
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+    <div class="bg-yellow-100 p-4 rounded shadow hover:scale-105 transition">
+      <p class="text-3xl font-bold text-yellow-600">400+</p><p>Investors</p>
+    </div>
+    <div class="bg-green-100 p-4 rounded shadow hover:scale-105 transition">
+      <p class="text-3xl font-bold text-green-600">₹5 Cr+</p><p>Invested</p>
+    </div>
+    <div class="bg-blue-100 p-4 rounded shadow hover:scale-105 transition">
+      <p class="text-3xl font-bold text-blue-600">10</p><p>Cities</p>
+    </div>
+    <div class="bg-purple-100 p-4 rounded shadow hover:scale-105 transition">
+      <p class="text-3xl font-bold text-purple-600">4</p><p>Countries</p>
+    </div>
+  </div>
+</section>
+
+<!-- ✅ Project Section -->
+<section class="p-6 max-w-6xl mx-auto mt-8 bg-white rounded shadow fade-in-up">
+  <h2 class="text-xl font-bold mb-4 text-[#0f172a]">🌱 AgriVenture Projects</h2>
+  <div class="grid md:grid-cols-2 gap-4">
+    <div class="border rounded p-4">Hydroponics – ₹2L • ROI: 180%</div>
+    <div class="border rounded p-4">Aquaponics – ₹5L • ROI: 144%</div>
+  </div>
+</section>
+
 <section class="p-6 max-w-6xl mx-auto mt-6 bg-white rounded shadow fade-in-up">
-  <h2 class="text-2xl font-bold mb-6 text-[#0f172a] text-center">📊 Our Impact</h2>
-  <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-    <div class="bg-gray-100 p-6 rounded shadow-md">
-      <p class="text-3xl font-bold text-yellow-500">400+</p>
-      <p class="text-gray-700">Investors</p>
-    </div>
-    <div class="bg-gray-100 p-6 rounded shadow-md">
-      <p class="text-3xl font-bold text-yellow-500">₹5 Cr+</p>
-      <p class="text-gray-700">Invested</p>
-    </div>
-    <div class="bg-gray-100 p-6 rounded shadow-md">
-      <p class="text-3xl font-bold text-yellow-500">10</p>
-      <p class="text-gray-700">Cities</p>
-    </div>
-    <div class="bg-gray-100 p-6 rounded shadow-md">
-      <p class="text-3xl font-bold text-yellow-500">4</p>
-      <p class="text-gray-700">Countries</p>
-    </div>
+  <h2 class="text-xl font-bold mb-4 text-[#0f172a]">🏢 BrickShare Properties</h2>
+  <div class="grid md:grid-cols-2 gap-4">
+    <div class="border rounded p-4">Shamshabad Retail • ₹25L • ₹15K/mo</div>
+    <div class="border rounded p-4">Keesara Studios • ₹30L • ₹18K/mo</div>
   </div>
 </section>
 
-<!-- ✅ AgriVenture Section -->
-<section class="p-6 max-w-6xl mx-auto mt-6 bg-white rounded shadow">
-  <h2 class="text-2xl font-bold mb-4 text-[#0f172a]">🌱 AgriVenture Projects</h2>
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-    <div class="border p-4 rounded">
-      <h3 class="font-semibold text-lg">Hydroponic Leafy Greens</h3>
-      <p>💰 ₹2L | Profit: ₹25–30K/month | ROI: 180%</p>
-    </div>
-    <div class="border p-4 rounded">
-      <h3 class="font-semibold text-lg">Aquaponics Fish + Lettuce</h3>
-      <p>💰 ₹5L | Profit: ₹45–50K/month | ROI: 144%</p>
-    </div>
+<section class="p-6 max-w-6xl mx-auto mt-6 bg-white rounded shadow fade-in-up">
+  <h2 class="text-xl font-bold mb-4 text-[#0f172a]">📑 Latest Tenders</h2>
+  <div class="grid md:grid-cols-2 gap-4">
+    <div class="border rounded p-4">Solar Energy • Penang • Deadline: 04 Jul</div>
+    <div class="border rounded p-4">Security System • Johor • Deadline: 20 Jul</div>
   </div>
 </section>
 
-<!-- ✅ BrickShare Section -->
-<section class="p-6 max-w-6xl mx-auto mt-8 bg-white rounded shadow">
-  <h2 class="text-2xl font-bold mb-4 text-[#0f172a]">🏢 BrickShare Real Estate Projects</h2>
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-    <div class="border p-4 rounded">
-      <h3 class="font-semibold text-lg">Shamshabad, Hyderabad</h3>
-      <p>Type: Commercial Retail | Invest: ₹25L | Return: ₹12–15K/month</p>
-      <p>ROI: 6% Rent + 8% Appreciation</p>
-    </div>
-    <div class="border p-4 rounded">
-      <h3 class="font-semibold text-lg">Keesara, Hyderabad</h3>
-      <p>Type: Co-Living Studios | Invest: ₹30L | Return: ₹14–18K/month</p>
-      <p>ROI: 7% Rent + 9% Appreciation</p>
-    </div>
-  </div>
-</section>
-
-<!-- ✅ Tender Section -->
-<section class="p-6 max-w-6xl mx-auto mt-8 bg-white rounded shadow">
-  <h2 class="text-2xl font-bold mb-4 text-[#0f172a]">📑 Latest Tenders</h2>
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-    <div class="border p-4 rounded">
-      <h3 class="font-semibold text-lg">Solar Energy Project - Penang</h3>
-      <p>📍 Malaysia | Sector: Renewable Energy</p>
-      <p class="mt-2">Installation of solar grid systems at IKTBN Bukit Mertajam.</p>
-      <p class="text-sm text-gray-500 mt-1">🗓️ Deadline: 04-Jul-2025</p>
-    </div>
-    <div class="border p-4 rounded">
-      <h3 class="font-semibold text-lg">Security Systems - Johor</h3>
-      <p>📍 Malaysia | Sector: Public Safety</p>
-      <p class="mt-2">Supply and install integrated security systems for local govt buildings.</p>
-      <p class="text-sm text-gray-500 mt-1">🗓️ Deadline: 20-Jul-2025</p>
-    </div>
-  </div>
-</section>
-
-<!-- ✅ Contact Section -->
-<section class="p-6 max-w-3xl mx-auto mt-10 bg-white rounded shadow">
+<!-- ✅ Contact Us -->
+<section id="contact" class="p-6 max-w-3xl mx-auto mt-10 bg-white rounded shadow fade-in-up">
   <h2 class="text-2xl font-bold mb-4 text-[#0f172a] text-center">📬 Contact Us</h2>
-  <form class="space-y-4">
-    <input type="text" placeholder="Your Name" class="w-full p-3 rounded border border-gray-300" required />
-    <input type="email" placeholder="Email" class="w-full p-3 rounded border border-gray-300" required />
-    <textarea placeholder="Your Message" class="w-full p-3 rounded border border-gray-300" rows="4" required></textarea>
-    <button type="submit" class="bg-yellow-400 text-black px-6 py-2 rounded hover:bg-yellow-300">Send Message</button>
+  <form id="contact-form" class="space-y-4">
+    <input type="text" placeholder="Your Name" class="w-full p-3 border rounded" required />
+    <input type="email" placeholder="Email" class="w-full p-3 border rounded" required />
+    <textarea placeholder="Message" rows="4" class="w-full p-3 border rounded" required></textarea>
+    <button type="submit" class="bg-yellow-400 text-black px-6 py-2 rounded hover:bg-yellow-300">Send</button>
   </form>
-  <p class="text-center text-sm mt-4">📞 WhatsApp: +91-9136913890 | 📧 support@gadcapital.in</p>
 </section>
 
 <!-- ✅ Footer -->
-<footer class="bg-[#1e293b] text-white text-center py-6 mt-10">
-  <p class="font-semibold">© 2025 GAD Capital. All rights reserved.</p>
-  <p class="text-sm">📧 support@gadcapital.in | 📞 WhatsApp: +91-9136913890</p>
+<footer class="text-center text-sm text-gray-600 py-6 mt-10">
+  © 2025 GAD Capital • support@gadcapital.in • 📞 +91-9136913890
 </footer>
 
-<script>
-  function logout() {
-    alert("Logged out! (Firebase signOut logic goes here)");
-    window.location.href = 'login.html';
-  }
-</script>
+<!-- ✅ Firebase Contact Form Script -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
+  import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
+  import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js";
 
+  const firebaseConfig = {
+    apiKey: "AIzaSyAoOcgmwn6F9hdl0Es9hpTUXNerukbcyHs",
+    authDomain: "gad-capital.firebaseapp.com",
+    projectId: "gad-capital",
+    storageBucket: "gad-capital.appspot.com",
+    messagingSenderId: "978239151328",
+    appId: "1:978239151328:web:2795c165105c4485d8c485"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+  const auth = getAuth(app);
+
+  // Persistent login check
+  onAuthStateChanged(auth, user => {
+    if (!user) window.location.href = 'login.html';
+  });
+
+  // Logout function
+  window.logout = () => {
+    signOut(auth).then(() => window.location.href = 'login.html');
+  };
+
+  // Contact form submit
+  const form = document.getElementById('contact-form');
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const name = form.querySelector('input[type=text]').value;
+    const email = form.querySelector('input[type=email]').value;
+    const message = form.querySelector('textarea').value;
+
+    await addDoc(collection(db, "contactMessages"), {
+      name, email, message, timestamp: serverTimestamp()
+    });
+
+    alert("✅ Message sent successfully!");
+    form.reset();
+  });
+</script>
 </body>
 </html>
