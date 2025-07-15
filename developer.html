@@ -1,25 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Admin Panel - GAD Capital</title>
+  <title>Developer Panel - GAD Capital</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet"/>
   <style>
-    body { font-family: 'Inter', sans-serif; background: #f8fafb; }
+    body { font-family: 'Inter', sans-serif; background: #f1f5f9; }
     html { scroll-behavior: smooth; }
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .fade-in-up { animation: fadeInUp 0.6s ease-out both; }
+    .tab { display: none; }
+    .tab.active { display: block; }
   </style>
 </head>
 <body class="text-gray-800">
 
-<header class="bg-[#1e293b] text-white p-4 flex justify-between items-center shadow">
-  <h1 class="text-lg font-bold">🛡️ Admin Panel - GAD Capital</h1>
+<!-- ✅ Header -->
+<header class="bg-[#1e293b] text-white p-4 flex justify-between items-center">
+  <h1 class="text-lg font-bold">💼 Developer Panel - GAD Capital</h1>
   <div class="relative">
     <button id="menu-btn">
       <svg class="w-6 h-6" fill="none" stroke="white" viewBox="0 0 24 24">
@@ -36,26 +34,79 @@
   document.getElementById('menu-btn').addEventListener('click', () => {
     document.getElementById('dropdown').classList.toggle('hidden');
   });
-</script>
+  function showTab(tabId) {
+    document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+    document.getElementById(tabId).classList.add('active');
+  }
+        </script>
+        <!-- ✅ Tab Buttons -->
+<div class="flex flex-wrap justify-center gap-4 mt-6">
+  <button onclick="showTab('brickshare')" class="bg-blue-500 text-white px-4 py-2 rounded">🏢 BrickShare</button>
+  <button onclick="showTab('agriventure')" class="bg-green-500 text-white px-4 py-2 rounded">🌿 AgriVenture</button>
+  <button onclick="showTab('tenders')" class="bg-yellow-500 text-black px-4 py-2 rounded">📑 Tenders</button>
+  <button onclick="showTab('company')" class="bg-indigo-600 text-white px-4 py-2 rounded">🏢 Company Info</button>
+</div>
 
-<section class="max-w-6xl mx-auto mt-8 bg-white rounded shadow p-6 fade-in-up">
-  <h2 class="text-xl font-bold mb-4 text-[#0f172a]">👤 Registered Users</h2>
-  <div id="user-list" class="space-y-4 text-sm text-gray-800">
-    <p>Loading users...</p>
-  </div>
+<!-- ✅ BrickShare Section -->
+<section id="brickshare" class="tab active max-w-4xl mx-auto bg-white p-6 mt-6 rounded shadow">
+  <h2 class="text-xl font-bold mb-4 text-[#0f172a]">🏢 Add BrickShare Project</h2>
+  <form id="brickshare-form" class="grid gap-4">
+    <input type="text" id="bs-title" placeholder="Title" class="p-2 border rounded" required />
+    <input type="text" id="bs-price" placeholder="Price (e.g. ₹25L)" class="p-2 border rounded" required />
+    <input type="text" id="bs-returns" placeholder="Monthly Returns" class="p-2 border rounded" required />
+    <input type="text" id="bs-tag" placeholder="Tag (e.g. Retail)" class="p-2 border rounded" required />
+    <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">➕ Add Project</button>
+  </form>
+  <div class="mt-6" id="brickshare-list"></div>
 </section>
 
-<section class="max-w-6xl mx-auto mt-8 bg-white rounded shadow p-6 fade-in-up">
-  <h2 class="text-xl font-bold mb-4 text-[#0f172a]">📬 Contact Messages</h2>
-  <div id="contact-list" class="space-y-4 text-sm text-gray-800">
-    <p>Loading messages...</p>
-  </div>
+<!-- ✅ AgriVenture Section -->
+<section id="agriventure" class="tab max-w-4xl mx-auto bg-white p-6 mt-6 rounded shadow">
+  <h2 class="text-xl font-bold mb-4 text-[#0f172a]">🌿 Add AgriVenture Project</h2>
+  <form id="agri-form" class="grid gap-4">
+    <input type="text" id="agri-title" placeholder="Title" class="p-2 border rounded" required />
+    <input type="text" id="agri-price" placeholder="Price (e.g. ₹15K)" class="p-2 border rounded" required />
+    <input type="text" id="agri-returns" placeholder="ROI (e.g. 3 months)" class="p-2 border rounded" required />
+    <input type="text" id="agri-tag" placeholder="Tag (e.g. Hydroponics)" class="p-2 border rounded" required />
+    <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded">➕ Add Agri Project</button>
+  </form>
+  <div class="mt-6" id="agriventure-list"></div>
 </section>
 
+<!-- ✅ Tenders Section -->
+<section id="tenders" class="tab max-w-4xl mx-auto bg-white p-6 mt-6 rounded shadow">
+  <h2 class="text-xl font-bold mb-4 text-[#0f172a]">📑 Add Tender Listing</h2>
+  <form id="tender-form" class="grid gap-4">
+    <input type="text" id="tender-title" placeholder="Title" class="p-2 border rounded" required />
+    <input type="text" id="tender-price" placeholder="Price/Grant" class="p-2 border rounded" required />
+    <input type="text" id="tender-deadline" placeholder="Deadline (e.g. July 30)" class="p-2 border rounded" required />
+    <input type="text" id="tender-tag" placeholder="Tag (e.g. Infra)" class="p-2 border rounded" required />
+    <button type="submit" class="bg-yellow-500 text-black px-4 py-2 rounded">➕ Add Tender</button>
+  </form>
+  <div class="mt-6" id="tender-list"></div>
+</section>
+
+<!-- ✅ Company Info Editor -->
+<section id="company" class="tab max-w-3xl mx-auto bg-white p-6 mt-6 rounded shadow">
+  <h2 class="text-xl font-bold mb-4 text-[#0f172a]">🏢 Update Company Info</h2>
+  <form id="company-form" class="grid gap-4">
+    <input type="text" id="companyName" placeholder="Company Name" class="p-2 border rounded" required />
+    <textarea id="about" placeholder="About Us" class="p-2 border rounded" required></textarea>
+    <textarea id="mission" placeholder="Mission" class="p-2 border rounded" required></textarea>
+    <input type="text" id="address" placeholder="Address" class="p-2 border rounded" required />
+    <input type="email" id="email" placeholder="Support Email" class="p-2 border rounded" required />
+    <input type="text" id="year" placeholder="Year Started (e.g. 2020)" class="p-2 border rounded" required />
+    <button type="submit" class="bg-indigo-600 text-white px-4 py-2 rounded">💾 Save Info</button>
+  </form>
+  <div id="company-status" class="text-green-600 mt-4 font-medium"></div>
+</section>
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
   import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js";
-  import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
+  import {
+    getFirestore, collection, addDoc, getDocs, deleteDoc,
+    doc, setDoc, getDoc
+  } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
 
   const firebaseConfig = {
     apiKey: "AIzaSyAoOcgmwn6F9hdl0Es9hpTUXNerukbcyHs",
@@ -69,14 +120,26 @@
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
   const db = getFirestore(app);
+  const allowedDevs = ["mishty@gadcapital.in"];
 
-  // ✅ Secure Admin Check
-  const allowedAdmins = ["kdurga@gadcapital.in", "abhishek@gadcapital.in"];
-
-  onAuthStateChanged(auth, user => {
-    if (!user || !allowedAdmins.includes(user.email)) {
-      alert("⛔ Access Denied! Admins Only.");
+  onAuthStateChanged(auth, async user => {
+    if (!user || !allowedDevs.includes(user.email)) {
+      alert("⛔ Access Denied! Devs Only.");
       window.location.href = "login.html";
+    } else {
+      loadBrickShare();
+      loadAgri();
+      loadTenders();
+      const docSnap = await getDoc(doc(db, "site", "companyInfo"));
+      if (docSnap.exists()) {
+        const data = docSnap.data();
+        document.getElementById("companyName").value = data.companyName || "";
+        document.getElementById("about").value = data.about || "";
+        document.getElementById("mission").value = data.mission || "";
+        document.getElementById("address").value = data.address || "";
+        document.getElementById("email").value = data.email || "";
+        document.getElementById("year").value = data.year || "";
+      }
     }
   });
 
@@ -84,42 +147,128 @@
     signOut(auth).then(() => window.location.href = "login.html");
   };
 
-  const userList = document.getElementById('user-list');
-  async function loadUsers() {
-    const snapshot = await getDocs(collection(db, "users"));
-    userList.innerHTML = '';
-    snapshot.forEach(doc => {
-      const u = doc.data();
-      userList.innerHTML += `
-        <div class="p-4 border rounded bg-gray-50">
-          <p><strong>Email:</strong> ${u.email}</p>
-          <p><strong>Registered:</strong> ${u.date || 'N/A'}</p>
+  document.getElementById("company-form").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const data = {
+      companyName: document.getElementById("companyName").value,
+      about: document.getElementById("about").value,
+      mission: document.getElementById("mission").value,
+      address: document.getElementById("address").value,
+      email: document.getElementById("email").value,
+      year: document.getElementById("year").value
+    };
+    await setDoc(doc(db, "site", "companyInfo"), data);
+    document.getElementById("company-status").textContent = "✅ Company Info Updated Successfully!";
+  });
+
+  // BrickShare
+  document.getElementById("brickshare-form").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const title = document.getElementById("bs-title").value;
+    const price = document.getElementById("bs-price").value;
+    const returns = document.getElementById("bs-returns").value;
+    const tag = document.getElementById("bs-tag").value;
+    await addDoc(collection(db, "brickshare"), { title, price, returns, tag, createdAt: new Date().toISOString() });
+    alert("✅ BrickShare Project Added!");
+    e.target.reset();
+    loadBrickShare();
+  });
+
+  async function loadBrickShare() {
+    const list = document.getElementById("brickshare-list");
+    list.innerHTML = "";
+    const snapshot = await getDocs(collection(db, "brickshare"));
+    snapshot.forEach(docSnap => {
+      const d = docSnap.data();
+      const id = docSnap.id;
+      list.innerHTML += `
+        <div class="p-4 border rounded mt-2 bg-gray-50">
+          <p><strong>${d.title}</strong> — ${d.price} • ${d.returns}</p>
+          <span class="text-sm bg-blue-100 text-blue-700 px-2 py-1 rounded">${d.tag}</span>
+          <p class="text-xs text-gray-500 mt-1">🗓️ ${new Date(d.createdAt).toLocaleDateString()}</p>
+          <button onclick="deleteBrick('${id}')" class="text-red-500 ml-4">🗑 Delete</button>
         </div>`;
     });
   }
 
-  const contactList = document.getElementById('contact-list');
-  async function loadMessages() {
-    const snapshot = await getDocs(collection(db, "contactMessages"));
-    contactList.innerHTML = '';
-    snapshot.forEach(doc => {
-      const m = doc.data();
-      contactList.innerHTML += `
-        <div class="p-4 border rounded bg-yellow-50">
-          <p><strong>Name:</strong> ${m.name}</p>
-          <p><strong>Email:</strong> ${m.email}</p>
-          <p><strong>Message:</strong> ${m.message}</p>
+  window.deleteBrick = async function (id) {
+    await deleteDoc(doc(db, "brickshare", id));
+    loadBrickShare();
+  };
+
+  // AgriVenture
+  document.getElementById("agri-form").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const title = document.getElementById("agri-title").value;
+    const price = document.getElementById("agri-price").value;
+    const returns = document.getElementById("agri-returns").value;
+    const tag = document.getElementById("agri-tag").value;
+    await addDoc(collection(db, "agriventure"), { title, price, returns, tag, createdAt: new Date().toISOString() });
+    alert("✅ AgriVenture Project Added!");
+    e.target.reset();
+    loadAgri();
+  });
+
+  async function loadAgri() {
+    const list = document.getElementById("agriventure-list");
+    list.innerHTML = "";
+    const snapshot = await getDocs(collection(db, "agriventure"));
+    snapshot.forEach(docSnap => {
+      const d = docSnap.data();
+      const id = docSnap.id;
+      list.innerHTML += `
+        <div class="p-4 border rounded mt-2 bg-green-50">
+          <p><strong>${d.title}</strong> — ${d.price} • ${d.returns}</p>
+          <span class="text-sm bg-green-100 text-green-700 px-2 py-1 rounded">${d.tag}</span>
+          <p class="text-xs text-gray-500 mt-1">🗓️ ${new Date(d.createdAt).toLocaleDateString()}</p>
+          <button onclick="deleteAgri('${id}')" class="text-red-500 ml-4">🗑 Delete</button>
         </div>`;
     });
   }
 
-  loadUsers();
-  loadMessages();
+  window.deleteAgri = async function (id) {
+    await deleteDoc(doc(db, "agriventure", id));
+    loadAgri();
+  };
+
+  // Tenders
+  document.getElementById("tender-form").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const title = document.getElementById("tender-title").value;
+    const price = document.getElementById("tender-price").value;
+    const deadline = document.getElementById("tender-deadline").value;
+    const tag = document.getElementById("tender-tag").value;
+    await addDoc(collection(db, "tenders"), { title, price, deadline, tag, createdAt: new Date().toISOString() });
+    alert("✅ Tender Added!");
+    e.target.reset();
+    loadTenders();
+  });
+
+  async function loadTenders() {
+    const list = document.getElementById("tender-list");
+    list.innerHTML = "";
+    const snapshot = await getDocs(collection(db, "tenders"));
+    snapshot.forEach(docSnap => {
+      const d = docSnap.data();
+      const id = docSnap.id;
+      list.innerHTML += `
+        <div class="p-4 border rounded mt-2 bg-yellow-50">
+          <p><strong>${d.title}</strong> — ${d.price} • Deadline: ${d.deadline}</p>
+          <span class="text-sm bg-yellow-100 text-yellow-700 px-2 py-1 rounded">${d.tag}</span>
+          <p class="text-xs text-gray-500 mt-1">🗓️ ${new Date(d.createdAt).toLocaleDateString()}</p>
+          <button onclick="deleteTender('${id}')" class="text-red-500 ml-4">🗑 Delete</button>
+        </div>`;
+    });
+  }
+
+  window.deleteTender = async function (id) {
+    await deleteDoc(doc(db, "tenders", id));
+    loadTenders();
+  };
 </script>
 
 <footer class="text-center text-sm text-gray-600 py-6 mt-10">
-  © 2025 GAD Capital • admin@gadcapital.in
+  © 2025 GAD Capital • developer@gadcapital.in
 </footer>
-
 </body>
 </html>
