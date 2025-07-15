@@ -8,7 +8,6 @@
   <link rel="icon" href="favicon.png" />
   <style>
     html { scroll-behavior: smooth; }
-    #mobile-menu { display: none; }
   </style>
 </head>
 <body class="bg-[#0f172a] text-white font-sans">
@@ -37,8 +36,6 @@
       <a href="#about" class="hover:text-yellow-400">About</a>
       <a href="#contact" class="hover:text-yellow-400">Contact</a>
       <a href="#partner" class="hover:text-yellow-400">Partner Program</a>
-      <a href="signup.html" class="hover:text-yellow-400">Sign Up</a>
-      <a href="user-login.html" class="bg-yellow-400 text-black px-3 py-1 rounded hover:bg-yellow-300">Login</a>
     </nav>
     <!-- Mobile Menu Icon -->
     <button id="menu-btn" class="md:hidden text-white focus:outline-none">
@@ -48,7 +45,7 @@
     </button>
   </div>
   <!-- Mobile Dropdown -->
-  <div id="mobile-menu" class="md:hidden px-4 pb-4 space-y-2 bg-[#1e293b] hidden">
+  <div id="mobile-menu" class="hidden md:hidden px-4 pb-4 space-y-2 bg-[#1e293b]">
     <a href="#home" class="block hover:text-yellow-300">Home</a>
     <a href="#brickshare" class="block hover:text-yellow-300">BrickShare</a>
     <a href="#agriventure" class="block hover:text-yellow-300">AgriVenture</a>
@@ -63,13 +60,36 @@
   </div>
 </header>
 
-<!-- 🔁 Toggle Script for Mobile Menu -->
+<!-- ✅ Hero Section -->
+<section id="home" class="h-screen flex items-center justify-center bg-cover bg-center relative pt-20" style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80');">
+  <div class="absolute inset-0 bg-black bg-opacity-60"></div>
+  <div class="relative z-10 text-center px-6">
+    <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">
+      Smart Investments <span class="text-yellow-400">Made Easy</span>
+    </h1>
+    <p class="text-lg text-gray-300 mb-6">India’s trusted network for Real Estate, Agri & Business Deals</p>
+    <a href="#brickshare" class="bg-yellow-400 text-black px-6 py-3 rounded-full font-semibold hover:bg-yellow-300 transition">
+      Explore Opportunities
+    </a>
+  </div>
+</section>
+
+<!-- ✅ Footer -->
+<footer class="bg-[#0f172a] text-white text-center py-6 mt-10">
+  <p class="font-semibold">© 2025 GAD Capital. All rights reserved.</p>
+  <p class="text-sm">📧 support@gadcapital.in | 📞 WhatsApp: +91-9136913890</p>
+</footer>
+
+<!-- ✅ Toggle Script -->
 <script>
-  const btn = document.getElementById("menu-btn");
-  const menu = document.getElementById("mobile-menu");
-  btn.addEventListener("click", () => {
-    menu.classList.toggle("hidden");
+  document.addEventListener('DOMContentLoaded', () => {
+    const btn = document.getElementById(\"menu-btn\");
+    const menu = document.getElementById(\"mobile-menu\");
+    btn.addEventListener(\"click\", () => {
+      menu.classList.toggle(\"hidden\");
+    });
   });
 </script>
+
 </body>
 </html>
