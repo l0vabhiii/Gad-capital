@@ -6,21 +6,13 @@
   <title>GAD Capital - Smart Investment</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="icon" href="favicon.png" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     html { scroll-behavior: smooth; }
-    body { font-family: 'Poppins', sans-serif; }
-    #mobile-menu { display: none; }
-    .animate-fade-in {
-      animation: fadeIn 1.2s ease-out both;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+    body { font-family: 'Inter', sans-serif; }
   </style>
 </head>
-<body class="bg-[#0f172a] text-white font-sans">
+<body class="bg-[#0f172a] text-white">
 
 <!-- ✅ WhatsApp CTA -->
 <a href="https://wa.me/919136913890" target="_blank"
@@ -29,14 +21,13 @@
 </a>
 
 <!-- ✅ Navbar -->
-<header class="bg-[#1e293b] fixed top-0 w-full z-50">
+<header class="bg-[#1e293b] fixed top-0 w-full z-50 shadow-md">
   <div class="max-w-7xl mx-auto flex justify-between items-center px-4 py-4">
     <a href="#home" class="flex items-center gap-2">
       <img src="logo.png" alt="GAD Capital" class="h-8" />
-      <span class="text-yellow-400 font-bold text-xl">GAD Capital</span>
+      <span class="text-white text-lg font-semibold tracking-wide">GAD Capital</span>
     </a>
-    <!-- Desktop Nav -->
-    <nav class="hidden md:flex space-x-5 text-sm">
+    <nav class="hidden md:flex space-x-6 text-sm">
       <a href="#home" class="hover:text-yellow-400">Home</a>
       <a href="#brickshare" class="hover:text-yellow-400">BrickShare</a>
       <a href="#agriventure" class="hover:text-yellow-400">AgriVenture</a>
@@ -46,18 +37,16 @@
       <a href="#about" class="hover:text-yellow-400">About</a>
       <a href="#contact" class="hover:text-yellow-400">Contact</a>
       <a href="#partner" class="hover:text-yellow-400">Partner Program</a>
-      <a href="signup.html" class="hover:text-yellow-400">Sign Up</a>
-      <a href="login.html" class="bg-yellow-400 text-black px-3 py-1 rounded hover:bg-yellow-300">Login</a>
+      <a href="signup.html" class="text-yellow-400 font-semibold">Sign Up</a>
+      <a href="login.html" class="text-white font-semibold">Login</a>
     </nav>
-    <!-- Mobile Menu Icon -->
     <button id="menu-btn" class="md:hidden text-white focus:outline-none">
       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
       </svg>
     </button>
   </div>
-  <!-- Mobile Dropdown -->
-  <div id="mobile-menu" class="md:hidden px-4 pb-4 space-y-2 bg-[#1e293b] hidden">
+  <div id="mobile-menu" class="hidden md:hidden px-4 pb-4 space-y-2 bg-[#1e293b]">
     <a href="#home" class="block hover:text-yellow-300">Home</a>
     <a href="#brickshare" class="block hover:text-yellow-300">BrickShare</a>
     <a href="#agriventure" class="block hover:text-yellow-300">AgriVenture</a>
@@ -67,33 +56,41 @@
     <a href="#about" class="block hover:text-yellow-300">About</a>
     <a href="#contact" class="block hover:text-yellow-300">Contact</a>
     <a href="#partner" class="block hover:text-yellow-300">Partner Program</a>
-    <a href="signup.html" class="block hover:text-yellow-300">Sign Up</a>
-    <a href="login.html" class="block hover:text-yellow-300 font-bold">Login</a>
+    <a href="signup.html" class="block text-yellow-400 font-semibold">Sign Up</a>
+    <a href="login.html" class="block text-white font-semibold">Login</a>
   </div>
 </header>
+
+<script>
+  const menuBtn = document.getElementById('menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  menuBtn.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+  });
+</script>
 
 <!-- ✅ Hero Section -->
 <section id="home" class="h-screen flex items-center justify-center bg-cover bg-center relative" style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80'); padding-top: 64px;">
   <div class="absolute inset-0 bg-black bg-opacity-60"></div>
-  <div class="relative z-10 text-center px-6 animate-fade-in">
-    <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-4 tracking-wide leading-tight">
+  <div class="relative z-10 text-center px-6">
+    <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">
       Smart Investments <span class="text-yellow-400">Made Easy</span>
     </h1>
     <p class="text-lg text-gray-300 mb-6">India’s trusted network for Real Estate, Agri & Business Deals</p>
     <a href="#brickshare" class="bg-yellow-400 text-black px-6 py-3 rounded-full font-semibold hover:bg-yellow-300 transition">
       Explore Opportunities
     </a>
-    <p class="mt-4 text-sm text-white">⚡ For daily updates, <a href="login.html" class="underline text-yellow-400">Login</a> or <a href="signup.html" class="underline text-yellow-400">Sign Up</a> now!</p>
+    <p class="mt-4 text-sm text-yellow-300 font-medium">
+      ⚡ For daily updates, <a href="login.html" class="underline text-white">Login</a> or <a href="signup.html" class="underline text-white">Sign Up</a> now!
+    </p>
   </div>
 </section>
 
-<script>
-  // ✅ Mobile menu toggle
-  document.getElementById('menu-btn').addEventListener('click', () => {
-    const menu = document.getElementById('mobile-menu');
-    menu.classList.toggle('hidden');
-  });
-</script>
+<!-- ✅ Footer -->
+<footer class="bg-[#0f172a] text-white text-center py-6 mt-10">
+  <p class="font-semibold">© 2025 GAD Capital. All rights reserved.</p>
+  <p class="text-sm">📧 support@gadcapital.in | 📞 WhatsApp: +91-9136913890</p>
+</footer>
 
 </body>
 </html>
