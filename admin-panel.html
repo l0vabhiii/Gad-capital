@@ -3,29 +3,35 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Admin Panel – GAD Capital</title>
+  <title>GAD Capital Admin Panel</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body class="bg-gray-900 text-white min-h-screen flex items-center justify-center">
 
-  <div class="max-w-5xl w-full bg-gray-800 p-6 rounded-lg shadow-lg">
-    <h1 class="text-3xl font-bold mb-6 text-center">🛡️ GAD Capital Admin Panel</h1>
-
-    <div id="admin-data" class="space-y-4">
-      <p>Loading registered users...</p>
+  <div class="w-full max-w-2xl bg-gray-800 p-6 rounded-lg shadow-lg">
+    <!-- Login Section -->
+    <div id="login-section">
+      <h2 class="text-2xl font-bold text-center mb-4">🛡️ Admin Login</h2>
+      <input id="username" type="text" placeholder="Username (e.g. kdurga)" class="w-full mb-3 px-4 py-2 rounded bg-gray-700 text-white">
+      <input id="password" type="password" placeholder="Password" class="w-full mb-3 px-4 py-2 rounded bg-gray-700 text-white">
+      <button onclick="loginAdmin()" class="w-full bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded text-white font-semibold">Login</button>
+      <p id="login-msg" class="mt-3 text-sm text-center text-red-400"></p>
     </div>
 
-    <div class="text-center mt-8">
-      <button id="logoutBtn" class="bg-red-600 hover:bg-red-700 px-6 py-2 rounded-lg text-white font-semibold">
-        Logout
-      </button>
+    <!-- Panel Section (Hidden Initially) -->
+    <div id="panel-section" class="hidden">
+      <h1 class="text-3xl font-bold text-center mb-6">👥 Registered Users</h1>
+      <div id="admin-data" class="space-y-4 mb-6">Loading users...</div>
+      <div class="text-center">
+        <button id="logoutBtn" class="bg-red-600 hover:bg-red-700 px-6 py-2 rounded-lg text-white font-semibold">Logout</button>
+      </div>
     </div>
   </div>
 
-  <!-- Firebase Modular SDK (v9+) -->
+  <!-- Firebase Scripts -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
-    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js";
+    import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js";
     import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
 
     const firebaseConfig = {
@@ -38,33 +44,59 @@
     };
 
     const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
     const auth = getAuth(app);
+    const db = getFirestore(app);
 
-    const allowedAdmins = [
-      "admin@gadcapital.in",
-      "operationals@gadcapital.in",
-      "coo@gadcapital.in"
-    ];
+    // Username to Email mapping
+    const usernameToEmail = {
+      "kdurga": "kdurga@gadcapital.in",
+      "abhishek": "abhishek@gadcapital.in"
+    };
 
+    // Login Function
+    window.loginAdmin = async function () {
+      const username = document.getElementById("username").value.trim();
+      const password = document.getElementById("password").value.trim();
+      const email = usernameToEmail[username];
+      const msg = document.getElementById("login-msg");
+
+      if (!email) {
+        msg.innerText = "❌ Invalid username";
+        return;
+      }
+
+      try {
+        await signInWithEmailAndPassword(auth, email, password);
+        showPanel();
+      } catch (error) {
+        msg.innerText = "❌ " + error.message;
+      }
+    };
+
+    // Check if already logged in
     onAuthStateChanged(auth, (user) => {
-      if (!user || !allowedAdmins.includes(user.email)) {
-        alert("Access denied ❌\nOnly admins can view this panel.");
-        window.location.href = "admin-login.html";
-      } else {
-        loadUsers();
+      if (user && Object.values(usernameToEmail).includes(user.email)) {
+        showPanel();
       }
     });
 
+    // Logout
     document.getElementById("logoutBtn").addEventListener("click", () => {
       signOut(auth).then(() => {
-        window.location.href = "admin-login.html";
+        document.getElementById("panel-section").classList.add("hidden");
+        document.getElementById("login-section").classList.remove("hidden");
       });
     });
 
-    async function loadUsers() {
+    // Show admin panel
+    async function showPanel() {
+      document.getElementById("login-section").classList.add("hidden");
+      document.getElementById("panel-section").classList.remove("hidden");
+
       const querySnapshot = await getDocs(collection(db, "users"));
-      let output = '<h2 class="text-2xl font-bold mb-4">👥 Registered Users</h2>';
+      const adminData = document.getElementById("admin-data");
+      let output = "";
+
       querySnapshot.forEach((doc) => {
         const user = doc.data();
         output += `
@@ -76,7 +108,8 @@
           </div>
         `;
       });
-      document.getElementById('admin-data').innerHTML = output;
+
+      adminData.innerHTML = output || "<p class='text-gray-400'>No users found.</p>";
     }
   </script>
 </body>
