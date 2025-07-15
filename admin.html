@@ -33,7 +33,7 @@
   </div>
 </header>
 
-<!-- ✅ Dropdown Script -->
+<!-- ✅ Menu Script -->
 <script>
   document.getElementById('menu-btn').addEventListener('click', () => {
     document.getElementById('dropdown').classList.toggle('hidden');
@@ -75,9 +75,13 @@
   const auth = getAuth(app);
   const db = getFirestore(app);
 
-  // ✅ Login Check
+  // ✅ Admin Security Check
+  const allowedAdmins = ["kdurga@gadcapital.in", "abhishek@gadcapital.in"];
   onAuthStateChanged(auth, user => {
-    if (!user) window.location.href = "login.html";
+    if (!user || !allowedAdmins.includes(user.email)) {
+      alert("⛔ Access Denied! Admins Only.");
+      window.location.href = "login.html";
+    }
   });
 
   // ✅ Logout
