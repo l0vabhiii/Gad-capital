@@ -56,12 +56,21 @@
     <a href="#contact" class="block hover:text-yellow-300">Contact</a>
     <a href="#partner" class="block hover:text-yellow-300">Partner Program</a>
     <a href="signup.html" class="block hover:text-yellow-300">Sign Up</a>
-    <a href="user-login.html" class="block hover:text-yellow-300 font-bold">Login</a>
+    <a href="login.html" class="block hover:text-yellow-300 font-bold">Login</a>
   </div>
 </header>
 
+<!-- ✅ Script to toggle mobile menu -->
+<script>
+  const menuBtn = document.getElementById('menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  menuBtn.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+  });
+</script>
+
 <!-- ✅ Hero Section -->
-<section id="home" class="h-screen flex items-center justify-center bg-cover bg-center relative pt-20" style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80');">
+<section id="home" class="h-screen flex items-center justify-center bg-cover bg-center relative" style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80'); padding-top: 64px;">
   <div class="absolute inset-0 bg-black bg-opacity-60"></div>
   <div class="relative z-10 text-center px-6">
     <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">
@@ -79,17 +88,6 @@
   <p class="font-semibold">© 2025 GAD Capital. All rights reserved.</p>
   <p class="text-sm">📧 support@gadcapital.in | 📞 WhatsApp: +91-9136913890</p>
 </footer>
-
-<!-- ✅ Toggle Script -->
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const btn = document.getElementById(\"menu-btn\");
-    const menu = document.getElementById(\"mobile-menu\");
-    btn.addEventListener(\"click\", () => {
-      menu.classList.toggle(\"hidden\");
-    });
-  });
-</script>
 
 </body>
 </html>
