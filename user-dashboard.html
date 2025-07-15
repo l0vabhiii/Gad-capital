@@ -8,6 +8,13 @@
   <style>
     body { font-family: 'Inter', sans-serif; }
     html { scroll-behavior: smooth; }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .fade-in-up {
+      animation: fadeInUp 0.7s ease-out both;
+    }
   </style>
 </head>
 <body class="bg-gray-100 text-gray-900">
@@ -17,6 +24,29 @@
   <h1 class="text-xl font-bold">👋 Welcome to GAD Capital Dashboard</h1>
   <button onclick="logout()" class="bg-red-500 hover:bg-red-600 px-4 py-2 rounded text-sm font-semibold">Logout</button>
 </header>
+
+<!-- ✅ Impact Section -->
+<section class="p-6 max-w-6xl mx-auto mt-6 bg-white rounded shadow fade-in-up">
+  <h2 class="text-2xl font-bold mb-6 text-[#0f172a] text-center">📊 Our Impact</h2>
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+    <div class="bg-gray-100 p-6 rounded shadow-md">
+      <p class="text-3xl font-bold text-yellow-500">400+</p>
+      <p class="text-gray-700">Investors</p>
+    </div>
+    <div class="bg-gray-100 p-6 rounded shadow-md">
+      <p class="text-3xl font-bold text-yellow-500">₹5 Cr+</p>
+      <p class="text-gray-700">Invested</p>
+    </div>
+    <div class="bg-gray-100 p-6 rounded shadow-md">
+      <p class="text-3xl font-bold text-yellow-500">10</p>
+      <p class="text-gray-700">Cities</p>
+    </div>
+    <div class="bg-gray-100 p-6 rounded shadow-md">
+      <p class="text-3xl font-bold text-yellow-500">4</p>
+      <p class="text-gray-700">Countries</p>
+    </div>
+  </div>
+</section>
 
 <!-- ✅ AgriVenture Section -->
 <section class="p-6 max-w-6xl mx-auto mt-6 bg-white rounded shadow">
@@ -30,7 +60,6 @@
       <h3 class="font-semibold text-lg">Aquaponics Fish + Lettuce</h3>
       <p>💰 ₹5L | Profit: ₹45–50K/month | ROI: 144%</p>
     </div>
-    <!-- More cards... (you can continue with rest from PDF) -->
   </div>
 </section>
 
@@ -48,7 +77,6 @@
       <p>Type: Co-Living Studios | Invest: ₹30L | Return: ₹14–18K/month</p>
       <p>ROI: 7% Rent + 9% Appreciation</p>
     </div>
-    <!-- More cards... -->
   </div>
 </section>
 
@@ -68,8 +96,19 @@
       <p class="mt-2">Supply and install integrated security systems for local govt buildings.</p>
       <p class="text-sm text-gray-500 mt-1">🗓️ Deadline: 20-Jul-2025</p>
     </div>
-    <!-- More tenders from PDF -->
   </div>
+</section>
+
+<!-- ✅ Contact Section -->
+<section class="p-6 max-w-3xl mx-auto mt-10 bg-white rounded shadow">
+  <h2 class="text-2xl font-bold mb-4 text-[#0f172a] text-center">📬 Contact Us</h2>
+  <form class="space-y-4">
+    <input type="text" placeholder="Your Name" class="w-full p-3 rounded border border-gray-300" required />
+    <input type="email" placeholder="Email" class="w-full p-3 rounded border border-gray-300" required />
+    <textarea placeholder="Your Message" class="w-full p-3 rounded border border-gray-300" rows="4" required></textarea>
+    <button type="submit" class="bg-yellow-400 text-black px-6 py-2 rounded hover:bg-yellow-300">Send Message</button>
+  </form>
+  <p class="text-center text-sm mt-4">📞 WhatsApp: +91-9136913890 | 📧 support@gadcapital.in</p>
 </section>
 
 <!-- ✅ Footer -->
