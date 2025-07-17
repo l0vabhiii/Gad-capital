@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Login - GAD Capital</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background-color: #0f172a;
+      font-family: sans-serif;
+    }
+  </style>
+</head>
+<body class="flex items-center justify-center min-h-screen text-white">
+
+<div class="bg-[#1e293b] p-8 rounded-lg shadow-lg w-full max-w-md">
+  <h2 class="text-2xl font-bold text-yellow-400 mb-6 text-center">Admin Login</h2>
+  <form id="adminLoginForm" class="space-y-4">
+    <input type="email" id="email" placeholder="Admin Email" required
+           class="w-full px-4 py-2 rounded bg-gray-800 border border-gray-600 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-400" />
+    <input type="password" id="password" placeholder="Password" required
+           class="w-full px-4 py-2 rounded bg-gray-800 border border-gray-600 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-400" />
+    <button type="submit"
+            class="w-full bg-yellow-400 text-black py-2 rounded font-semibold hover:bg-yellow-300 transition">
+      Login
+    </button>
+  </form>
+  <p id="error" class="text-red-400 text-sm mt-4 text-center"></p>
+</div>
+
+<!-- ✅ Firebase Login Script -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
+  import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyAoOcgmwn6F9hdl0Es9hpTUXNerukbcyHs",
+    authDomain: "gad-capital.firebaseapp.com",
+    projectId: "gad-capital",
+    storageBucket: "gad-capital.appspot.com",
+    messagingSenderId: "978239151328",
+    appId: "1:978239151328:web:2795c165105c4485d8c485"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  const form = document.getElementById('adminLoginForm');
+  const errorText = document.getElementById('error');
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const email = form.email.value.trim();
+    const password = form.password.value;
+
+    signInWithEmailAndPassword(auth, email, password)
+      .then(() => {
+        window.location.href = "admin.html";
+      })
+      .catch((error) => {
+        errorText.textContent = "Invalid credentials or unauthorized access.";
+      });
+  });
+</script>
+
+</body>
+</html>
