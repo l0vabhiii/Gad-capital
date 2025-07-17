@@ -3,27 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GAD Capital - User Dashboard</title>
+  <title>User Dashboard - GAD Capital</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     body {
-      font-family: 'Inter', sans-serif;
+      font-family: 'Poppins', sans-serif;
       background-color: #f8fafc;
     }
     html { scroll-behavior: smooth; }
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(40px); }
+    @keyframes countUp {
+      from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
-    .fade-in-up {
-      animation: fadeInUp 0.8s ease-out both;
-    }
-    .countup {
-      font-size: 2rem;
-      font-weight: bold;
-      color: #2563eb;
-    }
+    .fade-in { animation: countUp 1s ease-out both; }
   </style>
 </head>
 <body class="text-gray-900">
@@ -31,99 +24,99 @@
 <!-- ✅ Header -->
 <header class="bg-[#1e293b] text-white p-4 flex justify-between items-center shadow relative">
   <h1 class="text-xl font-bold">👋 Welcome to GAD Capital Dashboard</h1>
-  <!-- Menu Button -->
   <div class="relative">
     <button id="menu-btn" class="text-white focus:outline-none">
       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
       </svg>
     </button>
-    <div id="dropdown" class="absolute right-0 mt-2 w-44 bg-white text-gray-800 rounded shadow-lg hidden z-50">
+    <div id="dropdown" class="absolute right-0 mt-2 w-40 bg-white text-gray-800 rounded shadow-lg hidden z-50">
       <a href="#contact" class="block px-4 py-2 hover:bg-gray-100">📬 Contact Us</a>
-      <a href="https://wa.me/919136913890?text=Hello%20GAD%20Capital" class="block px-4 py-2 hover:bg-gray-100">💬 WhatsApp</a>
+      <a href="https://wa.me/919136913890" target="_blank" class="block px-4 py-2 hover:bg-gray-100">💬 WhatsApp</a>
       <button onclick="logout()" class="w-full text-left px-4 py-2 hover:bg-gray-100">🚪 Logout</button>
     </div>
   </div>
 </header>
 
-<!-- ✅ Menu Script -->
+<!-- ✅ Toggle Dropdown -->
 <script>
   document.getElementById('menu-btn').addEventListener('click', () => {
     document.getElementById('dropdown').classList.toggle('hidden');
   });
 </script>
 
-<!-- ✅ Impact Section -->
-<section class="text-center py-12 bg-white fade-in-up">
-  <h2 class="text-3xl font-bold text-gray-800 mb-4">Our Global Impact</h2>
-  <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto">
-    <div><div class="countup" id="investors">0</div><p>Investors</p></div>
-    <div><div class="countup" id="amount">0</div><p>₹ Invested</p></div>
-    <div><div class="countup" id="cities">0</div><p>Cities</p></div>
-    <div><div class="countup" id="countries">0</div><p>Countries</p></div>
+<!-- ✅ Impact Counters -->
+<section class="bg-white py-10 text-center">
+  <div class="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-blue-900 text-lg font-semibold">
+    <div class="fade-in">
+      <div class="text-3xl font-bold text-yellow-500">400+</div>
+      <p>Investors</p>
+    </div>
+    <div class="fade-in">
+      <div class="text-3xl font-bold text-yellow-500">₹5Cr+</div>
+      <p>Invested</p>
+    </div>
+    <div class="fade-in">
+      <div class="text-3xl font-bold text-yellow-500">10</div>
+      <p>Cities</p>
+    </div>
+    <div class="fade-in">
+      <div class="text-3xl font-bold text-yellow-500">4</div>
+      <p>Countries</p>
+    </div>
   </div>
 </section>
 
-<!-- ✅ Sections: Brickshare, AgriVenture, Tenders, Buy/Sell -->
-<section class="py-10 px-4">
+<!-- ✅ Project Sections (example: Brickshare) -->
+<section class="bg-gray-100 py-12 px-4">
   <div class="max-w-6xl mx-auto space-y-8">
-    <div class="bg-white shadow-lg p-6 rounded-lg fade-in-up">
-      <h3 class="text-xl font-semibold mb-2">🏢 Brickshare Projects</h3>
-      <p>Brickshare real estate projects across India with investment opportunities.</p>
+    <div class="bg-white p-6 rounded shadow fade-in">
+      <h2 class="text-xl font-bold mb-2 text-[#1e293b]">🏠 BrickShare Investments</h2>
+      <p class="text-gray-700">Real estate-backed fractional investments. Minimum ticket size ₹25,000. Verified properties across Bangalore, Hyderabad & Pune.</p>
     </div>
-    <div class="bg-white shadow-lg p-6 rounded-lg fade-in-up">
-      <h3 class="text-xl font-semibold mb-2">🌾 AgriVenture Opportunities</h3>
-      <p>Modern agriculture investments with high return potentials and transparency.</p>
+    <div class="bg-white p-6 rounded shadow fade-in">
+      <h2 class="text-xl font-bold mb-2 text-[#1e293b]">🌱 AgriVenture Projects</h2>
+      <p class="text-gray-700">Invest in agri-farming & greenhouse leasing. Get 12–15% returns p.a. All projects have certified land lease agreements.</p>
     </div>
-    <div class="bg-white shadow-lg p-6 rounded-lg fade-in-up">
-      <h3 class="text-xl font-semibold mb-2">📑 Tenders & Contracts</h3>
-      <p>Latest government and private tenders published for partners and vendors.</p>
+    <div class="bg-white p-6 rounded shadow fade-in">
+      <h2 class="text-xl font-bold mb-2 text-[#1e293b]">📑 Private Tenders & Bids</h2>
+      <p class="text-gray-700">We source tenders from private infra and manufacturing clients. Work with vetted execution teams & shared profits model.</p>
     </div>
-    <div class="bg-white shadow-lg p-6 rounded-lg fade-in-up">
-      <h3 class="text-xl font-semibold mb-2">🛒 Buy & Sell Platform</h3>
-      <p>Post your business or investment product. <a href="#" class="text-blue-600">Click here to list</a>.</p>
+    <div class="bg-white p-6 rounded shadow fade-in">
+      <h2 class="text-xl font-bold mb-2 text-[#1e293b]">🛒 Buy / Sell Deals</h2>
+      <p class="text-gray-700">Buy or sell businesses, properties, agri farms or machinery through our B2B network. Manual post form available soon.</p>
     </div>
   </div>
 </section>
 
-<!-- ✅ Contact Section -->
-<section id="contact" class="bg-[#1e293b] text-white py-10 text-center">
-  <h3 class="text-2xl font-semibold mb-4">Contact GAD Capital</h3>
-  <p>Email: customercare@gadcapital.in</p>
-  <p>Address: 1st Floor, 27th Main, HSR Layout, Sector 1, Bangalore</p>
-</section>
-
-<!-- ✅ Disclaimer Section -->
-<section class="text-sm p-6 bg-blue-900 text-white leading-relaxed">
-  <div class="max-w-4xl mx-auto">
-    <p>Investment opportunities are private placements not insured by FDIC or any government agency. Risks involved. Read full offering circulars before investing.</p>
-    <p>Projected returns are not guaranteed. Investments may lose value. GAD Capital does not provide legal/financial advice. Consult professionals before making decisions.</p>
+<!-- ✅ Footer (Company Info OG Style) -->
+<footer class="bg-[#0f172a] text-white px-6 py-10 text-sm font-light">
+  <div class="max-w-6xl mx-auto grid gap-10 md:grid-cols-3">
+    <div>
+      <h4 class="text-lg font-semibold text-yellow-400 mb-3">About GAD Capital</h4>
+      <p class="text-gray-300 leading-relaxed">
+        GAD Capital is India’s trusted platform for investment in Real Estate, Agriculture, Private Tenders & Business Deals. We connect investors to scalable, verified projects across India and select countries. Built with a mission to empower financial growth through trusted opportunities.
+      </p>
+    </div>
+    <div>
+      <h4 class="text-lg font-semibold text-yellow-400 mb-3">Contact Information</h4>
+      <ul class="space-y-2 text-gray-300">
+        <li>📍 1st Floor, 27th Main, HSR Layout, Sector 1, Bangalore</li>
+        <li>📧 <a href="mailto:customercare@gadcapital.in" class="underline">customercare@gadcapital.in</a></li>
+        <li>💬 <a href="https://wa.me/919136913890" class="underline">+91 9136913890 (WhatsApp)</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="text-lg font-semibold text-yellow-400 mb-3">Disclaimer</h4>
+      <p class="text-gray-400 leading-relaxed text-justify">
+        GAD Capital does not guarantee any investment returns. All offerings are subject to risk. Investors are advised to consult legal and financial advisors before investing. We do not offer bank deposits or government-backed securities.
+      </p>
+    </div>
   </div>
-</section>
-
-<!-- ✅ Counter Script -->
-<script>
-  const counters = [
-    { id: 'investors', end: 400 },
-    { id: 'amount', end: 5 },
-    { id: 'cities', end: 10 },
-    { id: 'countries', end: 4 },
-  ];
-  counters.forEach(({id, end}) => {
-    let start = 0;
-    const el = document.getElementById(id);
-    const inc = end / 100;
-    const interval = setInterval(() => {
-      start += inc;
-      if (start >= end) {
-        el.innerText = id === 'amount' ? `₹${end} Cr+` : `${end}+`;
-        clearInterval(interval);
-      } else {
-        el.innerText = id === 'amount' ? `₹${Math.floor(start)} Cr` : `${Math.floor(start)}+`;
-      }
-    }, 20);
-  });
-</script>
+  <div class="text-center mt-10 text-gray-500 border-t border-gray-700 pt-6 text-xs">
+    © 2025 GAD Capital. All rights reserved. | Powered by MidowWebCreater
+  </div>
+</footer>
 
 <!-- ✅ Firebase Auth Check -->
 <script type="module">
