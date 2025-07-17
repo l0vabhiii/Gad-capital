@@ -2,30 +2,41 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>User Dashboard - GAD Capital</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     html { scroll-behavior: smooth; }
-    body { font-family: 'Inter', sans-serif; background: #f1f5f9; color: #1e293b; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #0f172a;
+      color: white;
+    }
+    .fade-up {
+      animation: fadeUp 0.8s ease-in-out both;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
   </style>
 </head>
 <body>
 
 <!-- ✅ Header -->
-<header class="bg-[#1e293b] text-white p-4 flex justify-between items-center shadow relative">
-  <h1 class="text-lg font-bold">👋 Welcome to GAD Capital</h1>
+<header class="bg-[#1e293b] p-4 flex justify-between items-center">
+  <h1 class="text-xl font-bold text-yellow-400">GAD Capital</h1>
   <div class="relative">
     <button id="menu-btn" class="text-white">
       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
       </svg>
     </button>
-    <div id="dropdown" class="absolute right-0 mt-2 w-48 bg-white text-gray-800 rounded shadow hidden z-50">
-      <a href="#contact" class="block px-4 py-2 hover:bg-gray-100">📬 Contact Us</a>
-      <a href="https://wa.me/919136913890" class="block px-4 py-2 hover:bg-gray-100" target="_blank">💬 WhatsApp</a>
-      <a href="#sell-property" class="block px-4 py-2 hover:bg-gray-100">📤 Sell Property</a>
+    <div id="dropdown" class="hidden absolute right-0 mt-2 w-48 bg-white text-gray-800 rounded shadow z-50">
+      <a href="#sell" class="block px-4 py-2 hover:bg-gray-100">📤 Sell Property</a>
+      <a href="#contact" class="block px-4 py-2 hover:bg-gray-100">📬 Contact</a>
+      <a href="https://wa.me/919136913890" class="block px-4 py-2 hover:bg-gray-100">💬 WhatsApp</a>
       <button onclick="logout()" class="w-full text-left px-4 py-2 hover:bg-gray-100">🚪 Logout</button>
     </div>
   </div>
@@ -37,45 +48,77 @@
   });
 </script>
 
-<!-- ✅ Dashboard Content -->
-<section class="py-10 px-4">
-  <div class="max-w-5xl mx-auto text-center">
-    <h2 class="text-3xl font-bold mb-4">📈 GAD Capital Impact</h2>
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-white">
-      <div class="bg-yellow-400 p-4 rounded">400+<br><small>Investors</small></div>
-      <div class="bg-yellow-400 p-4 rounded">₹5 Cr+<br><small>Invested</small></div>
-      <div class="bg-yellow-400 p-4 rounded">10<br><small>Cities</small></div>
-      <div class="bg-yellow-400 p-4 rounded">4<br><small>Countries</small></div>
-    </div>
+<!-- ✅ Impact Section -->
+<section class="py-10 text-center bg-[#0f172a]">
+  <h2 class="text-3xl font-bold text-yellow-400 mb-6">📊 Our Impact</h2>
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
+    <div class="bg-yellow-400 text-black p-4 rounded">400+<br><small>Investors</small></div>
+    <div class="bg-yellow-400 text-black p-4 rounded">₹5 Cr+<br><small>Invested</small></div>
+    <div class="bg-yellow-400 text-black p-4 rounded">10<br><small>Cities</small></div>
+    <div class="bg-yellow-400 text-black p-4 rounded">4<br><small>Countries</small></div>
+  </div>
+</section>
+
+<!-- ✅ BrickShare Section -->
+<section id="brickshare" class="py-10 px-4">
+  <h2 class="text-2xl font-bold text-yellow-400 text-center mb-6">🧱 BrickShare Projects</h2>
+  <div class="bg-[#1e293b] p-4 rounded max-w-4xl mx-auto text-white">
+    <p>This section includes all real estate co-investment opportunities. Users can explore fractional ownership options.</p>
+  </div>
+</section>
+
+<!-- ✅ AgriVenture Section -->
+<section id="agriventure" class="py-10 px-4">
+  <h2 class="text-2xl font-bold text-yellow-400 text-center mb-6">🌱 AgriVenture Deals</h2>
+  <div class="bg-[#1e293b] p-4 rounded max-w-4xl mx-auto text-white">
+    <p>Explore agricultural investment opportunities including agri-land and yield-based funding ventures.</p>
+  </div>
+</section>
+<!-- ✅ Buy/Sell Section -->
+<section id="buy" class="py-10 px-4">
+  <h2 class="text-2xl font-bold text-yellow-400 text-center mb-6">🛒 Buy & Sell Marketplace</h2>
+  <div class="bg-[#1e293b] p-4 rounded max-w-4xl mx-auto text-white">
+    <p>Find live assets listed by users or developers. These include business assets, land, equity shares, and more.</p>
+  </div>
+</section>
+
+<!-- ✅ Tenders Section -->
+<section id="tenders" class="py-10 px-4">
+  <h2 class="text-2xl font-bold text-yellow-400 text-center mb-6">📜 Government Tenders</h2>
+  <div class="bg-[#1e293b] p-4 rounded max-w-4xl mx-auto text-white">
+    <p>Explore open tenders, infra projects, and construction bidding opportunities shared by government bodies.</p>
   </div>
 </section>
 
 <!-- ✅ Sell Property Section -->
-<section id="sell-property" class="bg-white py-10 px-4 md:px-10">
-  <div class="max-w-3xl mx-auto">
-    <h2 class="text-2xl font-bold text-center mb-6">📤 Post Your Property for Sale</h2>
-    <form id="sellForm" class="space-y-4 bg-gray-100 p-6 rounded shadow">
-      <input type="text" id="location" placeholder="📍 Property Location" required class="w-full p-2 rounded" />
-      <input type="number" id="price" placeholder="💰 Expected Price" required class="w-full p-2 rounded" />
-      <textarea id="description" rows="4" placeholder="📝 Property Description" required class="w-full p-2 rounded"></textarea>
-      <input type="text" id="contact" placeholder="📞 Your Contact Number" required class="w-full p-2 rounded" />
-      <button type="submit" class="bg-yellow-400 text-black px-6 py-2 rounded hover:bg-yellow-500 transition">Submit Property</button>
-      <p id="sellMsg" class="text-green-600 mt-2 hidden">✅ Submitted successfully!</p>
-    </form>
-  </div>
+<section id="sell" class="py-10 px-4">
+  <h2 class="text-2xl font-bold text-yellow-400 text-center mb-6">📤 Sell Your Property / Business</h2>
+  <form id="sellForm" class="bg-[#1e293b] p-6 rounded max-w-xl mx-auto space-y-4 text-white">
+    <input type="text" placeholder="Location" id="location" class="w-full p-2 rounded bg-gray-800 border border-gray-600" required />
+    <input type="text" placeholder="Expected Price" id="price" class="w-full p-2 rounded bg-gray-800 border border-gray-600" required />
+    <textarea placeholder="Property/Business Description" id="description" class="w-full p-2 rounded bg-gray-800 border border-gray-600" required></textarea>
+    <input type="text" placeholder="Contact Number" id="contact" class="w-full p-2 rounded bg-gray-800 border border-gray-600" required />
+    <button type="submit" class="bg-yellow-400 text-black px-6 py-2 rounded hover:bg-yellow-300 font-bold">Submit</button>
+    <p id="successMsg" class="text-green-400 hidden text-sm mt-2">✅ Submitted successfully!</p>
+  </form>
 </section>
 
 <!-- ✅ Contact Section -->
-<section id="contact" class="py-10 px-6 text-center bg-[#f8fafc]">
-  <h2 class="text-xl font-bold mb-2">📞 Need help?</h2>
-  <p class="text-gray-700 mb-1">📧 support@gadcapital.in</p>
-  <p class="text-gray-700">📱 WhatsApp: +91-9136913890</p>
+<section id="contact" class="py-10 text-center bg-[#0f172a]">
+  <h2 class="text-2xl font-bold text-yellow-400 mb-4">📞 Contact Us</h2>
+  <p>📧 support@gadcapital.in | 📍 Bangalore | 📱 WhatsApp: 9136913890</p>
 </section>
+
+<!-- ✅ Footer -->
+<footer class="bg-[#1e293b] text-white text-center py-6">
+  <p>© 2025 GAD Capital. All rights reserved.</p>
+  <p class="text-sm">1st Floor, 27th Main, HSR Layout, Sector 1, Bangalore</p>
+</footer>
 
 <!-- ✅ Firebase Script -->
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
-  import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
+  import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
   import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js";
 
   const firebaseConfig = {
@@ -91,39 +134,39 @@
   const db = getFirestore(app);
   const auth = getAuth(app);
 
-  onAuthStateChanged(auth, user => {
-    if (!user) window.location.href = 'login.html';
+  // 🔐 Login check
+  onAuthStateChanged(auth, (user) => {
+    if (!user) {
+      window.location.href = "login.html";
+    }
   });
 
-  window.logout = function () {
-    signOut(auth).then(() => window.location.href = 'login.html');
-  }
+  // 🚪 Logout
+  window.logout = function() {
+    signOut(auth).then(() => {
+      window.location.href = "login.html";
+    });
+  };
 
-  const sellForm = document.getElementById("sellForm");
-  const sellMsg = document.getElementById("sellMsg");
-
-  sellForm.addEventListener("submit", async (e) => {
+  // 📤 Sell Form Submit
+  document.getElementById("sellForm").addEventListener("submit", async (e) => {
     e.preventDefault();
-    const location = document.getElementById("location").value.trim();
-    const price = document.getElementById("price").value.trim();
-    const description = document.getElementById("description").value.trim();
-    const contact = document.getElementById("contact").value.trim();
+    const location = document.getElementById("location").value;
+    const price = document.getElementById("price").value;
+    const description = document.getElementById("description").value;
+    const contact = document.getElementById("contact").value;
 
     try {
       await addDoc(collection(db, "sell_posts"), {
-        location,
-        price,
-        description,
-        contact,
-        timestamp: serverTimestamp()
+        location, price, description, contact, date: new Date().toISOString()
       });
-      sellMsg.classList.remove("hidden");
-      sellForm.reset();
-    } catch (err) {
-      alert("Error saving: " + err.message);
+      document.getElementById("sellForm").reset();
+      document.getElementById("successMsg").classList.remove("hidden");
+    } catch (error) {
+      alert("❌ Error saving post.");
     }
   });
 </script>
 
 </body>
-      </html>
+</html>
