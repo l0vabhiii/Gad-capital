@@ -3,17 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>User Dashboard - GAD Capital</title>
+  <title>GAD Capital - User Dashboard</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="favicon.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
   <style>
-    body { font-family: 'Inter', sans-serif; background: #f8fafc; }
     html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
     @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(20px); }
+      from { opacity: 0; transform: translateY(40px); }
       to { opacity: 1; transform: translateY(0); }
     }
-    .fade-in-up { animation: fadeInUp 0.6s ease-out both; }
+    .fade-in-up { animation: fadeInUp 0.8s ease-out both; }
   </style>
 </head>
 <body class="text-gray-900">
@@ -21,17 +22,18 @@
 <!-- ✅ Header -->
 <header class="bg-[#1e293b] text-white p-4 flex justify-between items-center shadow relative">
   <h1 class="text-xl font-bold">👋 Welcome to GAD Capital Dashboard</h1>
-  <!-- Hamburger Menu -->
+  <!-- Menu Button -->
   <div class="relative">
     <button id="menu-btn" class="text-white focus:outline-none">
       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
       </svg>
     </button>
-    <div id="dropdown" class="absolute right-0 mt-2 w-48 bg-white text-gray-800 rounded shadow-lg hidden z-50">
+    <!-- Dropdown -->
+    <div id="dropdown" class="absolute right-0 mt-2 w-44 bg-white text-gray-800 rounded shadow-lg hidden z-50">
       <a href="#contact" class="block px-4 py-2 hover:bg-gray-100">📬 Contact Us</a>
-      <a href="https://wa.me/919136913890" class="block px-4 py-2 hover:bg-gray-100">💬 WhatsApp</a>
-      <a href="#sell" class="block px-4 py-2 hover:bg-gray-100">📤 Sell Property</a>
+      <a href="https://wa.me/919136913890" target="_blank" class="block px-4 py-2 hover:bg-gray-100">💬 WhatsApp</a>
+      <a href="#sell" class="block px-4 py-2 hover:bg-gray-100">🏠 Sell Property</a>
       <button onclick="logout()" class="w-full text-left px-4 py-2 hover:bg-gray-100">🚪 Logout</button>
     </div>
   </div>
@@ -43,81 +45,10 @@
   });
 </script>
 
-<!-- ✅ Impact Section -->
-<section class="text-center py-12 bg-white shadow-md fade-in-up">
-  <h2 class="text-2xl font-bold mb-4 text-[#1e293b]">🚀 Platform Stats</h2>
-  <div class="flex justify-center space-x-10 text-lg font-semibold text-gray-700">
-    <p>👥 400+ Investors</p>
-    <p>💰 ₹5 Cr+ Invested</p>
-    <p>🌆 10 Cities</p>
-    <p>🌎 4 Countries</p>
-  </div>
-</section>
-
-<!-- ✅ BrickShare / AgriVenture / BuySell / Tenders can go here -->
-
-<!-- ✅ Sell Property Form -->
-<section id="sell" class="max-w-2xl mx-auto px-4 py-10 bg-white mt-10 rounded shadow fade-in-up">
-  <h2 class="text-xl font-bold text-[#1e293b] mb-4">📤 Sell Your Property</h2>
-  <form id="sellForm" class="space-y-4">
-    <input type="text" placeholder="📍 Location" id="location" required class="w-full px-4 py-2 border rounded" />
-    <input type="text" placeholder="💰 Expected Price" id="price" required class="w-full px-4 py-2 border rounded" />
-    <input type="text" placeholder="📞 Contact Info" id="contact" required class="w-full px-4 py-2 border rounded" />
-    <textarea placeholder="🧾 Description" id="description" rows="4" class="w-full px-4 py-2 border rounded"></textarea>
-    <button type="submit" class="bg-[#1e293b] text-white px-4 py-2 rounded hover:bg-gray-800">Submit</button>
-  </form>
-  <p id="sell-msg" class="text-green-600 mt-2 hidden">✅ Submitted successfully!</p>
-</section>
-
-<!-- ✅ Filter & Listings -->
-<section class="max-w-6xl mx-auto px-4 py-10 fade-in-up">
-  <div class="flex justify-between items-center mb-6">
-    <h2 class="text-xl font-bold text-[#1e293b]">🏘️ Buy/Sell Listings</h2>
-    <div class="flex space-x-2">
-      <select id="filter-location" class="border px-3 py-1 rounded">
-        <option value="">📍 All Locations</option>
-      </select>
-      <select id="filter-price" class="border px-3 py-1 rounded">
-        <option value="">💰 Sort by Price</option>
-        <option value="low">Low → High</option>
-        <option value="high">High → Low</option>
-      </select>
-    </div>
-  </div>
-  <div id="listings" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
-</section>
-
-<!-- ✅ Footer -->
-<footer class="bg-[#0f172a] text-white px-6 py-10">
-  <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-sm">
-    <div>
-      <h3 class="text-lg font-bold text-yellow-400 mb-2">🏢 GAD Capital</h3>
-      <p>India’s Trusted Real Estate & Investment Company.</p>
-      <p class="mt-2">📍 1st Floor, 27th Main,<br>HSR Layout, Sector 1, Bangalore</p>
-    </div>
-    <div>
-      <h3 class="text-lg font-bold text-yellow-400 mb-2">📬 Contact</h3>
-      <p>📧 support@gadcapital.in</p>
-      <p>📱 WhatsApp: +91-9136913890</p>
-      <p>🌐 www.gadcapital.in</p>
-    </div>
-    <div>
-      <h3 class="text-lg font-bold text-yellow-400 mb-2">📱 Follow Us</h3>
-      <ul class="space-y-1">
-        <li><a href="#" class="hover:underline">LinkedIn</a></li>
-        <li><a href="#" class="hover:underline">Instagram</a></li>
-        <li><a href="#" class="hover:underline">Twitter</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="text-center text-xs text-gray-400 mt-8">© 2025 GAD Capital. All rights reserved.</div>
-</footer>
-
-<!-- ✅ Firebase Auth + Firestore -->
+<!-- ✅ Firebase Auth Check -->
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
   import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js";
-  import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
 
   const firebaseConfig = {
     apiKey: "AIzaSyAoOcgmwn6F9hdl0Es9hpTUXNerukbcyHs",
@@ -130,70 +61,159 @@
 
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
-  const db = getFirestore(app);
 
   onAuthStateChanged(auth, user => {
     if (!user) window.location.href = 'login.html';
   });
 
-  window.logout = () => {
-    signOut(auth).then(() => window.location.href = 'login.html');
+  window.logout = function() {
+    signOut(auth).then(() => {
+      window.location.href = 'login.html';
+    });
+  }
+</script>
+<!-- ✅ Hero Section -->
+<section class="bg-cover bg-center h-[80vh] relative" style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80');">
+  <div class="absolute inset-0 bg-black bg-opacity-60"></div>
+  <div class="relative z-10 flex flex-col items-center justify-center h-full text-white text-center px-4 fade-in-up">
+    <h1 class="text-4xl md:text-5xl font-bold">Smart Investments <span class="text-yellow-400">Made Easy</span></h1>
+    <p class="text-lg mt-3 text-gray-200">India’s trusted platform for Real Estate, Agriculture, and Business Deals</p>
+    <p class="mt-6 text-sm text-yellow-300 font-semibold">⚡ For latest listings and updates, scroll below!</p>
+  </div>
+</section>
+
+<!-- ✅ Impact Stats Section -->
+<section class="max-w-6xl mx-auto py-12 px-6 grid grid-cols-2 md:grid-cols-4 gap-6 text-center text-white bg-[#1e293b]">
+  <div class="fade-in-up"><h2 class="text-3xl font-bold">400+</h2><p>Investors</p></div>
+  <div class="fade-in-up"><h2 class="text-3xl font-bold">₹5 Cr+</h2><p>Invested</p></div>
+  <div class="fade-in-up"><h2 class="text-3xl font-bold">10</h2><p>Cities</p></div>
+  <div class="fade-in-up"><h2 class="text-3xl font-bold">4</h2><p>Countries</p></div>
+</section>
+
+<!-- ✅ BrickShare Section -->
+<section id="brickshare" class="max-w-6xl mx-auto py-12 px-6 fade-in-up">
+  <h2 class="text-2xl font-bold text-[#0f172a] mb-4">🏢 BrickShare</h2>
+  <p class="text-gray-700 mb-4">BrickShare is our real estate co-investment platform helping investors own a piece of property across cities with minimal capital.</p>
+  <ul class="list-disc list-inside text-gray-600 space-y-2">
+    <li>Access to premium real estate deals</li>
+    <li>Fractional ownership model</li>
+    <li>Managed property returns</li>
+  </ul>
+</section>
+
+<!-- ✅ AgriVenture Section -->
+<section id="agriventure" class="max-w-6xl mx-auto py-12 px-6 fade-in-up">
+  <h2 class="text-2xl font-bold text-[#0f172a] mb-4">🌾 AgriVenture</h2>
+  <p class="text-gray-700 mb-4">AgriVenture lets you invest directly into curated farm projects across India. You earn through agri-yields and land appreciation.</p>
+  <ul class="list-disc list-inside text-gray-600 space-y-2">
+    <li>Verified farmlands & partners</li>
+    <li>Seasonal yield-based income</li>
+    <li>Rural impact + profit returns</li>
+  </ul>
+</section>
+
+<!-- ✅ Tenders Section -->
+<section id="tenders" class="max-w-6xl mx-auto py-12 px-6 fade-in-up">
+  <h2 class="text-2xl font-bold text-[#0f172a] mb-4">📄 Government Tenders</h2>
+  <p class="text-gray-700 mb-4">We help startups and SMEs get verified government tenders across infrastructure, agri, and energy sectors. Gain faster access, and guidance.</p>
+  <ul class="list-disc list-inside text-gray-600 space-y-2">
+    <li>Bid support and documents prep</li>
+    <li>Real-time tender alerts</li>
+    <li>Success-based consulting</li>
+  </ul>
+</section>
+<!-- ✅ Buy/Sell Listings Section -->
+<section id="buy" class="max-w-6xl mx-auto py-12 px-6 fade-in-up">
+  <h2 class="text-2xl font-bold text-[#0f172a] mb-4">💼 Buy & Sell Marketplace</h2>
+  <p class="text-gray-700 mb-6">Find verified property, agri land, and businesses for sale. Or list your own directly!</p>
+
+  <!-- Filter (example UI only) -->
+  <div class="flex flex-wrap gap-4 mb-6">
+    <input type="text" id="filter-location" placeholder="Search by location" class="px-4 py-2 rounded border w-full md:w-1/3" />
+    <input type="number" id="filter-price" placeholder="Max price (₹)" class="px-4 py-2 rounded border w-full md:w-1/3" />
+    <button onclick="applyFilters()" class="bg-[#334155] text-white px-4 py-2 rounded hover:bg-[#1e293b]">Apply Filter</button>
+  </div>
+
+  <!-- Listings will load here -->
+  <div id="listing-container" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
+</section>
+
+<!-- ✅ Sell Property Form -->
+<section id="sell" class="max-w-3xl mx-auto bg-white shadow-lg rounded-lg p-6 mt-10 mb-16 fade-in-up">
+  <h2 class="text-2xl font-bold text-[#0f172a] mb-4">📤 Sell Your Property</h2>
+  <form id="sell-form" class="space-y-4">
+    <input type="text" id="p-title" required placeholder="Property Title" class="w-full px-4 py-2 border rounded" />
+    <input type="text" id="p-location" required placeholder="Location" class="w-full px-4 py-2 border rounded" />
+    <input type="number" id="p-price" required placeholder="Expected Price (₹)" class="w-full px-4 py-2 border rounded" />
+    <input type="text" id="p-contact" required placeholder="Your WhatsApp / Phone" class="w-full px-4 py-2 border rounded" />
+    <input type="url" id="p-image" placeholder="Image URL (optional)" class="w-full px-4 py-2 border rounded" />
+    <textarea id="p-desc" rows="4" required placeholder="Property Description" class="w-full px-4 py-2 border rounded"></textarea>
+    <button type="submit" class="bg-yellow-400 text-black px-6 py-2 rounded hover:bg-yellow-500 font-semibold">Submit Listing</button>
+  </form>
+</section>
+<!-- ✅ Firebase Integration -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
+  import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyAoOcgmwn6F9hdl0Es9hpTUXNerukbcyHs",
+    authDomain: "gad-capital.firebaseapp.com",
+    projectId: "gad-capital",
+    storageBucket: "gad-capital.appspot.com",
+    messagingSenderId: "978239151328",
+    appId: "1:978239151328:web:2795c165105c4485d8c485"
   };
 
-  document.getElementById('sellForm').addEventListener('submit', async (e) => {
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  // Handle form submit
+  const form = document.getElementById('sell-form');
+  form?.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const location = document.getElementById('location').value;
-    const price = document.getElementById('price').value;
-    const contact = document.getElementById('contact').value;
-    const description = document.getElementById('description').value;
+    const title = document.getElementById('p-title').value;
+    const location = document.getElementById('p-location').value;
+    const price = document.getElementById('p-price').value;
+    const contact = document.getElementById('p-contact').value;
+    const image = document.getElementById('p-image').value || "https://via.placeholder.com/300";
+    const desc = document.getElementById('p-desc').value;
 
-    await addDoc(collection(db, "sell_posts"), {
-      location, price: parseFloat(price), contact, description, date: new Date()
-    });
+    await addDoc(collection(db, "listings"), { title, location, price, contact, image, desc, date: new Date().toISOString() });
 
-    document.getElementById('sell-msg').classList.remove('hidden');
-    document.getElementById('sellForm').reset();
+    alert("Listing submitted successfully!");
+    form.reset();
     loadListings();
   });
 
+  // Load listings
   async function loadListings() {
-    const querySnapshot = await getDocs(collection(db, "sell_posts"));
-    let listings = [];
-    querySnapshot.forEach(doc => listings.push(doc.data()));
-
-    const locFilter = document.getElementById('filter-location').value;
-    const priceFilter = document.getElementById('filter-price').value;
-
-    if (locFilter) listings = listings.filter(item => item.location === locFilter);
-    if (priceFilter === 'low') listings.sort((a, b) => a.price - b.price);
-    else if (priceFilter === 'high') listings.sort((a, b) => b.price - a.price);
-
-    const container = document.getElementById('listings');
+    const container = document.getElementById('listing-container');
+    if (!container) return;
+    const querySnapshot = await getDocs(collection(db, "listings"));
     container.innerHTML = '';
-    const uniqueLocations = new Set();
-
-    listings.forEach(listing => {
-      uniqueLocations.add(listing.location);
+    querySnapshot.forEach((doc) => {
+      const data = doc.data();
       container.innerHTML += `
-        <div class="bg-white p-4 rounded shadow border hover:shadow-md transition">
-          <h3 class="text-lg font-bold text-[#1e293b] mb-1">${listing.location}</h3>
-          <p class="text-sm text-gray-700 mb-1">💰 ₹${listing.price}</p>
-          <p class="text-sm text-gray-700 mb-1">📞 ${listing.contact}</p>
-          <p class="text-sm text-gray-600 text-xs">${listing.description}</p>
+        <div class="bg-white rounded shadow p-4">
+          <img src="${data.image}" alt="Property" class="h-48 w-full object-cover rounded mb-3" />
+          <h3 class="text-lg font-semibold">${data.title}</h3>
+          <p class="text-sm text-gray-600">${data.location}</p>
+          <p class="text-yellow-700 font-bold mt-1">₹ ${data.price}</p>
+          <p class="text-sm text-gray-700 mt-2">${data.desc}</p>
+          <p class="mt-2 text-sm text-blue-700 font-medium">📞 ${data.contact}</p>
         </div>`;
-    });
-
-    const locSelect = document.getElementById('filter-location');
-    locSelect.innerHTML = '<option value="">📍 All Locations</option>';
-    [...uniqueLocations].forEach(loc => {
-      locSelect.innerHTML += `<option value="${loc}">${loc}</option>`;
     });
   }
 
-  document.getElementById('filter-location').addEventListener('change', loadListings);
-  document.getElementById('filter-price').addEventListener('change', loadListings);
   loadListings();
 </script>
 
-</body>
-</html>
+<!-- ✅ Footer with Company Details -->
+<footer class="bg-[#0f172a] text-white text-center py-8 mt-16 px-4">
+  <h3 class="text-xl font-bold text-yellow-400 mb-2">GAD Capital</h3>
+  <p class="text-sm">1st Floor, 27th Main, HSR Layout, Sector 1, Bangalore</p>
+  <p class="text-sm">📞 WhatsApp: <a href="https://wa.me/919136913890" class="underline">+91 91369 13890</a></p>
+  <p class="text-sm">📧 <a href="mailto:customercare@gadcapital.in" class="underline">customercare@gadcapital.in</a></p>
+  <p class="text-xs text-gray-400 mt-4">© 2025 GAD Capital. All rights reserved.</p>
+</footer>
