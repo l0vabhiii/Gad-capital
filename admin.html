@@ -2,65 +2,36 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Admin Panel - GAD Capital</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    body { font-family: 'Inter', sans-serif; background: #f8fafb; }
-    html { scroll-behavior: smooth; }
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .fade-in-up { animation: fadeInUp 0.6s ease-out both; }
+    body { font-family: sans-serif; background-color: #f1f5f9; }
+    .card { @apply p-4 rounded-lg shadow bg-white mb-4; }
   </style>
 </head>
 <body class="text-gray-800">
 
-<!-- ✅ Header -->
-<header class="bg-[#1e293b] text-white p-4 flex justify-between items-center shadow">
-  <h1 class="text-lg font-bold">🛡️ Admin Panel - GAD Capital</h1>
-  <div class="relative">
-    <button id="menu-btn">
-      <svg class="w-6 h-6" fill="none" stroke="white" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-      </svg>
-    </button>
-    <div id="dropdown" class="hidden absolute right-0 mt-2 bg-white text-black rounded shadow w-40 z-50">
-      <button onclick="logout()" class="w-full text-left px-4 py-2 hover:bg-gray-100">🚪 Logout</button>
-    </div>
-  </div>
+<!-- ✅ Admin Panel Header -->
+<header class="bg-[#1e293b] text-white px-6 py-4 flex justify-between items-center">
+  <h1 class="text-xl font-bold">Admin Dashboard - GAD Capital</h1>
+  <button onclick="logout()" class="bg-red-600 hover:bg-red-700 px-4 py-2 rounded">Logout</button>
 </header>
 
-<!-- ✅ Menu Script -->
-<script>
-  document.getElementById('menu-btn').addEventListener('click', () => {
-    document.getElementById('dropdown').classList.toggle('hidden');
-  });
-</script>
+<!-- ✅ Main Content -->
+<main class="max-w-5xl mx-auto py-6 px-4">
+  <h2 class="text-2xl font-semibold mb-4">📋 Registered Users</h2>
+  <div id="user-list"></div>
 
-<!-- ✅ Users List -->
-<section class="max-w-6xl mx-auto mt-8 bg-white rounded shadow p-6 fade-in-up">
-  <h2 class="text-xl font-bold mb-4 text-[#0f172a]">👤 Registered Users</h2>
-  <div id="user-list" class="space-y-4 text-sm text-gray-800">
-    <p>Loading users...</p>
-  </div>
-</section>
-
-<!-- ✅ Contact Messages -->
-<section class="max-w-6xl mx-auto mt-8 bg-white rounded shadow p-6 fade-in-up">
-  <h2 class="text-xl font-bold mb-4 text-[#0f172a]">📬 Contact Messages</h2>
-  <div id="contact-list" class="space-y-4 text-sm text-gray-800">
-    <p>Loading messages...</p>
-  </div>
-</section>
+  <h2 class="text-2xl font-semibold mt-10 mb-4">📩 Client Sell Inquiries</h2>
+  <div id="sell-list"></div>
+</main>
 
 <!-- ✅ Firebase Script -->
 <script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
-  import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js";
-  import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
+  import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js';
+  import { getFirestore, collection, getDocs } from 'https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js';
+  import { getAuth, signOut, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js';
 
   const firebaseConfig = {
     apiKey: "AIzaSyAoOcgmwn6F9hdl0Es9hpTUXNerukbcyHs",
@@ -72,62 +43,59 @@
   };
 
   const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
   const db = getFirestore(app);
+  const auth = getAuth(app);
 
-  // ✅ Admin Security Check
-  const allowedAdmins = ["kdurga@gadcapital.in", "abhishek@gadcapital.in"];
+  // 🔐 Only allow specific admin
   onAuthStateChanged(auth, user => {
-    if (!user || !allowedAdmins.includes(user.email)) {
-      alert("⛔ Access Denied! Admins Only.");
-      window.location.href = "login.html";
+    if (!user || user.email !== "admin@gadcapital.in") {
+      alert("Unauthorized access. Redirecting...");
+      window.location.href = "admin-login.html";
+    } else {
+      loadUsers();
+      loadSellData();
     }
   });
 
-  // ✅ Logout
+  // 🚪 Logout
   window.logout = function () {
-    signOut(auth).then(() => window.location.href = "login.html");
-  };
+    signOut(auth).then(() => window.location.href = 'admin-login.html');
+  }
 
-  // ✅ Load Users
-  const userList = document.getElementById('user-list');
+  // 📋 Load Users
   async function loadUsers() {
-    const snapshot = await getDocs(collection(db, "users"));
+    const querySnapshot = await getDocs(collection(db, "users"));
+    const userList = document.getElementById('user-list');
     userList.innerHTML = '';
-    snapshot.forEach(doc => {
+    querySnapshot.forEach(doc => {
       const u = doc.data();
       userList.innerHTML += `
-        <div class="p-4 border rounded bg-gray-50">
+        <div class="card">
           <p><strong>Email:</strong> ${u.email}</p>
-          <p><strong>Registered:</strong> ${u.date || 'N/A'}</p>
+          <p><strong>Date:</strong> ${u.date || 'N/A'}</p>
         </div>`;
     });
   }
 
-  // ✅ Load Contact Messages
-  const contactList = document.getElementById('contact-list');
-  async function loadMessages() {
-    const snapshot = await getDocs(collection(db, "contactMessages"));
-    contactList.innerHTML = '';
-    snapshot.forEach(doc => {
-      const m = doc.data();
-      contactList.innerHTML += `
-        <div class="p-4 border rounded bg-yellow-50">
-          <p><strong>Name:</strong> ${m.name}</p>
-          <p><strong>Email:</strong> ${m.email}</p>
-          <p><strong>Message:</strong> ${m.message}</p>
+  // 🏘️ Load Sell Listings
+  async function loadSellData() {
+    const querySnapshot = await getDocs(collection(db, "listings"));
+    const sellList = document.getElementById('sell-list');
+    sellList.innerHTML = '';
+    querySnapshot.forEach(doc => {
+      const p = doc.data();
+      sellList.innerHTML += `
+        <div class="card">
+          <h3 class="text-lg font-semibold">${p.title}</h3>
+          <p><strong>Location:</strong> ${p.location}</p>
+          <p><strong>Price:</strong> ₹${p.price}</p>
+          <p><strong>Contact:</strong> ${p.contact}</p>
+          <p><strong>Description:</strong> ${p.desc}</p>
+          <img src="${p.image}" alt="Property" class="h-40 w-full object-cover mt-2 rounded">
         </div>`;
     });
   }
-
-  loadUsers();
-  loadMessages();
 </script>
-
-<!-- ✅ Footer -->
-<footer class="text-center text-sm text-gray-600 py-6 mt-10">
-  © 2025 GAD Capital • admin@gadcapital.in
-</footer>
 
 </body>
 </html>
