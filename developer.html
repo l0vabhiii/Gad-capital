@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Developer Panel - GAD Capital</title>
   <script src="https://cdn.tailwindcss.com"></script>
@@ -38,15 +38,15 @@
     document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
     document.getElementById(tabId).classList.add('active');
   }
-        </script>
-        <!-- ✅ Tab Buttons -->
+</script>
+
+<!-- ✅ Tab Buttons -->
 <div class="flex flex-wrap justify-center gap-4 mt-6">
   <button onclick="showTab('brickshare')" class="bg-blue-500 text-white px-4 py-2 rounded">🏢 BrickShare</button>
   <button onclick="showTab('agriventure')" class="bg-green-500 text-white px-4 py-2 rounded">🌿 AgriVenture</button>
   <button onclick="showTab('tenders')" class="bg-yellow-500 text-black px-4 py-2 rounded">📑 Tenders</button>
   <button onclick="showTab('company')" class="bg-indigo-600 text-white px-4 py-2 rounded">🏢 Company Info</button>
 </div>
-
 <!-- ✅ BrickShare Section -->
 <section id="brickshare" class="tab active max-w-4xl mx-auto bg-white p-6 mt-6 rounded shadow">
   <h2 class="text-xl font-bold mb-4 text-[#0f172a]">🏢 Add BrickShare Project</h2>
@@ -99,8 +99,8 @@
     <button type="submit" class="bg-indigo-600 text-white px-4 py-2 rounded">💾 Save Info</button>
   </form>
   <div id="company-status" class="text-green-600 mt-4 font-medium"></div>
-</section>
-<script type="module">
+      </section>
+      <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
   import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js";
   import {
@@ -120,12 +120,13 @@
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
   const db = getFirestore(app);
-  const allowedDevs = ["mishty@gadcapital.in"];
+  const allowedDevs = ["developer@gadcapital.in", "mishty@gadcapital.in"];
 
+  // ✅ Auth Check
   onAuthStateChanged(auth, async user => {
     if (!user || !allowedDevs.includes(user.email)) {
-      alert("⛔ Access Denied! Devs Only.");
-      window.location.href = "login.html";
+      alert("⛔ Access Denied! Developers only.");
+      window.location.href = "developer-login.html";
     } else {
       loadBrickShare();
       loadAgri();
@@ -143,10 +144,12 @@
     }
   });
 
+  // ✅ Logout
   window.logout = function () {
-    signOut(auth).then(() => window.location.href = "login.html");
+    signOut(auth).then(() => window.location.href = "developer-login.html");
   };
 
+  // ✅ Company Info Form
   document.getElementById("company-form").addEventListener("submit", async (e) => {
     e.preventDefault();
     const data = {
@@ -158,10 +161,10 @@
       year: document.getElementById("year").value
     };
     await setDoc(doc(db, "site", "companyInfo"), data);
-    document.getElementById("company-status").textContent = "✅ Company Info Updated Successfully!";
+    document.getElementById("company-status").textContent = "✅ Info Updated!";
   });
 
-  // BrickShare
+  // ✅ BrickShare Form
   document.getElementById("brickshare-form").addEventListener("submit", async (e) => {
     e.preventDefault();
     const title = document.getElementById("bs-title").value;
@@ -169,7 +172,6 @@
     const returns = document.getElementById("bs-returns").value;
     const tag = document.getElementById("bs-tag").value;
     await addDoc(collection(db, "brickshare"), { title, price, returns, tag, createdAt: new Date().toISOString() });
-    alert("✅ BrickShare Project Added!");
     e.target.reset();
     loadBrickShare();
   });
@@ -182,11 +184,11 @@
       const d = docSnap.data();
       const id = docSnap.id;
       list.innerHTML += `
-        <div class="p-4 border rounded mt-2 bg-gray-50">
+        <div class="p-4 border rounded mt-2 bg-gray-100">
           <p><strong>${d.title}</strong> — ${d.price} • ${d.returns}</p>
           <span class="text-sm bg-blue-100 text-blue-700 px-2 py-1 rounded">${d.tag}</span>
           <p class="text-xs text-gray-500 mt-1">🗓️ ${new Date(d.createdAt).toLocaleDateString()}</p>
-          <button onclick="deleteBrick('${id}')" class="text-red-500 ml-4">🗑 Delete</button>
+          <button onclick="deleteBrick('${id}')" class="text-red-600 mt-2">🗑 Delete</button>
         </div>`;
     });
   }
@@ -196,7 +198,7 @@
     loadBrickShare();
   };
 
-  // AgriVenture
+  // ✅ AgriVenture Form
   document.getElementById("agri-form").addEventListener("submit", async (e) => {
     e.preventDefault();
     const title = document.getElementById("agri-title").value;
@@ -204,7 +206,6 @@
     const returns = document.getElementById("agri-returns").value;
     const tag = document.getElementById("agri-tag").value;
     await addDoc(collection(db, "agriventure"), { title, price, returns, tag, createdAt: new Date().toISOString() });
-    alert("✅ AgriVenture Project Added!");
     e.target.reset();
     loadAgri();
   });
@@ -217,11 +218,11 @@
       const d = docSnap.data();
       const id = docSnap.id;
       list.innerHTML += `
-        <div class="p-4 border rounded mt-2 bg-green-50">
+        <div class="p-4 border rounded mt-2 bg-green-100">
           <p><strong>${d.title}</strong> — ${d.price} • ${d.returns}</p>
-          <span class="text-sm bg-green-100 text-green-700 px-2 py-1 rounded">${d.tag}</span>
+          <span class="text-sm bg-green-200 text-green-700 px-2 py-1 rounded">${d.tag}</span>
           <p class="text-xs text-gray-500 mt-1">🗓️ ${new Date(d.createdAt).toLocaleDateString()}</p>
-          <button onclick="deleteAgri('${id}')" class="text-red-500 ml-4">🗑 Delete</button>
+          <button onclick="deleteAgri('${id}')" class="text-red-600 mt-2">🗑 Delete</button>
         </div>`;
     });
   }
@@ -231,7 +232,7 @@
     loadAgri();
   };
 
-  // Tenders
+  // ✅ Tenders Form
   document.getElementById("tender-form").addEventListener("submit", async (e) => {
     e.preventDefault();
     const title = document.getElementById("tender-title").value;
@@ -239,7 +240,6 @@
     const deadline = document.getElementById("tender-deadline").value;
     const tag = document.getElementById("tender-tag").value;
     await addDoc(collection(db, "tenders"), { title, price, deadline, tag, createdAt: new Date().toISOString() });
-    alert("✅ Tender Added!");
     e.target.reset();
     loadTenders();
   });
@@ -252,11 +252,11 @@
       const d = docSnap.data();
       const id = docSnap.id;
       list.innerHTML += `
-        <div class="p-4 border rounded mt-2 bg-yellow-50">
-          <p><strong>${d.title}</strong> — ${d.price} • Deadline: ${d.deadline}</p>
-          <span class="text-sm bg-yellow-100 text-yellow-700 px-2 py-1 rounded">${d.tag}</span>
+        <div class="p-4 border rounded mt-2 bg-yellow-100">
+          <p><strong>${d.title}</strong> — ₹${d.price} • Deadline: ${d.deadline}</p>
+          <span class="text-sm bg-yellow-200 text-yellow-700 px-2 py-1 rounded">${d.tag}</span>
           <p class="text-xs text-gray-500 mt-1">🗓️ ${new Date(d.createdAt).toLocaleDateString()}</p>
-          <button onclick="deleteTender('${id}')" class="text-red-500 ml-4">🗑 Delete</button>
+          <button onclick="deleteTender('${id}')" class="text-red-600 mt-2">🗑 Delete</button>
         </div>`;
     });
   }
@@ -265,10 +265,5 @@
     await deleteDoc(doc(db, "tenders", id));
     loadTenders();
   };
-</script>
-
-<footer class="text-center text-sm text-gray-600 py-6 mt-10">
-  © 2025 GAD Capital • developer@gadcapital.in
-</footer>
-</body>
-</html>
+      </script>
+      
