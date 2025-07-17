@@ -7,36 +7,31 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
+    body { font-family: 'Inter', sans-serif; background: #f8fafc; }
     html { scroll-behavior: smooth; }
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: #0f172a;
-      color: white;
-    }
-    .fade-up {
-      animation: fadeUp 0.8s ease-in-out both;
-    }
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(40px); }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
+    .fade-in-up { animation: fadeInUp 0.6s ease-out both; }
   </style>
 </head>
-<body>
+<body class="text-gray-900">
 
 <!-- ✅ Header -->
-<header class="bg-[#1e293b] p-4 flex justify-between items-center">
-  <h1 class="text-xl font-bold text-yellow-400">GAD Capital</h1>
+<header class="bg-[#1e293b] text-white p-4 flex justify-between items-center shadow relative">
+  <h1 class="text-xl font-bold">👋 Welcome to GAD Capital Dashboard</h1>
+  <!-- Hamburger Menu -->
   <div class="relative">
-    <button id="menu-btn" class="text-white">
+    <button id="menu-btn" class="text-white focus:outline-none">
       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
       </svg>
     </button>
-    <div id="dropdown" class="hidden absolute right-0 mt-2 w-48 bg-white text-gray-800 rounded shadow z-50">
-      <a href="#sell" class="block px-4 py-2 hover:bg-gray-100">📤 Sell Property</a>
-      <a href="#contact" class="block px-4 py-2 hover:bg-gray-100">📬 Contact</a>
+    <div id="dropdown" class="absolute right-0 mt-2 w-48 bg-white text-gray-800 rounded shadow-lg hidden z-50">
+      <a href="#contact" class="block px-4 py-2 hover:bg-gray-100">📬 Contact Us</a>
       <a href="https://wa.me/919136913890" class="block px-4 py-2 hover:bg-gray-100">💬 WhatsApp</a>
+      <a href="#sell" class="block px-4 py-2 hover:bg-gray-100">📤 Sell Property</a>
       <button onclick="logout()" class="w-full text-left px-4 py-2 hover:bg-gray-100">🚪 Logout</button>
     </div>
   </div>
@@ -49,86 +44,63 @@
 </script>
 
 <!-- ✅ Impact Section -->
-<section class="py-10 text-center bg-[#0f172a]">
-  <h2 class="text-3xl font-bold text-yellow-400 mb-6">📊 Our Impact</h2>
-  <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
-    <div class="bg-yellow-400 text-black p-4 rounded">400+<br><small>Investors</small></div>
-    <div class="bg-yellow-400 text-black p-4 rounded">₹5 Cr+<br><small>Invested</small></div>
-    <div class="bg-yellow-400 text-black p-4 rounded">10<br><small>Cities</small></div>
-    <div class="bg-yellow-400 text-black p-4 rounded">4<br><small>Countries</small></div>
+<section class="text-center py-12 bg-white shadow-md fade-in-up">
+  <h2 class="text-2xl font-bold mb-4 text-[#1e293b]">🚀 Platform Stats</h2>
+  <div class="flex justify-center space-x-10 text-lg font-semibold text-gray-700">
+    <p>👥 400+ Investors</p>
+    <p>💰 ₹5 Cr+ Invested</p>
+    <p>🌆 10 Cities</p>
+    <p>🌎 4 Countries</p>
   </div>
 </section>
 
-<!-- ✅ BrickShare Section -->
-<section id="brickshare" class="py-10 px-4">
-  <h2 class="text-2xl font-bold text-yellow-400 text-center mb-6">🧱 BrickShare Projects</h2>
-  <div class="bg-[#1e293b] p-4 rounded max-w-4xl mx-auto text-white">
-    <p>This section includes all real estate co-investment opportunities. Users can explore fractional ownership options.</p>
-  </div>
-</section>
+<!-- ✅ BrickShare / AgriVenture / BuySell / Tenders can go here -->
 
-<!-- ✅ AgriVenture Section -->
-<section id="agriventure" class="py-10 px-4">
-  <h2 class="text-2xl font-bold text-yellow-400 text-center mb-6">🌱 AgriVenture Deals</h2>
-  <div class="bg-[#1e293b] p-4 rounded max-w-4xl mx-auto text-white">
-    <p>Explore agricultural investment opportunities including agri-land and yield-based funding ventures.</p>
-  </div>
-</section>
-<!-- ✅ Buy/Sell Section -->
-<section id="buy" class="py-10 px-4">
-  <h2 class="text-2xl font-bold text-yellow-400 text-center mb-6">🛒 Buy & Sell Marketplace</h2>
-  <div class="bg-[#1e293b] p-4 rounded max-w-4xl mx-auto text-white">
-    <p>Find live assets listed by users or developers. These include business assets, land, equity shares, and more.</p>
-  </div>
-</section>
-
-<!-- ✅ Tenders Section -->
-<section id="tenders" class="py-10 px-4">
-  <h2 class="text-2xl font-bold text-yellow-400 text-center mb-6">📜 Government Tenders</h2>
-  <div class="bg-[#1e293b] p-4 rounded max-w-4xl mx-auto text-white">
-    <p>Explore open tenders, infra projects, and construction bidding opportunities shared by government bodies.</p>
-  </div>
-</section>
-
-<!-- ✅ Sell Property Section -->
-<section id="sell" class="py-10 px-4">
-  <h2 class="text-2xl font-bold text-yellow-400 text-center mb-6">📤 Sell Your Property / Business</h2>
-  <form id="sellForm" class="bg-[#1e293b] p-6 rounded max-w-xl mx-auto space-y-4 text-white">
-    <input type="text" placeholder="Location" id="location" class="w-full p-2 rounded bg-gray-800 border border-gray-600" required />
-    <input type="text" placeholder="Expected Price" id="price" class="w-full p-2 rounded bg-gray-800 border border-gray-600" required />
-    <textarea placeholder="Property/Business Description" id="description" class="w-full p-2 rounded bg-gray-800 border border-gray-600" required></textarea>
-    <input type="text" placeholder="Contact Number" id="contact" class="w-full p-2 rounded bg-gray-800 border border-gray-600" required />
-    <button type="submit" class="bg-yellow-400 text-black px-6 py-2 rounded hover:bg-yellow-300 font-bold">Submit</button>
-    <p id="successMsg" class="text-green-400 hidden text-sm mt-2">✅ Submitted successfully!</p>
+<!-- ✅ Sell Property Form -->
+<section id="sell" class="max-w-2xl mx-auto px-4 py-10 bg-white mt-10 rounded shadow fade-in-up">
+  <h2 class="text-xl font-bold text-[#1e293b] mb-4">📤 Sell Your Property</h2>
+  <form id="sellForm" class="space-y-4">
+    <input type="text" placeholder="📍 Location" id="location" required class="w-full px-4 py-2 border rounded" />
+    <input type="text" placeholder="💰 Expected Price" id="price" required class="w-full px-4 py-2 border rounded" />
+    <input type="text" placeholder="📞 Contact Info" id="contact" required class="w-full px-4 py-2 border rounded" />
+    <textarea placeholder="🧾 Description" id="description" rows="4" class="w-full px-4 py-2 border rounded"></textarea>
+    <button type="submit" class="bg-[#1e293b] text-white px-4 py-2 rounded hover:bg-gray-800">Submit</button>
   </form>
+  <p id="sell-msg" class="text-green-600 mt-2 hidden">✅ Submitted successfully!</p>
 </section>
 
-<!-- ✅ Contact Section -->
-<section id="contact" class="py-10 text-center bg-[#0f172a]">
-  <h2 class="text-2xl font-bold text-yellow-400 mb-4">📞 Contact Us</h2>
-  <p>📧 support@gadcapital.in | 📍 Bangalore | 📱 WhatsApp: 9136913890</p>
+<!-- ✅ Filter & Listings -->
+<section class="max-w-6xl mx-auto px-4 py-10 fade-in-up">
+  <div class="flex justify-between items-center mb-6">
+    <h2 class="text-xl font-bold text-[#1e293b]">🏘️ Buy/Sell Listings</h2>
+    <div class="flex space-x-2">
+      <select id="filter-location" class="border px-3 py-1 rounded">
+        <option value="">📍 All Locations</option>
+      </select>
+      <select id="filter-price" class="border px-3 py-1 rounded">
+        <option value="">💰 Sort by Price</option>
+        <option value="low">Low → High</option>
+        <option value="high">High → Low</option>
+      </select>
+    </div>
+  </div>
+  <div id="listings" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
 </section>
 
-<!-- ✅ New Footer Section -->
+<!-- ✅ Footer -->
 <footer class="bg-[#0f172a] text-white px-6 py-10">
   <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-sm">
-    
-    <!-- Company Info -->
     <div>
       <h3 class="text-lg font-bold text-yellow-400 mb-2">🏢 GAD Capital</h3>
       <p>India’s Trusted Real Estate & Investment Company.</p>
       <p class="mt-2">📍 1st Floor, 27th Main,<br>HSR Layout, Sector 1, Bangalore</p>
     </div>
-    
-    <!-- Contact Info -->
     <div>
       <h3 class="text-lg font-bold text-yellow-400 mb-2">📬 Contact</h3>
       <p>📧 support@gadcapital.in</p>
       <p>📱 WhatsApp: +91-9136913890</p>
       <p>🌐 www.gadcapital.in</p>
     </div>
-    
-    <!-- Social Links -->
     <div>
       <h3 class="text-lg font-bold text-yellow-400 mb-2">📱 Follow Us</h3>
       <ul class="space-y-1">
@@ -141,11 +113,11 @@
   <div class="text-center text-xs text-gray-400 mt-8">© 2025 GAD Capital. All rights reserved.</div>
 </footer>
 
-<!-- ✅ Firebase Script -->
+<!-- ✅ Firebase Auth + Firestore -->
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
-  import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
   import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js";
+  import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
 
   const firebaseConfig = {
     apiKey: "AIzaSyAoOcgmwn6F9hdl0Es9hpTUXNerukbcyHs",
@@ -157,41 +129,70 @@
   };
 
   const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
   const auth = getAuth(app);
+  const db = getFirestore(app);
 
-  // 🔐 Login check
-  onAuthStateChanged(auth, (user) => {
-    if (!user) {
-      window.location.href = "login.html";
-    }
+  onAuthStateChanged(auth, user => {
+    if (!user) window.location.href = 'login.html';
   });
 
-  // 🚪 Logout
-  window.logout = function() {
-    signOut(auth).then(() => {
-      window.location.href = "login.html";
-    });
+  window.logout = () => {
+    signOut(auth).then(() => window.location.href = 'login.html');
   };
 
-  // 📤 Sell Form Submit
-  document.getElementById("sellForm").addEventListener("submit", async (e) => {
+  document.getElementById('sellForm').addEventListener('submit', async (e) => {
     e.preventDefault();
-    const location = document.getElementById("location").value;
-    const price = document.getElementById("price").value;
-    const description = document.getElementById("description").value;
-    const contact = document.getElementById("contact").value;
+    const location = document.getElementById('location').value;
+    const price = document.getElementById('price').value;
+    const contact = document.getElementById('contact').value;
+    const description = document.getElementById('description').value;
 
-    try {
-      await addDoc(collection(db, "sell_posts"), {
-        location, price, description, contact, date: new Date().toISOString()
-      });
-      document.getElementById("sellForm").reset();
-      document.getElementById("successMsg").classList.remove("hidden");
-    } catch (error) {
-      alert("❌ Error saving post.");
-    }
+    await addDoc(collection(db, "sell_posts"), {
+      location, price: parseFloat(price), contact, description, date: new Date()
+    });
+
+    document.getElementById('sell-msg').classList.remove('hidden');
+    document.getElementById('sellForm').reset();
+    loadListings();
   });
+
+  async function loadListings() {
+    const querySnapshot = await getDocs(collection(db, "sell_posts"));
+    let listings = [];
+    querySnapshot.forEach(doc => listings.push(doc.data()));
+
+    const locFilter = document.getElementById('filter-location').value;
+    const priceFilter = document.getElementById('filter-price').value;
+
+    if (locFilter) listings = listings.filter(item => item.location === locFilter);
+    if (priceFilter === 'low') listings.sort((a, b) => a.price - b.price);
+    else if (priceFilter === 'high') listings.sort((a, b) => b.price - a.price);
+
+    const container = document.getElementById('listings');
+    container.innerHTML = '';
+    const uniqueLocations = new Set();
+
+    listings.forEach(listing => {
+      uniqueLocations.add(listing.location);
+      container.innerHTML += `
+        <div class="bg-white p-4 rounded shadow border hover:shadow-md transition">
+          <h3 class="text-lg font-bold text-[#1e293b] mb-1">${listing.location}</h3>
+          <p class="text-sm text-gray-700 mb-1">💰 ₹${listing.price}</p>
+          <p class="text-sm text-gray-700 mb-1">📞 ${listing.contact}</p>
+          <p class="text-sm text-gray-600 text-xs">${listing.description}</p>
+        </div>`;
+    });
+
+    const locSelect = document.getElementById('filter-location');
+    locSelect.innerHTML = '<option value="">📍 All Locations</option>';
+    [...uniqueLocations].forEach(loc => {
+      locSelect.innerHTML += `<option value="${loc}">${loc}</option>`;
+    });
+  }
+
+  document.getElementById('filter-location').addEventListener('change', loadListings);
+  document.getElementById('filter-price').addEventListener('change', loadListings);
+  loadListings();
 </script>
 
 </body>
