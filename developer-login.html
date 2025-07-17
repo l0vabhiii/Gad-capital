@@ -55,7 +55,12 @@
     const password = form.password.value;
 
     if (email !== "developer@gadcapital.in") {
-      errorText.textContent = "Access Denied: Not authorized as Developer.";
+      errorText.textContent = "⛔ Access Denied: Not authorized as Developer.";
+      return;
+    }
+
+    if (password !== "Mishty.12") {
+      errorText.textContent = "⛔ Incorrect password.";
       return;
     }
 
@@ -63,8 +68,8 @@
       .then(() => {
         window.location.href = "developer.html";
       })
-      .catch((error) => {
-        errorText.textContent = "Invalid credentials.";
+      .catch(() => {
+        errorText.textContent = "⛔ Invalid credentials.";
       });
   });
 </script>
