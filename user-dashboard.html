@@ -10,16 +10,18 @@
   <style>
     html { scroll-behavior: smooth; }
     body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
-    @keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
     .fade-in-up { animation: fadeInUp 0.8s ease-out both; }
-    .fade-section { animation: fadeInUp 0.8s ease-out both; }
   </style>
 </head>
 <body class="text-gray-900">
 
-<!-- ✅ Header -->
+<!-- Header and Menu -->
 <header class="bg-[#1e293b] text-white p-4 flex justify-between items-center shadow relative">
-  <h1 class="text-xl font-bold">👋 Welcome to GAD Capital Dashboard</h1>
+  <h1 class="text-xl font-bold">Welcome to GAD Capital Dashboard</h1>
   <div class="relative">
     <button id="menu-btn" class="text-white focus:outline-none">
       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -27,10 +29,10 @@
       </svg>
     </button>
     <div id="dropdown" class="absolute right-0 mt-2 w-44 bg-white text-gray-800 rounded shadow-lg hidden z-50">
-      <a href="#contact" class="block px-4 py-2 hover:bg-gray-100">📬 Contact Us</a>
-      <a href="https://wa.me/919136913890" target="_blank" class="block px-4 py-2 hover:bg-gray-100">💬 WhatsApp</a>
-      <a href="#sell" class="block px-4 py-2 hover:bg-gray-100">🏠 Sell Property</a>
-      <button onclick="logout()" class="w-full text-left px-4 py-2 hover:bg-gray-100">🚪 Logout</button>
+      <a href="#contact" class="block px-4 py-2 hover:bg-gray-100">Contact Us</a>
+      <a href="https://wa.me/919136913890" target="_blank" class="block px-4 py-2 hover:bg-gray-100">WhatsApp</a>
+      <a href="#sell" class="block px-4 py-2 hover:bg-gray-100">Sell Property</a>
+      <button onclick="logout()" class="w-full text-left px-4 py-2 hover:bg-gray-100">Logout</button>
     </div>
   </div>
 </header>
@@ -39,47 +41,115 @@
     document.getElementById('dropdown').classList.toggle('hidden');
   });
 </script>
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
-  import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js";
-  const firebaseConfig = { apiKey: "AIzaSyAoOcgmwn6F9hdl0Es9hpTUXNerukbcyHs", authDomain: "gad-capital.firebaseapp.com", projectId: "gad-capital", storageBucket: "gad-capital.appspot.com", messagingSenderId: "978239151328", appId: "1:978239151328:web:2795c165105c4485d8c485" };
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
-  onAuthStateChanged(auth, user => { if (!user) window.location.href = 'login.html'; });
-  window.logout = function() { signOut(auth).then(() => { window.location.href = 'login.html'; }); }
-</script>
 
-<!-- ✅ Dynamic Content Sections -->
-<section id="dynamic-content" class="max-w-6xl mx-auto py-12 px-6 space-y-16 fade-in-up">
-  <div id="brickshare-section"></div>
-  <div id="agriventure-section"></div>
-  <div id="tenders-section"></div>
+<!-- Hero Section -->
+<section class="bg-cover bg-center h-[80vh] relative" style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80');">
+  <div class="absolute inset-0 bg-black bg-opacity-60"></div>
+  <div class="relative z-10 flex flex-col items-center justify-center h-full text-white text-center px-4 fade-in-up">
+    <h1 class="text-4xl md:text-5xl font-bold">Smart Investments <span class="text-yellow-400">Made Easy</span></h1>
+    <p class="text-lg mt-3 text-gray-200">India’s trusted platform for Real Estate, Agriculture, and Business Deals</p>
+    <p class="mt-6 text-sm text-yellow-300 font-semibold">Scroll down for listings and updates</p>
+  </div>
 </section>
 
-<script type="module">
-  import { getFirestore, collection, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
-  const db = getFirestore(app);
-  async function loadSection(collectionName, sectionId, icon, titleColor) {
-    const container = document.getElementById(`${sectionId}-section`);
-    const q = query(collection(db, collectionName), orderBy("date", "desc"));
-    const snap = await getDocs(q);
-    let html = `<h2 class="text-2xl font-bold text-[${titleColor}] mb-4">${icon} ${collectionName.replace(/\b\w/g, l => l.toUpperCase())}</h2>`;
-    snap.forEach(doc => {
-      const d = doc.data();
-      html += `<div class="bg-white rounded shadow p-4 fade-section">
-        <h3 class="text-lg font-bold">${d.title}</h3>
-        <p>${d.desc}</p>
-        <p class="text-sm text-gray-600 mt-1">${d.location || ''}</p>
-        <p class="text-sm text-gray-400">${new Date(d.date).toLocaleDateString()}</p>
-      </div>`;
-    });
-    container.innerHTML = html;
-  }
-  loadSection("brickshare", "brickshare", "🏢", "#0f172a");
-  loadSection("agriventure", "agriventure", "🌾", "#0f172a");
-  loadSection("tenders", "tenders", "📄", "#0f172a");
-</script>
+<!-- Impact Section -->
+<section class="max-w-6xl mx-auto py-12 px-6 grid grid-cols-2 md:grid-cols-4 gap-6 text-center text-white bg-[#1e293b]">
+  <div class="fade-in-up"><h2 class="text-3xl font-bold">400+</h2><p>Investors</p></div>
+  <div class="fade-in-up"><h2 class="text-3xl font-bold">₹5 Cr+</h2><p>Invested</p></div>
+  <div class="fade-in-up"><h2 class="text-3xl font-bold">10</h2><p>Cities</p></div>
+  <div class="fade-in-up"><h2 class="text-3xl font-bold">4</h2><p>Countries</p></div>
+</section>
 
+<!-- Sections: BrickShare, AgriVenture, Tenders, Buy/Sell -->
+<section class="max-w-6xl mx-auto py-12 px-6 fade-in-up">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="bg-white rounded-lg p-6 shadow">
+      <h2 class="text-xl font-semibold mb-2">BrickShare</h2>
+      <p>Real estate co-investment platform offering fractional property ownership and managed returns.</p>
+    </div>
+    <div class="bg-white rounded-lg p-6 shadow">
+      <h2 class="text-xl font-semibold mb-2">AgriVenture</h2>
+      <p>Farm investment platform with yield-based profits and verified rural partners across India.</p>
+    </div>
+    <div class="bg-white rounded-lg p-6 shadow">
+      <h2 class="text-xl font-semibold mb-2">Government Tenders</h2>
+      <p>Access real-time tenders, bidding support, and consulting for government infrastructure and SME contracts.</p>
+    </div>
+    <div class="bg-white rounded-lg p-6 shadow">
+      <h2 class="text-xl font-semibold mb-2">Buy & Sell Marketplace</h2>
+      <p>Explore investment-ready properties, agri land, and businesses. List your assets directly for sale too.</p>
+    </div>
+  </div>
+</section>
+<!-- ✅ Sell Property Form -->
+<section id="sell" class="max-w-3xl mx-auto bg-white shadow-lg rounded-lg p-6 mt-10 mb-16 fade-in-up">
+  <h2 class="text-2xl font-bold text-[#0f172a] mb-4">📤 Sell Your Property</h2>
+  <form id="sell-form" class="space-y-4">
+    <input type="text" id="p-title" required placeholder="Property Title" class="w-full px-4 py-2 border rounded" />
+    <input type="text" id="p-location" required placeholder="Location" class="w-full px-4 py-2 border rounded" />
+    <input type="number" id="p-price" required placeholder="Expected Price (₹)" class="w-full px-4 py-2 border rounded" />
+    <input type="text" id="p-contact" required placeholder="Your WhatsApp / Phone" class="w-full px-4 py-2 border rounded" />
+    <input type="url" id="p-image" placeholder="Image URL (optional)" class="w-full px-4 py-2 border rounded" />
+    <textarea id="p-desc" rows="4" required placeholder="Property Description" class="w-full px-4 py-2 border rounded"></textarea>
+    <button type="submit" class="bg-yellow-400 text-black px-6 py-2 rounded hover:bg-yellow-500 font-semibold">Submit Listing</button>
+  </form>
+</section><!-- ✅ Firebase Integration -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
+  import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyAoOcgmwn6F9hdl0Es9hpTUXNerukbcyHs",
+    authDomain: "gad-capital.firebaseapp.com",
+    projectId: "gad-capital",
+    storageBucket: "gad-capital.appspot.com",
+    messagingSenderId: "978239151328",
+    appId: "1:978239151328:web:2795c165105c4485d8c485"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  // Submit Sell Form
+  const form = document.getElementById('sell-form');
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const title = document.getElementById('p-title').value;
+    const location = document.getElementById('p-location').value;
+    const price = document.getElementById('p-price').value;
+    const contact = document.getElementById('p-contact').value;
+    const image = document.getElementById('p-image').value || "https://via.placeholder.com/300";
+    const desc = document.getElementById('p-desc').value;
+
+    await addDoc(collection(db, "listings"), { title, location, price, contact, image, desc, date: new Date().toISOString() });
+
+    alert("✅ Listing submitted successfully!");
+    form.reset();
+    loadListings();
+  });
+
+  // Load Listings
+  async function loadListings() {
+    const container = document.getElementById('listing-container');
+    if (!container) return;
+    const querySnapshot = await getDocs(collection(db, "listings"));
+    container.innerHTML = '';
+    querySnapshot.forEach((doc) => {
+      const data = doc.data();
+      container.innerHTML += `
+        <div class="bg-white rounded shadow p-4">
+          <img src="${data.image}" alt="Property" class="h-48 w-full object-cover rounded mb-3" />
+          <h3 class="text-lg font-semibold">${data.title}</h3>
+          <p class="text-sm text-gray-600">${data.location}</p>
+          <p class="text-yellow-700 font-bold mt-1">₹ ${data.price}</p>
+          <p class="text-sm text-gray-700 mt-2">${data.desc}</p>
+          <p class="mt-2 text-sm text-blue-700 font-medium">📞 ${data.contact}</p>
+        </div>`;
+    });
+  }
+
+  loadListings();
+                         </script>
 <!-- ✅ Footer -->
 <footer class="bg-[#0f172a] text-white text-center py-8 mt-16 px-4">
   <h3 class="text-xl font-bold text-yellow-400 mb-2">GAD Capital</h3>
@@ -88,6 +158,209 @@
   <p class="text-sm">📧 <a href="mailto:customercare@gadcapital.in" class="underline">customercare@gadcapital.in</a></p>
   <p class="text-xs text-gray-400 mt-4">© 2025 GAD Capital. All rights reserved.</p>
 </footer>
+  <!-- ✅ BrickShare Section -->
+<section id="brickshare" class="max-w-6xl mx-auto py-12 px-6 fade-in-up">
+  <h2 class="text-2xl font-bold text-[#0f172a] mb-4">🏢 BrickShare</h2>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="bg-white rounded-lg shadow-lg p-6 transition hover:scale-[1.02] hover:shadow-xl duration-300">
+      <h3 class="text-lg font-bold text-[#1e293b]">Fractional Real Estate Ownership</h3>
+      <p class="text-gray-700 mt-2">Own a piece of property in high-demand cities without buying the entire asset.</p>
+    </div>
+    <div class="bg-white rounded-lg shadow-lg p-6 transition hover:scale-[1.02] hover:shadow-xl duration-300">
+      <h3 class="text-lg font-bold text-[#1e293b]">Rental Income Returns</h3>
+      <p class="text-gray-700 mt-2">Earn monthly rental income through our professionally managed properties.</p>
+    </div>
+  </div>
+</section>
+<!-- ✅ AgriVenture Section -->
+<section id="agriventure" class="max-w-6xl mx-auto py-12 px-6 fade-in-up">
+  <h2 class="text-2xl font-bold text-[#0f172a] mb-4">🌾 AgriVenture</h2>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="bg-white rounded-lg shadow-lg p-6 transition hover:scale-[1.02] hover:shadow-xl duration-300">
+      <h3 class="text-lg font-bold text-[#1e293b]">Curated Farm Investments</h3>
+      <p class="text-gray-700 mt-2">We connect you with high-yield farm plots across India — complete with legal, irrigation, and local support.</p>
+    </div>
+    <div class="bg-white rounded-lg shadow-lg p-6 transition hover:scale-[1.02] hover:shadow-xl duration-300">
+      <h3 class="text-lg font-bold text-[#1e293b]">Seasonal Yield Sharing</h3>
+      <p class="text-gray-700 mt-2">Earn passive income from seasonal crops. Great ROI + land value appreciation.</p>
+    </div>
+  </div>
+</section><!-- ✅ Tenders Section -->
+<section id="tenders" class="max-w-6xl mx-auto py-12 px-6 fade-in-up">
+  <h2 class="text-2xl font-bold text-[#0f172a] mb-4">📄 Government Tenders</h2>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="bg-white rounded-lg shadow-lg p-6 transition hover:scale-[1.02] hover:shadow-xl duration-300">
+      <h3 class="text-lg font-bold text-[#1e293b]">Verified Project Leads</h3>
+      <p class="text-gray-700 mt-2">We provide access to legit government tenders across infra, agri, EV, and smart city sectors.</p>
+    </div>
+    <div class="bg-white rounded-lg shadow-lg p-6 transition hover:scale-[1.02] hover:shadow-xl duration-300">
+      <h3 class="text-lg font-bold text-[#1e293b]">Documents & Bid Help</h3>
+      <p class="text-gray-700 mt-2">Get guidance on tender application, documentation, and submission strategy.</p>
+    </div>
+  </div>
+</section>
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const faders = document.querySelectorAll('.fade-in-up');
+    const appearOptions = { threshold: 0.2 };
 
-</body>
-</html>
+    const appearOnScroll = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('animate-fadeInUp');
+        observer.unobserve(entry.target);
+      });
+    }, appearOptions);
+
+    faders.forEach(fader => appearOnScroll.observe(fader));
+  });
+  </script>
+  <!-- ✅ Buy/Sell Listings Section -->
+<section id="buy" class="max-w-6xl mx-auto py-12 px-6 fade-in-up">
+  <h2 class="text-2xl font-bold text-[#0f172a] mb-4">💼 Buy & Sell Marketplace</h2>
+  <p class="text-gray-700 mb-6">Find verified properties, agri land, and businesses for sale. Or list your own!</p>
+
+  <!-- 🔍 Filter UI -->
+  <div class="flex flex-wrap gap-4 mb-6">
+    <input type="text" id="filter-location" placeholder="Search by location" class="px-4 py-2 rounded border w-full md:w-1/3" />
+    <input type="number" id="filter-price" placeholder="Max price (₹)" class="px-4 py-2 rounded border w-full md:w-1/3" />
+    <button onclick="applyFilters()" class="bg-[#334155] text-white px-4 py-2 rounded hover:bg-[#1e293b]">Apply</button>
+  </div>
+
+  <!-- 📸 Insta-style Listings -->
+  <div id="listing-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+</section>
+  <script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
+  import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyAoOcgmwn6F9hdl0Es9hpTUXNerukbcyHs",
+    authDomain: "gad-capital.firebaseapp.com",
+    projectId: "gad-capital",
+    storageBucket: "gad-capital.appspot.com",
+    messagingSenderId: "978239151328",
+    appId: "1:978239151328:web:2795c165105c4485d8c485"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  // 📥 Handle Listing Submission
+  const form = document.getElementById('sell-form');
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const listing = {
+      title: document.getElementById('p-title').value,
+      location: document.getElementById('p-location').value,
+      price: document.getElementById('p-price').value,
+      contact: document.getElementById('p-contact').value,
+      image: document.getElementById('p-image').value || "https://via.placeholder.com/300",
+      desc: document.getElementById('p-desc').value,
+      date: new Date().toISOString()
+    };
+
+    await addDoc(collection(db, "listings"), listing);
+    alert("📤 Listing submitted!");
+    form.reset();
+    loadListings();
+  });
+
+  // 📤 Load Listings
+  async function loadListings() {
+    const container = document.getElementById('listing-container');
+    const snapshot = await getDocs(collection(db, "listings"));
+    container.innerHTML = '';
+    snapshot.forEach(doc => {
+      const d = doc.data();
+      container.innerHTML += `
+        <div class="bg-white rounded-xl shadow hover:shadow-lg overflow-hidden transition transform hover:-translate-y-1 duration-300">
+          <img src="${d.image}" class="h-48 w-full object-cover">
+          <div class="p-4">
+            <h3 class="text-lg font-bold text-[#0f172a]">${d.title}</h3>
+            <p class="text-gray-600 text-sm">${d.location}</p>
+            <p class="text-yellow-600 font-bold mt-1">₹ ${d.price}</p>
+            <p class="text-sm text-gray-700 mt-2">${d.desc}</p>
+            <p class="text-sm mt-2 text-blue-600 font-semibold">📞 ${d.contact}</p>
+          </div>
+        </div>`;
+    });
+  }
+
+  // 🔍 Filter Listings
+  window.applyFilters = async () => {
+    const locationFilter = document.getElementById('filter-location').value.toLowerCase();
+    const priceFilter = parseInt(document.getElementById('filter-price').value || "99999999");
+
+    const container = document.getElementById('listing-container');
+    const snapshot = await getDocs(collection(db, "listings"));
+    container.innerHTML = '';
+    snapshot.forEach(doc => {
+      const d = doc.data();
+      const show = d.location.toLowerCase().includes(locationFilter) && parseInt(d.price) <= priceFilter;
+      if (show) {
+        container.innerHTML += `
+          <div class="bg-white rounded-xl shadow hover:shadow-lg overflow-hidden transition transform hover:-translate-y-1 duration-300">
+            <img src="${d.image}" class="h-48 w-full object-cover">
+            <div class="p-4">
+              <h3 class="text-lg font-bold text-[#0f172a]">${d.title}</h3>
+              <p class="text-gray-600 text-sm">${d.location}</p>
+              <p class="text-yellow-600 font-bold mt-1">₹ ${d.price}</p>
+              <p class="text-sm text-gray-700 mt-2">${d.desc}</p>
+              <p class="text-sm mt-2 text-blue-600 font-semibold">📞 ${d.contact}</p>
+            </div>
+          </div>`;
+      }
+    });
+  }
+
+  loadListings();
+  </script>
+<!-- ✅ Footer -->
+<footer class="bg-[#0f172a] text-white text-center py-10 px-4 mt-16 fade-in-up">
+  <h3 class="text-2xl font-bold text-yellow-400 mb-3">GAD Capital</h3>
+  <p class="text-sm">📍 1st Floor, 27th Main, HSR Layout, Sector 1, Bangalore</p>
+  <p class="text-sm">📞 WhatsApp: <a href="https://wa.me/919136913890" target="_blank" class="underline">+91 91369 13890</a></p>
+  <p class="text-sm">📧 <a href="mailto:customercare@gadcapital.in" class="underline">customercare@gadcapital.in</a></p>
+  <p class="text-xs text-gray-400 mt-4">© 2025 GAD Capital. All rights reserved.</p>
+</footer><!-- Already inside <script> -->
+window.logout = function () {
+  const btn = document.querySelector('button[onclick="logout()"]');
+  btn.innerText = "Logging out...";
+  btn.disabled = true;
+  btn.classList.add('opacity-50');
+
+  setTimeout(() => {
+    signOut(auth).then(() => {
+      window.location.href = 'login.html';
+    });
+  }, 800);
+};
+  <!-- ✅ BrickShare Project Listings from Firebase -->
+<section id="brickshare-projects" class="max-w-6xl mx-auto py-12 px-6 fade-in-up">
+  <h2 class="text-2xl font-bold text-[#0f172a] mb-4">🏙️ BrickShare Projects</h2>
+  <div id="brick-projects" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
+</section>
+
+<script type="module">
+  import { getDocs, collection } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
+  import { db } from './firebase-config.js'; // Use your Firebase DB ref
+
+  async function loadBrickProjects() {
+    const snap = await getDocs(collection(db, "brickshare"));
+    const container = document.getElementById("brick-projects");
+    container.innerHTML = '';
+    snap.forEach(doc => {
+      const p = doc.data();
+      container.innerHTML += `
+        <div class="bg-white p-4 rounded shadow hover:shadow-lg transition duration-300">
+          <h3 class="text-xl font-bold">${p.title}</h3>
+          <p class="text-gray-600">${p.description}</p>
+          <p class="text-sm text-yellow-600 font-semibold mt-2">Location: ${p.location}</p>
+        </div>
+      `;
+    });
+  }
+
+  loadBrickProjects();
+</script>
